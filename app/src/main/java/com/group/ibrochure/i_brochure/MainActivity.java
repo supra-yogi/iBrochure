@@ -7,6 +7,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import com.group.ibrochure.i_brochure.login.LoginActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView tv;

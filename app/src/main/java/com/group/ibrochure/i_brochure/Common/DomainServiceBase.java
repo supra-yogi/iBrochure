@@ -29,9 +29,5 @@ public abstract class DomainServiceBase<T extends EntityBase> {
         return (T) repository.GetById(Id);
     }
 
-    public int GetCount() {
-        return repository.GetCount();
-    }
-
     public abstract T CreateNew();
 }

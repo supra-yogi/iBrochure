@@ -9,7 +9,6 @@ import java.util.List;
 public interface IRepository<T extends EntityBase>{
     T GetById(int id);
     List<T> GetAll();
-    int GetCount();
     void Save(T entity);
     void Delete(int id);
 }

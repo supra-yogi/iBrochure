@@ -12,15 +12,8 @@ public class CategoryService extends DomainServiceBase<Category> {
         super(repository);
     }
 
-    public String GenerateCode() {
-        return "C" + GetCount();
-    }
-
     @Override
     public Category CreateNew() {
-        Category ent = new Category();
-        ent.setCode(GenerateCode());
-
-        return ent;
+        return new Category();
     }
 }

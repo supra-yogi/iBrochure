@@ -1,4 +1,4 @@
-package com.group.ibrochure.i_brochure.login;
+package com.group.ibrochure.i_brochure.UI.login;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

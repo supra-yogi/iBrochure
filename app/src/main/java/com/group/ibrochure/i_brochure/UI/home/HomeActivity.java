@@ -1,4 +1,4 @@
-package com.group.ibrochure.i_brochure.home;
+package com.group.ibrochure.i_brochure.UI.home;
 
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.group.ibrochure.i_brochure.R;
-import com.group.ibrochure.i_brochure.adapters.BrochureAdapter;
-import com.group.ibrochure.i_brochure.model.Brochure;
+import com.group.ibrochure.i_brochure.UI.adapters.BrochureAdapter;
+import com.group.ibrochure.i_brochure.UI.model.Brochure;
 
 import org.json.JSONArray;
 import org.json.JSONException;

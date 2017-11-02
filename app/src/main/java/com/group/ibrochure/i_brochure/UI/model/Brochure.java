@@ -1,4 +1,4 @@
-package com.group.ibrochure.i_brochure.model;
+package com.group.ibrochure.i_brochure.UI.model;
 
 /**
  * Created by KinKin on 10/31/2017.

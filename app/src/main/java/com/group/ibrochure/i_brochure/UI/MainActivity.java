@@ -1,4 +1,4 @@
-package com.group.ibrochure.i_brochure;
+package com.group.ibrochure.i_brochure.UI;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.group.ibrochure.i_brochure.login.LoginActivity;
+import com.group.ibrochure.i_brochure.R;
+import com.group.ibrochure.i_brochure.UI.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 

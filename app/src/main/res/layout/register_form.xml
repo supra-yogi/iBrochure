@@ -9,7 +9,7 @@
     android:paddingBottom="50dp"
     android:paddingRight="50dp"
     android:paddingLeft="50dp"
-    tools:context=".login.LoginActivity$PlaceholderFragment">
+    tools:context=".UI.login.LoginActivity$PlaceholderFragment">
 
 
     <android.support.design.widget.TextInputLayout

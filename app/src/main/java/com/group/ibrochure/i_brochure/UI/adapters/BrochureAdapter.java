@@ -1,4 +1,4 @@
-package com.group.ibrochure.i_brochure.adapters;
+package com.group.ibrochure.i_brochure.UI.adapters;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.group.ibrochure.i_brochure.R;
-import com.group.ibrochure.i_brochure.model.Brochure;
-
-import org.w3c.dom.Text;
+import com.group.ibrochure.i_brochure.UI.model.Brochure;
 
 import java.util.ArrayList;
 

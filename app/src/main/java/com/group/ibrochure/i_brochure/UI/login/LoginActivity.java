@@ -1,6 +1,5 @@
-package com.group.ibrochure.i_brochure.login;
+package com.group.ibrochure.i_brochure.UI.login;
 
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -11,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.group.ibrochure.i_brochure.R;
 

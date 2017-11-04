@@ -1,6 +1,5 @@
 package com.group.ibrochure.i_brochure.Domain.Category;
 
-import com.group.ibrochure.i_brochure.Common.EntityBase;
 import com.group.ibrochure.i_brochure.Common.IRepository;
 
 /**

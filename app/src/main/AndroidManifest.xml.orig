@@ -11,13 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
+        <activity android:name=".UI.MainActivity" />
+=======
         <activity android:name=".UI.MainActivity">
 
         </activity>
+>>>>>>> 97fc820e4f514d342a0d9ff7645b108c867fa933
         <activity
             android:name=".UI.login.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
+<<<<<<< HEAD
+        <activity android:name=".UI.home.HomeActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".UI.Category.CategoryActivity">
+=======
         <!-- <activity android:name=".UI.home.HomeActivity"> -->
 
 
@@ -27,12 +43,17 @@
         <activity
             android:name=".UI.home.HomeActivity"
             android:label="@string/title_activity_home">
+>>>>>>> 97fc820e4f514d342a0d9ff7645b108c867fa933
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+        <activity android:name=".UI.DisplayList"></activity>
+=======
+>>>>>>> 97fc820e4f514d342a0d9ff7645b108c867fa933
     </application>
 
 </manifest>

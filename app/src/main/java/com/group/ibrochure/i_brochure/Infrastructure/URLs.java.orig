@@ -1,0 +1,18 @@
+package com.group.ibrochure.i_brochure.Infrastructure;
+
+/**
+ * Created by Yogi on 02/11/2017.
+ */
+
+public class URLs {
+<<<<<<< HEAD
+    private static final String ROOT_URL = "http://192.168.1.102:8080/iBrochure/api/";
+=======
+    private static final String ROOT_URL = "http://192.168.1.18:8080/iBrochure/api/";
+>>>>>>> 97fc820e4f514d342a0d9ff7645b108c867fa933
+
+    public static final String URL_CATEGORY = ROOT_URL + "category/";
+    public static final String URL_CUSTOMER = ROOT_URL + "customer/";
+    public static final String URL_USERACCOUNT = ROOT_URL + "useraccount/";
+    public static final String URL_LISTBROCHURE = ROOT_URL + "listbrochure/";
+}

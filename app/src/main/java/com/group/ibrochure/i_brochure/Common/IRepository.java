@@ -1,5 +1,7 @@
 package com.group.ibrochure.i_brochure.Common;
 
+import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
+
 import java.util.List;
 
 /**
@@ -7,8 +9,9 @@ import java.util.List;
  */
 
 public interface IRepository<T extends EntityBase>{
-    T GetById(int id);
-    List<T> GetAll();
-    void Save(T entity);
-    void Delete(int id);
+    void GetById(final ResponseCallBack responseCallBack, int id);
+    void GetAll(final ResponseCallBack responseCallBack);
+    void Save(final ResponseCallBack responseCallBack, T entity);
+    void Delete(final ResponseCallBack responseCallBack, int id);
+    T CreateNew();
 }

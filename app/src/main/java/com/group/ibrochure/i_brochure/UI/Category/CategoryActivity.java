@@ -1,46 +1,95 @@
 package com.group.ibrochure.i_brochure.UI.Category;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
+import com.android.volley.VolleyError;
 import com.group.ibrochure.i_brochure.Domain.Category.Category;
-import com.group.ibrochure.i_brochure.Domain.Category.CategoryService;
 import com.group.ibrochure.i_brochure.Infrastructure.CategoryAPI;
+import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
 import com.group.ibrochure.i_brochure.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class CategoryActivity extends AppCompatActivity {
-    private CategoryService service;
     private CategoryAPI repository;
-    private RequestQueue requestQueue;
-
-    public CategoryActivity() {
-        requestQueue = Volley.newRequestQueue(this);
-        repository = new CategoryAPI(requestQueue, this);
-        service = new CategoryService(repository);
-    }
+    private String TAG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        TAG = this.getClass().getSimpleName();
+        //create new repository
+        repository = new CategoryAPI(this);
 
-        List<String> codes = new ArrayList<>(), names = new ArrayList<>();
-        for (Category en : service.GetAll()){
-            codes.add(en.getCode());
-            names.add(en.getName());
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_list_item_single_choice, names
-        );
+        // Casts results into the ListView found within the main layout XML with id jsonData
+        final ArrayAdapter<String> myAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1);
+        ListView myList = (ListView) findViewById(R.id.listv);
+        myList.setAdapter(myAdapter);
 
-        ListView listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(adapter);
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final ArrayList<Category> entities = new ArrayList<>();
+                repository.GetAll(new ResponseCallBack() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+
+                                Category category = new Category();
+                                category.setId(Integer.parseInt(jsonObject.get("Id").toString()));
+                                category.setCode(jsonObject.get("Code").toString());
+                                category.setName(jsonObject.get("Name").toString());
+                                entities.add(category);
+                            }
+
+                            ArrayList<String> myArrayList = new ArrayList<>();
+                            for (Category cat : entities) {
+                                myArrayList.add(cat.getCode());
+                            }
+
+                            myAdapter.clear();
+                            myAdapter.addAll(myArrayList);
+                            myAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            Log.d("Error", e.getMessage());
+                        }
+
+                        Log.d("Response", response.toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+
+                    @Override
+                    public void onError(VolleyError volleyError) {
+                        Log.d(TAG, "onError: " + volleyError);
+                    }
+                });
+            }
+        });
+
+        Button clear = (Button) findViewById(R.id.clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myAdapter.clear();
+            }
+        });
     }
 }

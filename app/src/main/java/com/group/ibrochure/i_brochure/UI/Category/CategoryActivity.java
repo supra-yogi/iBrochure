@@ -41,6 +41,7 @@ public class CategoryActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final ArrayList<String> myArrayList = new ArrayList<>();
                 final ArrayList<Category> entities = new ArrayList<>();
                 repository.GetAll(new ResponseCallBack() {
                     @Override
@@ -56,7 +57,7 @@ public class CategoryActivity extends AppCompatActivity {
                                 entities.add(category);
                             }
 
-                            ArrayList<String> myArrayList = new ArrayList<>();
+//                            ArrayList<String> myArrayList = new ArrayList<>();
                             for (Category cat : entities) {
                                 myArrayList.add(cat.getCode());
                             }
@@ -71,6 +72,7 @@ public class CategoryActivity extends AppCompatActivity {
                         Log.d("Response", response.toString());
                     }
 
+
                     @Override
                     public void onResponse(String response) {
 
@@ -81,6 +83,8 @@ public class CategoryActivity extends AppCompatActivity {
                         Log.d(TAG, "onError: " + volleyError);
                     }
                 });
+
+
             }
         });
 

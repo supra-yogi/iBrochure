@@ -31,6 +31,7 @@ public class CategoryAPI extends BaseAPI<Category> implements ICategoryRepo {
         super(requestQueue, context);
     }
 
+
     @Override
     public Category GetById(int id) {
         final Category entity = new Category();

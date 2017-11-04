@@ -15,17 +15,19 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/one"/>
         
         <TextView
             android:id="@+id/brochure_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
-            android:text="Restaurant Name"
+            android:text="Brochure Title"
             android:textColor="#212121"
             android:textStyle="bold"
             android:textSize="24sp"/>
@@ -34,21 +36,11 @@
             android:id="@+id/brochure_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:text="Lorem ipsum dolor si amet"
-            android:textSize="14sp"/>
-        
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/brochure_telp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="0878 8559 4740"
             android:textSize="14sp"/>
 
 

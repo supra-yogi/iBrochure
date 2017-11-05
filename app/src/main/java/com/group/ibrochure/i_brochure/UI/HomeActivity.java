@@ -1,4 +1,4 @@
-package com.group.ibrochure.i_brochure.UI.home;
+package com.group.ibrochure.i_brochure.UI;
 
 import android.graphics.Typeface;
 import android.support.v4.view.MenuItemCompat;

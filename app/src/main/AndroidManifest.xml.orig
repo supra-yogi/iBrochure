@@ -22,11 +22,26 @@
             android:name=".UI.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
+<<<<<<< HEAD
+         <activity android:name=".UI.Category.CategoryActivity">
+
+         </activity>
+        <activity android:name=".UI.register.RegisterActivity" />
+=======
          <activity android:name=".UI.CategoryActivity"/>
         <activity android:name=".UI.RegisterActivity"/>
+>>>>>>> db2fcbde61943e0265b830bd7b5e7ed7dd709c55
         <activity
             android:name=".UI.HomeActivity"
             android:label="@string/title_activity_home">
+<<<<<<< HEAD
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+=======
+>>>>>>> db2fcbde61943e0265b830bd7b5e7ed7dd709c55
         </activity>
     </application>
 

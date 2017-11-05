@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30dp"
-    tools:context="com.group.ibrochure.i_brochure.UI.login.LoginActivity">
+    tools:context="com.group.ibrochure.i_brochure.UI.RegisterActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,10 +81,8 @@
 
     </android.support.design.widget.TextInputLayout>
 
-
-
     <Button
-        android:id="@+id/btnSignIn"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -92,8 +90,7 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:textSize="20sp"
         android:textColor="#fff"
-        android:text="create account"/>
-
-
+        android:onClick="onClick"
+        android:text="Register"/>
 
 </LinearLayout>

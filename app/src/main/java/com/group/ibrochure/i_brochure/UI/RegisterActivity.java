@@ -17,7 +17,6 @@ import org.json.JSONArray;
 
 public class RegisterActivity extends AppCompatActivity {
     private UserAccountAPI repository;
-    private UserAccount userAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

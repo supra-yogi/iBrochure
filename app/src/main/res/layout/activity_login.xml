@@ -70,6 +70,7 @@
         android:background="@color/colorPrimary"
         android:padding="@dimen/activity_horizontal_margin"
         android:textSize="20sp"
+        android:onClick="onLogin"
         android:textColor="#fff"
         android:text="login"/>
 
@@ -78,11 +79,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:textStyle="bold"
         android:onClick="registerPage"
         android:text="Create Account"/>
+
+    <TextView
+        android:id="@+id/listBrochure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="left"
+        android:textStyle="bold"
+        android:onClick="goToHome"
+        android:text="List Brochure" />
 
 
 </LinearLayout>

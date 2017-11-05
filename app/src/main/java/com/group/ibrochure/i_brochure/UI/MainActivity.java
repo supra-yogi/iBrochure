@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         imgV = (ImageView) findViewById(R.id.brand);
         imgV.startAnimation(anim);
 
-        final Intent i = new Intent(this, RegisterActivity.class);
+        final Intent i = new Intent(this, LoginActivity.class);
 
         Thread timer = new Thread() {
             public void run() {

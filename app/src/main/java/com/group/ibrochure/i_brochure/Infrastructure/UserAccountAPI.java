@@ -1,7 +1,9 @@
 package com.group.ibrochure.i_brochure.Infrastructure;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -40,7 +42,7 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
                     }
             ) {
                 @Override
-                protected Map<String, String> getParams() {         // Adding parameters
+                protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("Username", entity.getUsername());
                     params.put("Email", entity.getEmail());
@@ -89,5 +91,41 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
     @Override
     public String GetUrl() {
         return URLs.URL_USERACCOUNT;
+    }
+
+    @Override
+    public void Login(final ResponseCallBack responseCallBack, final String userOrEmail, final String password) {
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url + "login/",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        responseCallBack.onResponse(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        responseCallBack.onError(error);
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("UserOrEmail", userOrEmail);
+                params.put("Password", password);
+
+                return params;
+            }
+
+//            For get header http code
+//            @Override
+//            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+//                if (response != null)
+//                    statusCode[0] = response.statusCode;
+//                return super.parseNetworkResponse(response);
+//            }
+        };
+        RequestHandler.getInstance(context).addToRequestQueue(postRequest);
     }
 }

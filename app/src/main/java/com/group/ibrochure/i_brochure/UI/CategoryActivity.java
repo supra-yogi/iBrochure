@@ -1,4 +1,4 @@
-package com.group.ibrochure.i_brochure.UI.Category;
+package com.group.ibrochure.i_brochure.UI;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

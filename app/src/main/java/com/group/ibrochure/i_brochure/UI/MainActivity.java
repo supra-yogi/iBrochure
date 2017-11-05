@@ -5,14 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.group.ibrochure.i_brochure.R;
-import com.group.ibrochure.i_brochure.UI.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tv;
+    private ImageView imgV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Animation
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.transition);
-        tv = (TextView) findViewById(R.id.brand);
-        tv.startAnimation(anim);
+        imgV = (ImageView) findViewById(R.id.brand);
+        imgV.startAnimation(anim);
 
-        final Intent i = new Intent(this, LoginActivity.class);
+        final Intent i = new Intent(this, RegisterActivity.class);
 
         Thread timer = new Thread() {
             public void run() {

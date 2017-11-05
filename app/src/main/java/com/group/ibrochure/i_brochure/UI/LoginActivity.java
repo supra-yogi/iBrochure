@@ -1,16 +1,12 @@
-package com.group.ibrochure.i_brochure.UI.login;
+package com.group.ibrochure.i_brochure.UI;
 
 import android.content.Intent;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.group.ibrochure.i_brochure.R;
-import com.group.ibrochure.i_brochure.UI.home.HomeActivity;
-import com.group.ibrochure.i_brochure.UI.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -39,5 +35,4 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
-
 }

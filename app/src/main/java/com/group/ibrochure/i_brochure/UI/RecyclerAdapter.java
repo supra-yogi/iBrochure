@@ -1,4 +1,4 @@
-package com.group.ibrochure.i_brochure.UI.home;
+package com.group.ibrochure.i_brochure.UI;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

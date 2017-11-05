@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.group.ibrochure.i_brochure.UI.Category.CategoryActivity">
+    tools:context="com.group.ibrochure.i_brochure.UI.CategoryActivity">
 
     <Button
         android:id="@+id/button"

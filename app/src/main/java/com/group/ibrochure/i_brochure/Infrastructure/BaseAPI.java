@@ -83,45 +83,7 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
     }
 
     @Override
-    public void Save(final ResponseCallBack responseCallBack, T entity) {
-        if (entity.getId() == 0) {
-            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            responseCallBack.onResponse(response);
-                            Log.d("Response", response);
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            responseCallBack.onError(error);
-                            Log.d("Error.Response", error.toString());
-                        }
-                    }
-            );
-            RequestHandler.getInstance(context).addToRequestQueue(postRequest);
-        } else {
-            StringRequest putRequest = new StringRequest(Request.Method.PUT, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            responseCallBack.onResponse(response);
-                            Log.d("Response", response);
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            responseCallBack.onError(error);
-                            Log.d("Error.Response", error.toString());
-                        }
-                    }
-            );
-            RequestHandler.getInstance(context).addToRequestQueue(putRequest);
-        }
-    }
+    public abstract void Save(final ResponseCallBack responseCallBack, T entity);
 
     @Override
     public void Delete(final ResponseCallBack responseCallBack, int id) {

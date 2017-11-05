@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.group.ibrochure.i_brochure">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".UI.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UI.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme" />
+<<<<<<< HEAD
+         <activity android:name=".UI.Category.CategoryActivity">
+
+         </activity>
+        <activity android:name=".UI.register.RegisterActivity" />
+=======
+         <activity android:name=".UI.CategoryActivity"/>
+        <activity android:name=".UI.RegisterActivity"/>
+>>>>>>> db2fcbde61943e0265b830bd7b5e7ed7dd709c55
+        <activity
+            android:name=".UI.HomeActivity"
+            android:label="@string/title_activity_home">
+<<<<<<< HEAD
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+=======
+>>>>>>> db2fcbde61943e0265b830bd7b5e7ed7dd709c55
+        </activity>
+    </application>
+
+</manifest>

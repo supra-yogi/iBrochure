@@ -91,8 +91,6 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
             String name = friend.getName().toLowerCase();
             if (name.contains(newText)) {
                 friendArrayList.add(friend);
-            } else {
-                Toast.makeText(this, "Friend Not Found", Toast.LENGTH_SHORT).show();
             }
         }
 

@@ -34,7 +34,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.title.setText(listBrochure.get(position).getTitle());
-        holder.title.setText(listBrochure.get(position).getDescription());
+        holder.description.setText(listBrochure.get(position).getDescription());
     }
 
     @Override
@@ -49,8 +49,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.brochure_name);
-            description = (TextView) itemView.findViewById(R.id.brochure_address);
+            title = (TextView) itemView.findViewById(R.id.brochure_title);
+            description = (TextView) itemView.findViewById(R.id.brochure_description);
 //            customer = (TextView) itemView.findViewById(R.id.brochure_customer);
         }
     }

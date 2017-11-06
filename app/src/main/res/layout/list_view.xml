@@ -11,7 +11,7 @@
         android:orientation="vertical">
         
         <TextView
-            android:id="@+id/brochure_name"
+            android:id="@+id/brochure_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -25,7 +25,7 @@
             android:textSize="24sp"/>
 
         <TextView
-            android:id="@+id/brochure_address"
+            android:id="@+id/brochure_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"

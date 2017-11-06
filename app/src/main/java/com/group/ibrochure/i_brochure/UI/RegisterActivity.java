@@ -38,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
         progressDialog.show();
+        progressDialog.setMessage("Please wait");
         repository.Save(new ResponseCallBack() {
             @Override
             public void onResponse(JSONArray response) {

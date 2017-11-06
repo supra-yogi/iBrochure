@@ -9,17 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/image_thumbnail"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/one"/>
         
         <TextView
-            android:id="@+id/brochure_name"
+            android:id="@+id/brochure_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -33,7 +25,7 @@
             android:textSize="24sp"/>
 
         <TextView
-            android:id="@+id/brochure_address"
+            android:id="@+id/brochure_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -43,6 +35,16 @@
             android:text="Lorem ipsum dolor si amet"
             android:textSize="14sp"/>
 
+        <TextView
+            android:id="@+id/brochure_customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Lorem ipsum dolor si amet"
+            android:textSize="14sp"/>
 
     </LinearLayout>
 

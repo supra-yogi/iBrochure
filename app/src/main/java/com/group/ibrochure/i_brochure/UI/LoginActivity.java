@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -33,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
         EditText userOrEmail = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
 
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.show();
+        progressDialog.setMessage("Please wait");
         repository.Login(new ResponseCallBack() {
             @Override
             public void onResponse(JSONArray response) {
@@ -40,12 +44,14 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
+                progressDialog.hide();
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
             }
 
             @Override
             public void onError(VolleyError volleyError) {
+                progressDialog.hide();
                 Toast.makeText(getApplicationContext(), "Username or password is incorrect", Toast.LENGTH_LONG).show();
             }
 

@@ -11,7 +11,19 @@
         android:roundIcon="@drawable/logo_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.MainActivity">
+        <activity android:name=".UI.MainActivity"></activity>
+        <activity
+            android:name=".UI.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".UI.CategoryActivity" />
+        <activity android:name=".UI.RegisterActivity" />
+        <activity
+            android:name=".UI.HomeActivity"
+            android:label="@string/title_activity_home"></activity>
+        <activity
+            android:name=".UI.ProfileActivity"
+            android:label="@string/title_activity_profile">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,15 +31,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme" />
-         <activity android:name=".UI.CategoryActivity"/>
-        <activity android:name=".UI.RegisterActivity"/>
-        <activity
-            android:name=".UI.HomeActivity"
-            android:label="@string/title_activity_home">
-        </activity>
+            android:name=".UI.Main2Activity"
+            android:label="@string/title_activity_main2"></activity>
     </application>
 
 </manifest>

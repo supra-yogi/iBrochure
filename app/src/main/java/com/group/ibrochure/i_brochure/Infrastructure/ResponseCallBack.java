@@ -13,4 +13,5 @@ public interface ResponseCallBack {
     void onResponse(JSONArray response);
     void onResponse(String response);
     void onError(VolleyError volleyError);
+    void onError(String error);
 }

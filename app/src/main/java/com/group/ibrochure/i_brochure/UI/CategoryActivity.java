@@ -82,6 +82,11 @@ public class CategoryActivity extends AppCompatActivity {
                     public void onError(VolleyError volleyError) {
                         Log.d(TAG, "onError: " + volleyError);
                     }
+
+                    @Override
+                    public void onError(String error) {
+
+                    }
                 });
 
 

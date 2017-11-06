@@ -48,6 +48,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onError(VolleyError volleyError) {
                 Toast.makeText(getApplicationContext(), "Username or password is incorrect", Toast.LENGTH_LONG).show();
             }
+
+            @Override
+            public void onError(String error) {
+
+            }
         }, userOrEmail.getText().toString(), password.getText().toString());
     }
 

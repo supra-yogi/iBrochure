@@ -1,6 +1,7 @@
 package com.group.ibrochure.i_brochure.Infrastructure;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -10,6 +11,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.group.ibrochure.i_brochure.Domain.UserAccount.IUserAccountRepo;
 import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
+import com.group.ibrochure.i_brochure.UI.LoginActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +43,16 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            responseCallBack.onError(error);
+                            String responseBody = new String(error.networkResponse.data);
+                            JSONObject errors = null;
+                            if (responseBody != null && error.networkResponse != null)
+                            try {
+                                errors = new JSONObject(responseBody);
+                                String message = errors.getString("Message");
+                                responseCallBack.onError(message);
+                            } catch (JSONException e) {
+                                Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                            }
                         }
                     }
             ) {

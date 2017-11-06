@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         repository = new UserAccountAPI(this);
     }
 
-    public void onClick(View view) {
+    public void onRegister(View view) {
         EditText username = (EditText) findViewById(R.id.username);
         EditText email = (EditText) findViewById(R.id.email);
         EditText password = (EditText) findViewById(R.id.password);
@@ -51,7 +51,12 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onError(VolleyError volleyError) {
-                Toast.makeText(getApplicationContext(), "Error: " + volleyError.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(String error) {
+                Toast.makeText(getApplicationContext(), "Error: " + error.toString(), Toast.LENGTH_LONG).show();
+                progressDialog.hide();
             }
         }, userAccount);
     }

@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.group.ibrochure.i_brochure.Domain.ListBrochure.ListBrochure;
 import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
 import com.group.ibrochure.i_brochure.Infrastructure.UserAccountAPI;
 import com.group.ibrochure.i_brochure.R;
@@ -30,36 +31,51 @@ public class LoginActivity extends AppCompatActivity {
         repository = new UserAccountAPI(this);
     }
 
+    public void onResume() {
+        super.onResume();
+
+        EditText userOrEmail = (EditText) findViewById(R.id.username);
+        EditText password = (EditText) findViewById(R.id.password);
+        userOrEmail.setText("");
+        password.setText("");
+    }
+
     public void onLogin(View view) {
         EditText userOrEmail = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
 
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.show();
-        progressDialog.setMessage("Please wait");
-        repository.Login(new ResponseCallBack() {
-            @Override
-            public void onResponse(JSONArray response) {
-            }
+        if (userOrEmail.getText().toString().equals("")) {
+            userOrEmail.setError("This field is required");
+        } else if (password.getText().toString().equals("")) {
+            password.setError("Password is required");
+        } else {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.show();
+            progressDialog.setMessage("Please wait");
+            repository.Login(new ResponseCallBack() {
+                @Override
+                public void onResponse(JSONArray response) {
+                }
 
-            @Override
-            public void onResponse(String response) {
-                progressDialog.hide();
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(intent);
-            }
+                @Override
+                public void onResponse(String response) {
+                    progressDialog.hide();
+                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                    startActivity(intent);
+                }
 
-            @Override
-            public void onError(VolleyError volleyError) {
-                progressDialog.hide();
-                Toast.makeText(getApplicationContext(), "Username or password is incorrect", Toast.LENGTH_LONG).show();
-            }
+                @Override
+                public void onError(VolleyError volleyError) {
+                    progressDialog.hide();
+                    Toast.makeText(getApplicationContext(), "Username or password is incorrect", Toast.LENGTH_LONG).show();
+                }
 
-            @Override
-            public void onError(String error) {
+                @Override
+                public void onError(String error) {
 
-            }
-        }, userOrEmail.getText().toString(), password.getText().toString());
+                }
+            }, userOrEmail.getText().toString(), password.getText().toString());
+        }
     }
 
     public void registerPage(View view){
@@ -68,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goToHome(View view) {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, ListBrochureActivity.class);
         startActivity(intent);
     }
 }

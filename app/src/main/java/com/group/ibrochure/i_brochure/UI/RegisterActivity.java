@@ -31,34 +31,54 @@ public class RegisterActivity extends AppCompatActivity {
         EditText email = (EditText) findViewById(R.id.email);
         EditText password = (EditText) findViewById(R.id.password);
 
-        UserAccount userAccount = repository.CreateNew();
-        userAccount.setUsername(username.getText().toString());
-        userAccount.setEmail(email.getText().toString());
-        userAccount.setPassword(password.getText().toString());
+        if (username.getText().toString().equals("")) {
+            username.setError("Username is required");
+        } else if (email.getText().toString().equals("")) {
+            email.setError("Email is required");
+        } else if (password.getText().toString().equals("")){
+            password.setError("Password is required");
+        } else {
+            UserAccount userAccount = repository.CreateNew();
+            userAccount.setUsername(username.getText().toString());
+            userAccount.setEmail(email.getText().toString());
+            userAccount.setPassword(password.getText().toString());
 
-        final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
-        progressDialog.show();
-        progressDialog.setMessage("Please wait");
-        repository.Save(new ResponseCallBack() {
-            @Override
-            public void onResponse(JSONArray response) {
-            }
+            final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
+            progressDialog.show();
+            progressDialog.setMessage("Please wait");
+            repository.Save(new ResponseCallBack() {
+                @Override
+                public void onResponse(JSONArray response) {
+                }
 
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Inserted", Toast.LENGTH_SHORT).show();
-                progressDialog.hide();
-            }
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(getApplicationContext(), "Inserted", Toast.LENGTH_SHORT).show();
+                    progressDialog.hide();
+                }
 
-            @Override
-            public void onError(VolleyError volleyError) {
-            }
+                @Override
+                public void onError(VolleyError volleyError) {
+                }
 
-            @Override
-            public void onError(String error) {
-                Toast.makeText(getApplicationContext(), "Error: " + error.toString(), Toast.LENGTH_LONG).show();
-                progressDialog.hide();
-            }
-        }, userAccount);
+                @Override
+                public void onError(String error) {
+                    Toast.makeText(getApplicationContext(), "Error: " + error.toString(), Toast.LENGTH_LONG).show();
+                    progressDialog.hide();
+                }
+            }, userAccount);
+        }
+    }
+
+    public void onResume() {
+        super.onResume();
+
+        EditText username = (EditText) findViewById(R.id.username);
+        EditText email = (EditText) findViewById(R.id.email);
+        EditText password = (EditText) findViewById(R.id.password);
+
+        username.setText("");
+        email.setText("");
+        password.setText("");
     }
 }

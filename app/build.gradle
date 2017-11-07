@@ -36,4 +36,5 @@ dependencies {
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.roughike:bottom-bar:2.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.github.tosslife:pullloadview:1.1.0'
 }

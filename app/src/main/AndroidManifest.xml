@@ -22,12 +22,12 @@
             android:name=".UI.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
-         <activity android:name=".UI.CategoryActivity"/>
-        <activity android:name=".UI.RegisterActivity"/>
+        <activity android:name=".UI.CategoryActivity" />
+        <activity android:name=".UI.RegisterActivity" />
         <activity
             android:name=".UI.HomeActivity"
-            android:label="@string/title_activity_home">
-        </activity>
+            android:label="@string/title_activity_home"></activity>
+        <activity android:name=".UI.ListBrochureActivity"></activity>
     </application>
 
 </manifest>

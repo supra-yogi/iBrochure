@@ -3,6 +3,7 @@
     package="com.group.ibrochure.i_brochure">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -26,8 +27,9 @@
         <activity android:name=".UI.RegisterActivity" />
         <activity
             android:name=".UI.HomeActivity"
-            android:label="@string/title_activity_home"></activity>
-        <activity android:name=".UI.ListBrochureActivity"></activity>
+            android:label="@string/title_activity_home" />
+        <activity android:name=".UI.ListBrochureActivity" />
+        <activity android:name=".UI.NoConnectionzServerActivity"></activity>
     </application>
 
 </manifest>

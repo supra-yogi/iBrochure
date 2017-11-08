@@ -1,25 +1,20 @@
 package com.group.ibrochure.i_brochure.UI;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.HandlerThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.group.ibrochure.i_brochure.Infrastructure.URLs;
 import com.group.ibrochure.i_brochure.R;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         imgV = (ImageView) findViewById(R.id.brand);
         imgV.startAnimation(anim);
 
-        final Intent login = new Intent(this, LoginActivity.class);
-        final Intent noConnection = new Intent(this, NoConnectionzServerActivity.class);
+        final Intent login = new Intent(this, PostActivity.class);
+        final Intent noConnection = new Intent(this, NoConnectionServerActivity.class);
         //Check Connection
         Thread connection = new Thread(new Runnable() {
             @Override
@@ -105,18 +100,4 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
-
-//    public boolean isConnectedToServer(String url, int timeout) {
-//        try{
-//            URL myUrl = new URL(url);
-//            URLConnection connection = myUrl.openConnection();
-//            connection.setConnectTimeout(timeout);
-//            connection.connect();
-//            return true;
-//        } catch (Exception e) {
-//            // Handle your exceptions
-//            e.printStackTrace();
-//        }
-//        return false;
-//    }
 }

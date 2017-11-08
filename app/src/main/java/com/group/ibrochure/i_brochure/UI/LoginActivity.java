@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void registerPage(View view){
-        Intent intent = new Intent(this, RegisterActivity.class);
+        Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
     }
 

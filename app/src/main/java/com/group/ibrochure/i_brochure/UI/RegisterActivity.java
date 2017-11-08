@@ -1,6 +1,7 @@
 package com.group.ibrochure.i_brochure.UI;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -53,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 @Override
                 public void onResponse(String response) {
-                    Toast.makeText(getApplicationContext(), "Inserted", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), EditProfileActivity.class));
                     progressDialog.hide();
                 }
 

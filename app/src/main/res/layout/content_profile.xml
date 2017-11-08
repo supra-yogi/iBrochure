@@ -20,8 +20,6 @@
            android:background="@drawable/rect"
            android:padding="@dimen/activity_horizontal_margin">
 
-
-
            <RelativeLayout
                android:layout_gravity="bottom"
                android:layout_width="match_parent"
@@ -106,7 +104,6 @@
                android:drawableTint="@color/colorPrimary"
                android:drawablePadding="30dp"
                android:text="0878-85594740"/>
-
 
            <TextView
                android:layout_width="wrap_content"

@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.group.ibrochure.i_brochure.R;
 
-public class NoConnectionzServerActivity extends AppCompatActivity {
+public class NoConnectionServerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     progressDialog.hide();
-                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), ListBrochureActivity.class);
                     startActivity(intent);
                 }
 
@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void registerPage(View view){
-        Intent intent = new Intent(this, EditProfileActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 

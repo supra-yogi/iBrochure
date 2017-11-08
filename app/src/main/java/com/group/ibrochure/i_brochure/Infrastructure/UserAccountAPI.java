@@ -143,4 +143,31 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
         };
         RequestHandler.getInstance(context).addToRequestQueue(postRequest);
     }
+
+    @Override
+    public void GetByUsername(final ResponseCallBack responseCallBack, final String username) {
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url + "getByUsername/",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        responseCallBack.onResponse(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        responseCallBack.onError(error);
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Username", username);
+
+                return params;
+            }
+        };
+        RequestHandler.getInstance(context).addToRequestQueue(postRequest);
+    }
 }

@@ -42,18 +42,33 @@
         android:orientation="vertical"
         android:padding="@dimen/activity_vertical_margin">
 
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_launcher"/>
+
+        <Button
+            android:id="@+id/buttonChoosePicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onPickPicture"
+            android:text="Button" />
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/username_til"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/name_user"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:hint="Username"
+                android:enabled="false"
                 android:inputType="textPersonName"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -64,7 +79,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/email_user"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_centerHorizontal="true"
@@ -75,12 +90,28 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/name_til"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:hint="Name"
+                android:inputType="textPersonName"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/contact_til"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/contact_user"
+                android:id="@+id/contact"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_centerHorizontal="true"
@@ -96,7 +127,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/phone_user"
+                android:id="@+id/telp"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_centerHorizontal="true"
@@ -112,7 +143,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/brochure_desc_post"
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Address"
@@ -130,8 +161,6 @@
             android:text="Save Changes"
             android:layout_marginTop="30dp"
             android:textColor="#fff"/>
-
-
     </LinearLayout>
 
 </LinearLayout>

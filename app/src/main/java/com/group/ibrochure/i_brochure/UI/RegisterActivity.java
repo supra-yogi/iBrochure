@@ -11,13 +11,17 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
 import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
+import com.group.ibrochure.i_brochure.Infrastructure.Session;
 import com.group.ibrochure.i_brochure.Infrastructure.UserAccountAPI;
 import com.group.ibrochure.i_brochure.R;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
     private UserAccountAPI repository;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         repository = new UserAccountAPI(this);
+        session = new Session(this);
     }
 
     public void onRegister(View view) {
@@ -54,8 +59,16 @@ public class RegisterActivity extends AppCompatActivity {
 
                 @Override
                 public void onResponse(String response) {
-                    startActivity(new Intent(getApplicationContext(), EditProfileActivity.class));
-                    progressDialog.hide();
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        String username = jsonObject.getString("Username");
+                        session.setUserOrEmail(username);
+
+                        progressDialog.hide();
+                        startActivity(new Intent(getApplication(), EditProfileActivity.class));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override

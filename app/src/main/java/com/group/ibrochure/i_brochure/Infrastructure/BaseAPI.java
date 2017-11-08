@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.group.ibrochure.i_brochure.Common.EntityBase;
 import com.group.ibrochure.i_brochure.Common.IRepository;
 
@@ -38,6 +39,7 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
 
     @Override
     public void GetById(final ResponseCallBack responseCallBack, int id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonArrayRequest request = new JsonArrayRequest(url + id,
                 new Response.Listener<JSONArray>() {
 
@@ -56,7 +58,8 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
                     }
                 }
         );
-        RequestHandler.getInstance(context).addToRequestQueue(request);
+        requestQueue.add(request);
+//        RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 
     @Override

@@ -72,10 +72,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onError(VolleyError volleyError) {
-                }
-
-                @Override
                 public void onError(String error) {
                     Toast.makeText(getApplicationContext(), "Error: " + error.toString(), Toast.LENGTH_LONG).show();
                     progressDialog.hide();

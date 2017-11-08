@@ -78,8 +78,17 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            responseCallBack.onError(error);
-                            error.printStackTrace();
+                            String responseBody = new String(error.networkResponse.data);
+                            JSONObject errors = null;
+                            if (responseBody != null && error.networkResponse != null) {
+                                try {
+                                    errors = new JSONObject(responseBody);
+                                    String message = errors.getString("Message");
+                                    responseCallBack.onError(message);
+                                } catch (JSONException e) {
+                                    Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                                }
+                            }
                         }
                     }
             ) {
@@ -87,9 +96,11 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("Id", String.valueOf(entity.getId()));
-                    params.put("Username", entity.getUsername());
-                    params.put("Email", entity.getEmail());
-                    params.put("Password", entity.getPassword());
+                    params.put("Name", entity.getName());
+                    params.put("Contact", entity.getContact());
+                    params.put("Telephone", entity.getTelephone());
+                    params.put("Address", entity.getAddress());
+                    params.put("Picture", entity.getPicture());
 
                     return params;
                 }
@@ -120,7 +131,17 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        responseCallBack.onError(error);
+                        String responseBody = new String(error.networkResponse.data);
+                        JSONObject errors = null;
+                        if (responseBody != null && error.networkResponse != null) {
+                            try {
+                                errors = new JSONObject(responseBody);
+                                String message = errors.getString("Message");
+                                responseCallBack.onError(message);
+                            } catch (JSONException e) {
+                                Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                            }
+                        }
                     }
                 }
         ) {
@@ -132,14 +153,6 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
 
                 return params;
             }
-
-//            For get header http code
-//            @Override
-//            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-//                if (response != null)
-//                    statusCode[0] = response.statusCode;
-//                return super.parseNetworkResponse(response);
-//            }
         };
         RequestHandler.getInstance(context).addToRequestQueue(postRequest);
     }
@@ -156,7 +169,17 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        responseCallBack.onError(error);
+                        String responseBody = new String(error.networkResponse.data);
+                        JSONObject errors = null;
+                        if (responseBody != null && error.networkResponse != null) {
+                            try {
+                                errors = new JSONObject(responseBody);
+                                String message = errors.getString("Message");
+                                responseCallBack.onError(message);
+                            } catch (JSONException e) {
+                                Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                            }
+                        }
                     }
                 }
         ) {

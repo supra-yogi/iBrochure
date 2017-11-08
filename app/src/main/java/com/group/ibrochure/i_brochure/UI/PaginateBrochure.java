@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * Created by Yogi on 07/11/2017.
  */
 
-public class Paginator {
+public class PaginateBrochure {
     private Context context;
     private PullToLoadView pullToLoadView;
     private RecyclerView rv;
@@ -34,15 +34,12 @@ public class Paginator {
     private int nextPage;
     private final int size = 6;
     private ListBrochureAPI repository;
-    private ArrayList<ListBrochure> listBrochureArrayList;
 
-    public Paginator(Context context, PullToLoadView pullToLoadView) {
+    public PaginateBrochure(Context context, PullToLoadView pullToLoadView) {
         this.context = context;
         this.pullToLoadView = pullToLoadView;
 
         repository = new ListBrochureAPI(context);
-        listBrochureArrayList = new ArrayList<>();
-
         //RECYCLER VIEW
         rv = pullToLoadView.getRecyclerView();
         rv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
@@ -98,7 +95,6 @@ public class Paginator {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                final ArrayList<ListBrochure> entities = new ArrayList<>();
                 repository.GetListBrochureByPage(new ResponseCallBack() {
                     @Override
                     public void onResponse(JSONArray response) {}
@@ -115,17 +111,11 @@ public class Paginator {
                                 entity.setTitle(jsonObject.get("Title").toString());
                                 entity.setDescription(jsonObject.get("Description").toString());
                                 adapter.add(entity);
-                                entities.add(entity);
                             }
                         } catch (JSONException e) {
                             Log.d("Error: ", e.getMessage());
                         }
-
-                        listBrochureArrayList = entities;
                     }
-
-                    @Override
-                    public void onError(VolleyError volleyError) {}
 
                     @Override
                     public void onError(String error) {

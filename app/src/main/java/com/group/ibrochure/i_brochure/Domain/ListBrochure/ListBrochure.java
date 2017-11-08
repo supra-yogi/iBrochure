@@ -2,7 +2,7 @@ package com.group.ibrochure.i_brochure.Domain.ListBrochure;
 
 import com.group.ibrochure.i_brochure.Common.EntityBase;
 import com.group.ibrochure.i_brochure.Domain.Category.Category;
-import com.group.ibrochure.i_brochure.Domain.Customer.Customer;
+import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +16,8 @@ public class ListBrochure extends EntityBase {
     private String telp;
     private String address;
     private String description;
-    private Customer customer;
     private Category category;
+    private UserAccount userAccount;
     private List<ListBrochurePicture> listBrochurePictures;
 
     public ListBrochure() {
@@ -56,13 +56,6 @@ public class ListBrochure extends EntityBase {
         this.description = description;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     public Category getCategory() {
         return category;
@@ -82,5 +75,13 @@ public class ListBrochure extends EntityBase {
 
     public void AddPicture(ListBrochurePicture listBrochurePicture) {
         AddPicture(listBrochurePicture.getPictureName(), listBrochurePicture.getPictureBase64());
+    }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
 }

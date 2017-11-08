@@ -53,8 +53,17 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        responseCallBack.onError(error);
-                        Log.e(tag, error.getMessage(), error);
+                        String responseBody = new String(error.networkResponse.data);
+                        JSONObject errors = null;
+                        if (responseBody != null && error.networkResponse != null) {
+                            try {
+                                errors = new JSONObject(responseBody);
+                                String message = errors.getString("Message");
+                                responseCallBack.onError(message);
+                            } catch (JSONException e) {
+                                Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                            }
+                        }
                     }
                 }
         );
@@ -77,8 +86,17 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        responseCallBack.onError(error);
-                        Log.e(tag, error.getMessage(), error);
+                        String responseBody = new String(error.networkResponse.data);
+                        JSONObject errors = null;
+                        if (responseBody != null && error.networkResponse != null) {
+                            try {
+                                errors = new JSONObject(responseBody);
+                                String message = errors.getString("Message");
+                                responseCallBack.onError(message);
+                            } catch (JSONException e) {
+                                Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                            }
+                        }
                     }
                 }
         );
@@ -101,8 +119,17 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        responseCallBack.onError(error);
-                        Log.d("Error.Response", error.toString());
+                        String responseBody = new String(error.networkResponse.data);
+                        JSONObject errors = null;
+                        if (responseBody != null && error.networkResponse != null) {
+                            try {
+                                errors = new JSONObject(responseBody);
+                                String message = errors.getString("Message");
+                                responseCallBack.onError(message);
+                            } catch (JSONException e) {
+                                Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                            }
+                        }
                     }
                 }
         );

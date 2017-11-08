@@ -28,7 +28,7 @@
         <activity android:name=".UI.NoConnectionServerActivity"></activity>
         <activity android:name=".UI.ProfileActivity"></activity>
         <activity android:name=".UI.EditProfileActivity"></activity>
-        <activity android:name=".UI.PostActivity"></activity>
+        <activity android:name=".UI.PostBrochureActivity"></activity>
     </application>
 
 </manifest>

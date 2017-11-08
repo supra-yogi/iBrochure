@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:isScrollContainer="true"
-    tools:context="com.group.ibrochure.i_brochure.UI.PostActivity">
+    tools:context="com.group.ibrochure.i_brochure.UI.PostBrochureActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/post_toolbar"
@@ -86,20 +86,6 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/date_til"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/brochure_date_post"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:hint="Expired Date"
-                    />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
                 android:id="@+id/desc_til"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -114,6 +100,40 @@
                     android:scrollbars="vertical"/>
 
             </android.support.design.widget.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/pictureFront"
+                android:layout_width="320dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/logo_launcher"/>
+
+            <Button
+                android:id="@+id/pickPictureFront"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:text="submit"
+                android:layout_marginTop="30dp"
+                android:textColor="#fff"/>
+
+            <ImageView
+                android:id="@+id/pictureBack"
+                android:layout_width="320dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/logo_launcher"/>
+
+            <Button
+                android:id="@+id/pickPictureBack"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:text="submit"
+                android:layout_marginTop="30dp"
+                android:textColor="#fff"/>
 
             <Button
                 android:id="@+id/post_submit"

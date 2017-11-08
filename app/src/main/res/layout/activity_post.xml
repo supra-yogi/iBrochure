@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/post_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.group.ibrochure.i_brochure.UI.PostActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/post_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/white"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    </android.support.v7.widget.Toolbar>
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:padding="@dimen/activity_vertical_margin">
+
+
+
+       <android.support.design.widget.TextInputLayout
+           android:id="@+id/email_til"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <EditText
+               android:id="@+id/brochure_title_post"
+               android:layout_width="match_parent"
+               android:layout_height="?attr/actionBarSize"
+               android:layout_centerHorizontal="true"
+               android:layout_centerVertical="true"
+               android:hint="Brochure Title"
+               android:inputType="textPersonName"/>
+
+       </android.support.design.widget.TextInputLayout>
+
+       <fr.ganfra.materialspinner.MaterialSpinner
+           android:id="@+id/brochure_category_post"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:ms_floatingLabelColor="#a9a9a9"
+           app:ms_floatingLabelText="Category Brochure"
+           app:ms_hint="Please Choose"
+           app:ms_multiline="true"/>
+
+       <android.support.design.widget.TextInputLayout
+           android:id="@+id/telp_til"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <EditText
+               android:id="@+id/brochure_telp_post"
+               android:layout_width="match_parent"
+               android:layout_height="?attr/actionBarSize"
+               android:layout_centerHorizontal="true"
+               android:layout_centerVertical="true"
+               android:hint="Telphone"
+               android:inputType="textPhonetic"/>
+
+       </android.support.design.widget.TextInputLayout>
+
+       <android.support.design.widget.TextInputLayout
+           android:id="@+id/address_til"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <EditText
+               android:id="@+id/brochure_address_post"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Address"
+               android:inputType="textMultiLine"
+               android:lines="2"
+               android:scrollbars="vertical"/>
+
+       </android.support.design.widget.TextInputLayout>
+
+       <android.support.design.widget.TextInputLayout
+           android:id="@+id/date_til"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <EditText
+               android:id="@+id/brochure_date_post"
+               android:layout_width="match_parent"
+               android:layout_height="?attr/actionBarSize"
+               android:hint="Expired Date"
+               />
+
+       </android.support.design.widget.TextInputLayout>
+
+       <android.support.design.widget.TextInputLayout
+           android:id="@+id/desc_til"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <EditText
+               android:id="@+id/brochure_desc_post"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Description"
+               android:inputType="textMultiLine"
+               android:lines="3"
+               android:scrollbars="vertical"/>
+
+       </android.support.design.widget.TextInputLayout>
+
+       <Button
+           android:id="@+id/post_submit"
+           android:layout_width="match_parent"
+           android:layout_height="?attr/actionBarSize"
+           android:background="@color/colorPrimary"
+           android:text="submit"
+           android:layout_marginTop="30dp"
+           android:textColor="#fff"/>
+
+
+   </LinearLayout>
+
+</LinearLayout>

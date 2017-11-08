@@ -1,25 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
     tools:context="com.group.ibrochure.i_brochure.UI.NoConnectionServerActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_sentiment_dissatisfied_black_24dp"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="148dp" />
 
-    <Button
-        android:id="@+id/reload"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="onReload"
-        android:text="Try Again" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:background="@drawable/input"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:tint="@color/colorPrimary"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/ic_sentiment_dissatisfied_black_24dp"/>\
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Look like we weren't able to connect to our server. Please check your internet connection."
+            android:layout_gravity="center"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/reload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onReload"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="20dp"
+            android:text="Try Again" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

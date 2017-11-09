@@ -28,8 +28,89 @@ public class ListBrochureAPI extends BaseAPI<ListBrochure> implements IListBroch
     }
 
     @Override
-    public void Save(ResponseCallBack responseCallBack, ListBrochure entity) {
+    public void Save(final ResponseCallBack responseCallBack, final ListBrochure entity) {
+        if (entity.getId() == 0) {
+            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            responseCallBack.onResponse(response);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            String responseBody = new String(error.networkResponse.data);
+                            JSONObject errors = null;
+                            if (responseBody != null && error.networkResponse != null)
+                                try {
+                                    errors = new JSONObject(responseBody);
+                                    String message = errors.getString("Message");
+                                    responseCallBack.onError(message);
+                                } catch (JSONException e) {
+                                    Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                                }
+                        }
+                    }
+            ) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("Title", entity.getTitle());
+                    params.put("Telephone", entity.getTelephone());
+                    params.put("Address", entity.getAddress());
+                    params.put("PostingDate", entity.getPostingDate().toString());
+                    params.put("Description", entity.getDescription());
+                    params.put("UseraccountId", String.valueOf(entity.getUserAccount().getId()));
+                    params.put("PictureFront", entity.getPictureFront());
+                    params.put("PictureBack", entity.getPictureBack());
+                    params.put("CategoryId", String.valueOf(entity.getCategory().getId()));
 
+                    return params;
+                }
+            };
+            RequestHandler.getInstance(context).addToRequestQueue(postRequest);
+        } else {
+            StringRequest putRequest = new StringRequest(Request.Method.PUT, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            responseCallBack.onResponse(response);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            String responseBody = new String(error.networkResponse.data);
+                            JSONObject errors = null;
+                            if (responseBody != null && error.networkResponse != null) {
+                                try {
+                                    errors = new JSONObject(responseBody);
+                                    String message = errors.getString("Message");
+                                    responseCallBack.onError(message);
+                                } catch (JSONException e) {
+                                    Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                                }
+                            }
+                        }
+                    }
+            ) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("Title", entity.getTitle());
+                    params.put("Telephone", entity.getTelephone());
+                    params.put("Address", entity.getAddress());
+                    params.put("Description", entity.getDescription());
+                    params.put("PictureFront", entity.getPictureFront());
+                    params.put("PictureBack", entity.getPictureBack());
+                    params.put("CategoryId", String.valueOf(entity.getCategory().getId()));
+
+                    return params;
+                }
+            };
+            RequestHandler.getInstance(context).addToRequestQueue(putRequest);
+        }
     }
 
     @Override
@@ -70,7 +151,7 @@ public class ListBrochureAPI extends BaseAPI<ListBrochure> implements IListBroch
         ) {
             @Override
             protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("Page", String.valueOf(page));
                 params.put("Size", String.valueOf(size));
 
@@ -108,7 +189,7 @@ public class ListBrochureAPI extends BaseAPI<ListBrochure> implements IListBroch
         ) {
             @Override
             protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("UseraccountId", String.valueOf(userAccount.getId()));
                 params.put("Page", String.valueOf(page));
                 params.put("Size", String.valueOf(size));

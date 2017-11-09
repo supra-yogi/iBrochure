@@ -58,7 +58,7 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
             ) {
                 @Override
                 protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
+                    Map<String, String> params = new HashMap<>();
                     params.put("Username", entity.getUsername());
                     params.put("Email", entity.getEmail());
                     params.put("Password", entity.getPassword());
@@ -94,7 +94,7 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
             ) {
                 @Override
                 protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
+                    Map<String, String> params = new HashMap<>();
                     params.put("Id", String.valueOf(entity.getId()));
                     params.put("Name", entity.getName());
                     params.put("Contact", entity.getContact());
@@ -147,7 +147,7 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
         ) {
             @Override
             protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("UserOrEmail", userOrEmail);
                 params.put("Password", password);
 
@@ -185,7 +185,7 @@ public class UserAccountAPI extends BaseAPI<UserAccount> implements IUserAccount
         ) {
             @Override
             protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("Username", username);
 
                 return params;

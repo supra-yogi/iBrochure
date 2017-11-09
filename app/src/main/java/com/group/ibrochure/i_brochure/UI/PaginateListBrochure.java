@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.VolleyError;
 import com.group.ibrochure.i_brochure.Domain.ListBrochure.ListBrochure;
 import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
 import com.group.ibrochure.i_brochure.Infrastructure.ListBrochureAPI;
@@ -130,7 +129,7 @@ public class PaginateListBrochure {
 
                     @Override
                     public void onError(String error) {
-                        Toast.makeText(context, "Response: " + error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Response: " + error, Toast.LENGTH_LONG).show();
                     }
                 }, page, size);
 

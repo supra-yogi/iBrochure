@@ -63,6 +63,11 @@ public class ListBrochureActivity extends AppCompatActivity {
             case R.id.action_register:
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
+            case R.id.action_logout:
+                session.logOut();
+                finish();
+                System.exit(0);
+                break;
             default:
                 return true;
         }

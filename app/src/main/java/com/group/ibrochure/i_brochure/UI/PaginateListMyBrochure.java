@@ -132,7 +132,7 @@ public class PaginateListMyBrochure {
 
                     @Override
                     public void onError(String error) {
-                        Toast.makeText(context, "Response: " + error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Response: " + error, Toast.LENGTH_LONG).show();
                     }
                 }, userAccount, page, size);
 

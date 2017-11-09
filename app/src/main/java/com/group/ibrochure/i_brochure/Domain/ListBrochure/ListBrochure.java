@@ -5,6 +5,7 @@ import com.group.ibrochure.i_brochure.Domain.Category.Category;
 import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Yogi on 02/11/2017.
@@ -17,6 +18,7 @@ public class ListBrochure extends EntityBase {
     private String description;
     private String pictureFront;
     private String pictureBack;
+    private Date postingDate;
     private Category category;
     private UserAccount userAccount;
 
@@ -82,5 +84,13 @@ public class ListBrochure extends EntityBase {
 
     public void setPictureBack(String pictureBack) {
         this.pictureBack = pictureBack;
+    }
+
+    public Date getPostingDate() {
+        return postingDate;
+    }
+
+    public void setPostingDate(Date postingDate) {
+        this.postingDate = postingDate;
     }
 }

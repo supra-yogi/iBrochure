@@ -39,7 +39,6 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
 
     @Override
     public void GetById(final ResponseCallBack responseCallBack, int id) {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonArrayRequest request = new JsonArrayRequest(url + id,
                 new Response.Listener<JSONArray>() {
 
@@ -67,8 +66,7 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
                     }
                 }
         );
-        requestQueue.add(request);
-//        RequestHandler.getInstance(context).addToRequestQueue(request);
+        RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 
     @Override
@@ -104,9 +102,6 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
     }
 
     @Override
-    public abstract void Save(final ResponseCallBack responseCallBack, T entity);
-
-    @Override
     public void Delete(final ResponseCallBack responseCallBack, int id) {
         StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, url + id,
                 new Response.Listener<String>() {
@@ -136,7 +131,7 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
         RequestHandler.getInstance(context).addToRequestQueue(deleteRequest);
     }
 
-    @Override
+    public abstract void Save(final ResponseCallBack responseCallBack, T entity);
     public abstract T CreateNew();
     public abstract String GetUrl();
 }

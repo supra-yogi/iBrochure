@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         imgV = (ImageView) findViewById(R.id.brand);
         imgV.startAnimation(anim);
 
-        final Intent login = new Intent(this, LoginActivity.class);
+        final Intent login = new Intent(this, ListBrochureActivity.class);
         final Intent noConnection = new Intent(this, NoConnectionServerActivity.class);
         //Check Connection
         Thread connection = new Thread(new Runnable() {

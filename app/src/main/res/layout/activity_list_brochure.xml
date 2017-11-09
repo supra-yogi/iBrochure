@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:context="com.group.ibrochure.i_brochure.UI.ListBrochureActivity">
 
@@ -17,8 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+            android:background="@color/colorPrimary">
 
             <TextView
                 android:id="@+id/toolbar_title"
@@ -31,7 +31,23 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:padding="@dimen/activity_vertical_margin"-->
+        <!--android:background="@color/white">-->
+
+        <!--<GridView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+            <!---->
+        <!--</GridView>-->
+
+    <!--</LinearLayout>-->
+
+
+    <include layout="@layout/content_main"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -43,4 +59,4 @@
         app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

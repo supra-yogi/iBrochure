@@ -45,16 +45,19 @@ public class ListBrochureActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), PostBrochureActivity.class));
             }
         });
+
         if (session.getId() != 0) {
             fab.show();
         } else {
             fab.hide();
         }
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_item, menu);
+        getMenuInflater().inflate(R.menu.navigation, menu);
         return true;
     }
 
@@ -63,7 +66,11 @@ public class ListBrochureActivity extends AppCompatActivity {
 //        int id = item.getItemId();
         switch (item.getItemId()) {
             case R.id.action_brochure:
-                startActivity(new Intent(getBaseContext(), ProfileActivity.class));
+                if (session.getId() != 0) {
+                    startActivity(new Intent(getBaseContext(), ProfileActivity.class));
+                } else {
+                    startActivity(new Intent(getBaseContext(), FrontActivity.class));
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

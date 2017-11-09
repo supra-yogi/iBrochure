@@ -2,7 +2,10 @@ package com.group.ibrochure.i_brochure.UI;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,17 +46,22 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
     public void onBindViewHolder(MyHolder holder, int position) {
         holder.title.setText(listBrochureArrayList.get(position).getTitle());
         holder.telephone.setText(listBrochureArrayList.get(position).getTelephone());
+        holder.user.setText(listBrochureArrayList.get(position).getUserAccount().getName());
 
         String imageByteFront = listBrochureArrayList.get(position).getPictureFront();
         String imageByteBack = listBrochureArrayList.get(position).getPictureBack();
 
         if (!imageByteFront.equals("")) {
-            Bitmap pictureFront = ConverterImage.decodeBase64(imageByteFront);
+            byte[] decodedString = Base64.decode(imageByteFront, Base64.DEFAULT);
+            Bitmap pictureFront = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             holder.pictureFront.setImageBitmap(pictureFront);
+        } else {
+            holder.pictureFront.setBackgroundResource(R.drawable.brochure);
         }
 
         if (!imageByteBack.equals("")) {
-            Bitmap pictureBack = ConverterImage.decodeBase64(imageByteBack);
+            byte[] decodedString = Base64.decode(imageByteBack, Base64.DEFAULT);
+            Bitmap pictureBack = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             holder.pictureBack.setImageBitmap(pictureBack);
         }
     }
@@ -90,11 +98,13 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
         TextView telephone;
         ImageView pictureFront;
         ImageView pictureBack;
+        TextView user;
 
         public MyHolder(View itemView) {
             super(itemView);
 
             this.title = (TextView) itemView.findViewById(R.id.title);
+            this.user = (TextView) itemView.findViewById(R.id.user);
             this.telephone = (TextView) itemView.findViewById(R.id.telephone);
             this.pictureFront = (ImageView) itemView.findViewById(R.id.pictureFront);
             this.pictureBack = (ImageView) itemView.findViewById(R.id.pictureBack);

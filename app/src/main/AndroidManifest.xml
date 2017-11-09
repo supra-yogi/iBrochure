@@ -29,6 +29,7 @@
         <activity android:name=".UI.NoConnectionServerActivity" />
         <activity android:name=".UI.ProfileActivity" />
         <activity android:name=".UI.EditProfileActivity" />
+        <activity android:name=".UI.FrontActivity" />
         <activity android:name=".UI.PostBrochureActivity" />
         <activity android:name=".UI.ListMyBrochureActivity"></activity>
     </application>

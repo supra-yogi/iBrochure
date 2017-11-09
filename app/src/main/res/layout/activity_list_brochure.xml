@@ -13,7 +13,6 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -29,22 +28,5 @@
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-
-    <!--<LinearLayout-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="@dimen/activity_vertical_margin"-->
-        <!--android:background="@color/white">-->
-
-        <!--<GridView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-            <!---->
-        <!--</GridView>-->
-
-    <!--</LinearLayout>-->
-
-
-    <include layout="@layout/content_main"/>
+    <include layout="@layout/pull_view_all_brochure"/>
 </LinearLayout>

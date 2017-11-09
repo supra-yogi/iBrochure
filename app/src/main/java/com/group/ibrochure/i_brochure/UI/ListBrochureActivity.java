@@ -43,7 +43,7 @@ public class ListBrochureActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.navigation, menu);
+        getMenuInflater().inflate(R.menu.menu_item, menu);
         return true;
     }
 
@@ -52,10 +52,18 @@ public class ListBrochureActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_brochure:
                 if (session.getId() != 0) {
-                    startActivity(new Intent(getBaseContext(), ProfileActivity.class));
+                    startActivity(new Intent(getBaseContext(), ListMyBrochureActivity.class));
                 } else {
                     startActivity(new Intent(getBaseContext(), FrontActivity.class));
                 }
+                break;
+            case R.id.action_login:
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
+            case R.id.action_register:
+                startActivity(new Intent(this, RegisterActivity.class));
+                break;
+            default:
                 return true;
         }
         return super.onOptionsItemSelected(item);

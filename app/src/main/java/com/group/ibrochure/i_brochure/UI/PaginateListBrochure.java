@@ -117,6 +117,10 @@ public class PaginateListBrochure {
                                 entity.setPictureFront(jsonObject.getString("PictureFront"));
                                 entity.setPictureBack(jsonObject.getString("PictureBack"));
 
+                                UserAccount userAccount = new UserAccount();
+                                userAccount.setName(jsonObject.getString("Name"));
+
+                                entity.setUserAccount(userAccount);
                                 adapter.add(entity);
                             }
                         } catch (JSONException e) {

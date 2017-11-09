@@ -7,8 +7,124 @@
     android:layout_height="match_parent"
     tools:context="com.group.ibrochure.i_brochure.UI.ProfileActivity">
 
-    <include layout="@layout/content_profile" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/topProfil"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@drawable/rect"
+                android:padding="@dimen/activity_horizontal_margin">
+
+                <RelativeLayout
+                    android:layout_gravity="bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Kung Fu Tea"
+                        android:textSize="20sp"
+                        android:textColor="#fff"/>
+
+                    <TextView
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="kungfutea"
+                        android:layout_below="@+id/name"
+                        android:textColor="#fff"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/address_til"
+                android:layout_below="@+id/topProfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp"
+                android:background="#fff"
+                android:padding="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="About"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_account_circle"
+                    android:drawableTint="@color/colorPrimary"
+                    android:drawablePadding="30dp"
+                    android:text="Kung Fu Tea"/>
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_location_on"
+                    android:drawableTint="@color/colorPrimary"
+                    android:drawablePadding="30dp"
+                    android:text="Jl.Praja Dalam D No.52, Kebayoran Lama, Jakarta Selatan 12240"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/address_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fff"
+                android:padding="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="information"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/telephone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawableTint="@color/colorPrimary"
+                    android:drawablePadding="30dp"
+                    android:text="0878-85594740"/>
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawableTint="@color/colorPrimary"
+                    android:drawablePadding="30dp"
+                    android:text="aanardiyana2@gmail.com"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -17,5 +133,4 @@
         android:layout_margin="@dimen/fab_margin"
         android:onClick="EditProfile"
         app:srcCompat="@drawable/ic_edit" />
-
 </android.support.design.widget.CoordinatorLayout>

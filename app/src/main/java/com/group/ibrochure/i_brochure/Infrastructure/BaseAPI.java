@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.group.ibrochure.i_brochure.Common.EntityBase;
 import com.group.ibrochure.i_brochure.Common.IRepository;
 
@@ -38,6 +39,7 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
 
     @Override
     public void GetById(final ResponseCallBack responseCallBack, int id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonArrayRequest request = new JsonArrayRequest(url + id,
                 new Response.Listener<JSONArray>() {
 
@@ -51,12 +53,22 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        responseCallBack.onError(error);
-                        Log.e(tag, error.getMessage(), error);
+                        String responseBody = new String(error.networkResponse.data);
+                        JSONObject errors = null;
+                        if (responseBody != null && error.networkResponse != null) {
+                            try {
+                                errors = new JSONObject(responseBody);
+                                String message = errors.getString("Message");
+                                responseCallBack.onError(message);
+                            } catch (JSONException e) {
+                                Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                            }
+                        }
                     }
                 }
         );
-        RequestHandler.getInstance(context).addToRequestQueue(request);
+        requestQueue.add(request);
+//        RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 
     @Override
@@ -74,8 +86,17 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        responseCallBack.onError(error);
-                        Log.e(tag, error.getMessage(), error);
+                        String responseBody = new String(error.networkResponse.data);
+                        JSONObject errors = null;
+                        if (responseBody != null && error.networkResponse != null) {
+                            try {
+                                errors = new JSONObject(responseBody);
+                                String message = errors.getString("Message");
+                                responseCallBack.onError(message);
+                            } catch (JSONException e) {
+                                Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                            }
+                        }
                     }
                 }
         );
@@ -98,8 +119,17 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        responseCallBack.onError(error);
-                        Log.d("Error.Response", error.toString());
+                        String responseBody = new String(error.networkResponse.data);
+                        JSONObject errors = null;
+                        if (responseBody != null && error.networkResponse != null) {
+                            try {
+                                errors = new JSONObject(responseBody);
+                                String message = errors.getString("Message");
+                                responseCallBack.onError(message);
+                            } catch (JSONException e) {
+                                Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                            }
+                        }
                     }
                 }
         );

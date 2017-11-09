@@ -9,4 +9,5 @@ import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
 
 public interface IUserAccountRepo extends IRepository<UserAccount> {
     void Login(ResponseCallBack responseCallBack, String userOrEmail, String password);
+    void GetByUsername(ResponseCallBack responseCallBack, String username);
 }

@@ -68,6 +68,19 @@
             </android.support.design.widget.TextInputLayout>
 
 
+<<<<<<< HEAD
+    <TextView
+        android:id="@+id/listBrochure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="100dp"
+        android:onClick="goToHome"
+        android:text="As Guest"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="true"
+        android:textStyle="bold" />
+=======
             <Button
                 android:id="@+id/btnSignIn"
                 android:layout_width="match_parent"
@@ -80,6 +93,7 @@
                 android:onClick="onLogin"
                 android:textColor="#fff"
                 android:text="login"/>
+>>>>>>> 420d1dc520cd30b065a24f25c7e02a3c18e53039
 
             <TextView
                 android:id="@+id/createAccount"

@@ -5,11 +5,10 @@ package com.group.ibrochure.i_brochure.Infrastructure;
  */
 
 public class URLs {
-    public static final String URL_SERVER = "http://192.168.43.122:8080/iBrochure/";
+    public static final String URL_SERVER = "http://192.168.1.104:8080/iBrochure/";
     public static final String URL_API = URL_SERVER + "api/";
 
     public static final String URL_CATEGORY = URL_API + "category/";
-    public static final String URL_CUSTOMER = URL_API + "customer/";
     public static final String URL_USERACCOUNT = URL_API + "useraccount/";
     public static final String URL_LISTBROCHURE = URL_API + "listbrochure/";
 }

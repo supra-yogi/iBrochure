@@ -28,7 +28,7 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
         this.listBrochureArrayList = listBrochureArrayList;
     }
 
-    //INITIALIE VH
+    //INITIALIZE VIEW HOLDER
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.model, parent, false);
@@ -40,7 +40,7 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
         holder.title.setText(listBrochureArrayList.get(position).getTitle());
-//        holder.description.setText(listBrochureArrayList.get(position).getDescription());
+        holder.telephone.setText(listBrochureArrayList.get(position).getTelp());
     }
 
     /*
@@ -73,23 +73,13 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
      */
     class MyHolder extends RecyclerView.ViewHolder {
         TextView title;
+        TextView telephone;
 
         public MyHolder(View itemView) {
             super(itemView);
 
-            this.title = (TextView) itemView.findViewById(R.id.nameTxt);
-
+            this.title = (TextView) itemView.findViewById(R.id.title);
+            this.telephone = (TextView) itemView.findViewById(R.id.telephone);
         }
-
-//        TextView title;
-//        TextView description;
-////        TextView customer;
-//
-//        public MyHolder(View itemView) {
-//            super(itemView);
-//            title = (TextView) itemView.findViewById(R.id.brochure_title);
-//            description = (TextView) itemView.findViewById(R.id.brochure_description);
-////            customer = (TextView) itemView.findViewById(R.id.brochure_customer);
-//        }
     }
 }

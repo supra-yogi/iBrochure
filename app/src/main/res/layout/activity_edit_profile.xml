@@ -36,102 +36,137 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_vertical_margin">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/username_til"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_vertical_margin">
 
-            <EditText
-                android:id="@+id/name_user"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:hint="Username"
-                android:inputType="textPersonName"/>
+            <ImageView
+                android:id="@+id/picture"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_launcher"/>
 
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/email_til"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/email_user"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:hint="Email Address"
-                android:inputType="textEmailAddress"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/contact_til"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/contact_user"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:hint="Contact"
-                android:inputType="textPersonName"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/phone_til"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/phone_user"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:hint="Telephone"
-                android:inputType="textPersonName"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/add_til"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/brochure_desc_post"
+            <Button
+                android:id="@+id/buttonChoosePicture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Address"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:scrollbars="vertical"/>
+                android:onClick="onPickPicture"
+                android:text="Button" />
 
-        </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/username_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btn_save_changes"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:text="Save Changes"
-            android:layout_marginTop="30dp"
-            android:textColor="#fff"/>
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:hint="Username"
+                    android:enabled="false"
+                    android:inputType="textPersonName"/>
 
+            </android.support.design.widget.TextInputLayout>
 
-    </LinearLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/email_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:enabled="false"
+                    android:hint="Email Address"
+                    android:inputType="textEmailAddress"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/name_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:hint="Name"
+                    android:inputType="textPersonName"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/contact_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:hint="Contact"
+                    android:inputType="textPersonName"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/phone_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/telephone"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:hint="Telephone"
+                    android:inputType="textPersonName"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/add_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:scrollbars="vertical"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_save_changes"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:text="Save Changes"
+                android:onClick="onSave"
+                android:layout_marginTop="30dp"
+                android:textColor="#fff"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

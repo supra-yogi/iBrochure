@@ -5,92 +5,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="30dp"
     tools:context="com.group.ibrochure.i_brochure.UI.RegisterActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_arrow_back" />
-
-    <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/brochure"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="REGISTER"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20dp"
-        android:layout_marginBottom="30dp"/>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/username_til"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/username"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="Username"
-            android:inputType="textPersonName"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_arrow_back" />
 
-    </android.support.design.widget.TextInputLayout>
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/brochure"
+                android:layout_gravity="center"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/email_til"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REGISTER"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                android:layout_marginBottom="30dp"/>
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="Email Address"
-            android:inputType="textPersonName"/>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/username_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:hint="Username"
+                    android:inputType="textPersonName"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/pass_til"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true">
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_below="@id/username"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="20dp"
-            android:fontFamily="sans-serif"
-            android:hint="Password"
-            android:inputType="textPassword"/>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/email_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:hint="Email Address"
+                    android:inputType="textPersonName"/>
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@color/colorPrimary"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"
-        android:textColor="#fff"
-        android:onClick="onRegister"
-        android:text="Register"/>
+            </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/pass_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_below="@id/username"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif"
+                    android:hint="Password"
+                    android:inputType="textPassword"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:textSize="20sp"
+                android:textColor="#fff"
+                android:onClick="onRegister"
+                android:text="Register"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

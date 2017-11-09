@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,15 +14,19 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.group.ibrochure.i_brochure.Domain.ListBrochure.ListBrochure;
 import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
+import com.group.ibrochure.i_brochure.Infrastructure.Session;
 import com.group.ibrochure.i_brochure.Infrastructure.UserAccountAPI;
 import com.group.ibrochure.i_brochure.R;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javax.microedition.khronos.egl.EGLDisplay;
 
 public class LoginActivity extends AppCompatActivity {
     private UserAccountAPI repository;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         repository = new UserAccountAPI(this);
+        session = new Session(this);
     }
 
     public void onResume() {
@@ -60,18 +66,24 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     progressDialog.hide();
-                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                    startActivity(intent);
-                }
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                @Override
-                public void onError(VolleyError volleyError) {
-                    progressDialog.hide();
-                    Toast.makeText(getApplicationContext(), "Username or password is incorrect", Toast.LENGTH_LONG).show();
+                            session.setId(jsonObject.getInt("Id"));
+                            session.setUserOrEmail(jsonObject.getString("Username"));
+                        }
+
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    } catch (JSONException e) {
+                        Log.d("Error: ", e.getMessage());
+                    }
                 }
 
                 @Override
                 public void onError(String error) {
+                    Toast.makeText(getApplicationContext(), "Error: " + error.toString(), Toast.LENGTH_LONG).show();
 
                 }
             }, userOrEmail.getText().toString(), password.getText().toString());
@@ -79,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void registerPage(View view){
-        Intent intent = new Intent(this, EditProfileActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 

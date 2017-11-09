@@ -17,7 +17,7 @@
            android:layout_height="wrap_content"
            android:orientation="horizontal">
            <ImageView
-               android:id="@+id/imageView"
+               android:id="@+id/pictureFront"
                android:layout_width="wrap_content"
                android:layout_height="150dp"
                android:scaleType="centerCrop"
@@ -25,7 +25,7 @@
                card_view:srcCompat="@drawable/brochure" />
 
            <ImageView
-               android:id="@+id/imageView2"
+               android:id="@+id/pictureBack"
                android:layout_width="wrap_content"
                android:layout_height="150dp"
                android:scaleType="centerCrop"
@@ -39,16 +39,17 @@
            android:layout_height="wrap_content"
            android:padding="@dimen/activity_vertical_margin">
            <TextView
+               android:id="@+id/title"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="Title"
-               android:id="@+id/title"
                android:textSize="20sp"
                android:textColor="#000"
                android:textStyle="bold"
                android:layout_marginBottom="10dp"/>
 
            <TextView
+               android:id="@+id/telephone"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="Contact Person"
@@ -62,7 +63,6 @@
                android:text="0878 8559 4740"
                android:drawableLeft="@drawable/ic_phone_android_black_24dp"
                android:drawablePadding="10sp"
-               android:id="@+id/telephone"
                android:textSize="15sp"
                />
        </LinearLayout>

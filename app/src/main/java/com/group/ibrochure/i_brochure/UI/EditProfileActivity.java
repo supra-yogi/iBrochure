@@ -3,21 +3,19 @@ package com.group.ibrochure.i_brochure.UI;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
+import com.group.ibrochure.i_brochure.Infrastructure.ConverterImage;
 import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
 import com.group.ibrochure.i_brochure.Infrastructure.Session;
 import com.group.ibrochure.i_brochure.Infrastructure.UserAccountAPI;
@@ -27,10 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-
 public class EditProfileActivity extends AppCompatActivity {
-    private Toolbar toolbar;
     private Session session;
     private UserAccountAPI repository;
     private UserAccount userAccount;
@@ -46,7 +41,7 @@ public class EditProfileActivity extends AppCompatActivity {
         session = new Session(this);
         userAccount = repository.CreateNew();
 
-        toolbar = (Toolbar) findViewById(R.id.edit_profile);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.edit_profile);
         setSupportActionBar(toolbar);
 
         //manipulate image
@@ -78,13 +73,13 @@ public class EditProfileActivity extends AppCompatActivity {
                     JSONArray jsonArray = new JSONArray(response);
                     JSONObject object = jsonArray.getJSONObject(0);
                     session.setId(object.getInt("Id"));
-                    String encodedImage = object.getString("Picture");
-                    byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
-                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    Bitmap decodedByte = ConverterImage.decodeBase64(object.getString("Picture"));
 
                     progressDialog.hide();
 
-                    imageView.setImageBitmap(decodedByte);
+                    if (!decodedByte.equals("")) {
+                        imageView.setImageBitmap(decodedByte);
+                    }
                     username.setText(object.getString("Username"));
                     email.setText(object.getString("Email"));
                     name.setText(object.getString("Name"));
@@ -98,7 +93,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             @Override
             public void onError(String error) {
-                Toast.makeText(getApplicationContext(), "Error: " + error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
             }
         }, session.getUserOrEmail());
     }
@@ -124,13 +119,7 @@ public class EditProfileActivity extends AppCompatActivity {
         userAccount.setAddress(address.getText().toString());
 
         //Convert image
-        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
-        Bitmap bitmap = drawable.getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] bb = baos.toByteArray();
-        String image = Base64.encodeToString(bb, Base64.DEFAULT);
-
+        String image = ConverterImage.encodeBase64(imageView);
         userAccount.setPicture(image);
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.show();
@@ -148,7 +137,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             @Override
             public void onError(String error) {
-                Toast.makeText(getApplicationContext(), "Error: " + error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
                 progressDialog.hide();
             }
         }, userAccount);

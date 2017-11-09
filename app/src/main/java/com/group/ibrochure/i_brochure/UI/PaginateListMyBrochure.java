@@ -7,10 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.VolleyError;
 import com.group.ibrochure.i_brochure.Domain.ListBrochure.ListBrochure;
+import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
 import com.group.ibrochure.i_brochure.Infrastructure.ListBrochureAPI;
 import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
+import com.group.ibrochure.i_brochure.Infrastructure.Session;
 import com.srx.widget.PullCallback;
 import com.srx.widget.PullToLoadView;
 
@@ -21,10 +22,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Yogi on 07/11/2017.
+ * Created by Yogi on 09/11/2017.
  */
 
-public class PaginateBrochure {
+public class PaginateListMyBrochure {
     private Context context;
     private PullToLoadView pullToLoadView;
     private RecyclerView rv;
@@ -32,12 +33,14 @@ public class PaginateBrochure {
     private boolean isLoading = false;
     private boolean hasLoadedAll = false;
     private int nextPage;
-    private final int size = 6;
+    private final int size = 4;
     private ListBrochureAPI repository;
+    private Session session;
 
-    public PaginateBrochure(Context context, PullToLoadView pullToLoadView) {
+    public PaginateListMyBrochure(Context context, PullToLoadView pullToLoadView) {
         this.context = context;
         this.pullToLoadView = pullToLoadView;
+        session = new Session(context);
 
         repository = new ListBrochureAPI(context);
         //RECYCLER VIEW
@@ -92,10 +95,13 @@ public class PaginateBrochure {
      */
     public void loadData(final int page) {
         isLoading = true;
+        final UserAccount userAccount = new UserAccount();
+        userAccount.setId(session.getId());
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                repository.GetListBrochureByPage(new ResponseCallBack() {
+                repository.GetListMyBrochureByPage(new ResponseCallBack() {
                     @Override
                     public void onResponse(JSONArray response) {}
 
@@ -107,9 +113,12 @@ public class PaginateBrochure {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                                 ListBrochure entity = new ListBrochure();
-                                entity.setId(Integer.parseInt(jsonObject.get("Id").toString()));
-                                entity.setTitle(jsonObject.get("Title").toString());
-                                entity.setDescription(jsonObject.get("Description").toString());
+                                entity.setId(jsonObject.getInt("Id"));
+                                entity.setTitle(jsonObject.getString("Title"));
+                                entity.setTelephone(jsonObject.getString("Telephone"));
+                                entity.setPictureFront(jsonObject.getString("PictureFront"));
+                                entity.setPictureBack(jsonObject.getString("PictureBack"));
+
                                 adapter.add(entity);
                             }
                         } catch (JSONException e) {
@@ -121,7 +130,7 @@ public class PaginateBrochure {
                     public void onError(String error) {
                         Toast.makeText(context, "Response: " + error.toString(), Toast.LENGTH_LONG).show();
                     }
-                }, page, size);
+                }, userAccount, page, size);
 
                 //UPDATE PROPERTIES
                 pullToLoadView.setComplete();
@@ -131,7 +140,3 @@ public class PaginateBrochure {
         }, 3000);
     }
 }
-
-
-
-

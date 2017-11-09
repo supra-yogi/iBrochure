@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+=======
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> f3e115d6e896f498997962d91e49e2ccf4248178
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,6 +35,7 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
+<<<<<<< HEAD
     <!--<LinearLayout-->
         <!--android:orientation="horizontal"-->
         <!--android:layout_width="match_parent"-->
@@ -47,4 +53,19 @@
 
 
     <include layout="@layout/content_main"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:tint="@color/white"
+        app:backgroundTint="@color/colorPrimary"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
+
 </LinearLayout>
+=======
+    <include layout="@layout/pull_view_all_brochure" />
+</android.support.design.widget.CoordinatorLayout>
+>>>>>>> f3e115d6e896f498997962d91e49e2ccf4248178

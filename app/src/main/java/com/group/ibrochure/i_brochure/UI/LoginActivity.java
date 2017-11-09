@@ -74,8 +74,8 @@ public class LoginActivity extends AppCompatActivity {
                             session.setId(jsonObject.getInt("Id"));
                             session.setUserOrEmail(jsonObject.getString("Username"));
                         }
-
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ListMyBrochureActivity.class));
+                        finish();
                     } catch (JSONException e) {
                         Log.d("Error: ", e.getMessage());
                     }

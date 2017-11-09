@@ -5,7 +5,6 @@ import com.group.ibrochure.i_brochure.Domain.Category.Category;
 import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Yogi on 02/11/2017.
@@ -13,16 +12,13 @@ import java.util.List;
 
 public class ListBrochure extends EntityBase {
     private String title;
-    private String telp;
+    private String telephone;
     private String address;
     private String description;
+    private String pictureFront;
+    private String pictureBack;
     private Category category;
     private UserAccount userAccount;
-    private List<ListBrochurePicture> listBrochurePictures;
-
-    public ListBrochure() {
-        listBrochurePictures = new ArrayList<ListBrochurePicture>();
-    }
 
     public String getTitle() {
         return title;
@@ -32,12 +28,12 @@ public class ListBrochure extends EntityBase {
         this.title = title;
     }
 
-    public String getTelp() {
-        return telp;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setTelp(String telp) {
-        this.telp = telp;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public String getAddress() {
@@ -56,7 +52,6 @@ public class ListBrochure extends EntityBase {
         this.description = description;
     }
 
-
     public Category getCategory() {
         return category;
     }
@@ -65,23 +60,27 @@ public class ListBrochure extends EntityBase {
         this.category = category;
     }
 
-    public void AddPicture(String pictureName, String pictureBase64) {
-        ListBrochurePicture ent = new ListBrochurePicture();
-        ent.setPictureName(pictureName);
-        ent.setPictureBase64(pictureBase64);
-
-        listBrochurePictures.add(ent);
-    }
-
-    public void AddPicture(ListBrochurePicture listBrochurePicture) {
-        AddPicture(listBrochurePicture.getPictureName(), listBrochurePicture.getPictureBase64());
-    }
-
     public UserAccount getUserAccount() {
         return userAccount;
     }
 
     public void setUserAccount(UserAccount userAccount) {
         this.userAccount = userAccount;
+    }
+
+    public String getPictureFront() {
+        return pictureFront;
+    }
+
+    public void setPictureFront(String pictureFront) {
+        this.pictureFront = pictureFront;
+    }
+
+    public String getPictureBack() {
+        return pictureBack;
+    }
+
+    public void setPictureBack(String pictureBack) {
+        this.pictureBack = pictureBack;
     }
 }

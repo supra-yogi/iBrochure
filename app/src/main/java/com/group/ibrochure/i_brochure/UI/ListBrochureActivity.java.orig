@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.group.ibrochure.i_brochure.Infrastructure.Session;
@@ -35,10 +34,27 @@ public class ListBrochureActivity extends AppCompatActivity {
         tv.setTypeface(face);
 
         PullToLoadView pullToLoadView = (PullToLoadView) findViewById(R.id.pullToLoadView);
+<<<<<<< HEAD
+        new PaginateBrochure(this, pullToLoadView).initializePaginator();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), PostBrochureActivity.class));
+            }
+        });
+
+        if (session.getId() != 0) {
+            fab.show();
+        } else {
+            fab.hide();
+        }
+
+
+=======
         new PaginateListBrochure(this, pullToLoadView).initializePaginator();
-
-
-
+>>>>>>> f3e115d6e896f498997962d91e49e2ccf4248178
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -68,7 +69,9 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
             @Override
             public void onClick(View v) {
                 Intent detailBrochure = new Intent(context, DetailBrochureActivity.class);
-                detailBrochure.putExtra("BrochureId", id);
+                Bundle bundle = new Bundle();
+                bundle.putInt("Id", id);
+                detailBrochure.putExtras(bundle);
                 context.startActivity(detailBrochure);
             }
         });

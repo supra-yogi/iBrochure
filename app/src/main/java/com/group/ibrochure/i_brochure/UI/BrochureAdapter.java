@@ -1,8 +1,10 @@
 package com.group.ibrochure.i_brochure.UI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -42,6 +44,7 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
     //BIND DATA
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
+        final int id = listBrochureArrayList.get(position).getId();
         holder.title.setText(listBrochureArrayList.get(position).getTitle());
         holder.telephone.setText(listBrochureArrayList.get(position).getTelephone());
         holder.user.setText(listBrochureArrayList.get(position).getUserAccount().getName());
@@ -53,8 +56,6 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
             byte[] decodedString = Base64.decode(imageByteFront, Base64.DEFAULT);
             Bitmap pictureFront = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             holder.pictureFront.setImageBitmap(pictureFront);
-        } else {
-            holder.pictureFront.setBackgroundResource(R.drawable.brochure);
         }
 
         if (!imageByteBack.equals("")) {
@@ -62,6 +63,15 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
             Bitmap pictureBack = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             holder.pictureBack.setImageBitmap(pictureBack);
         }
+
+        holder.brochure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detailBrochure = new Intent(context, DetailBrochureActivity.class);
+                detailBrochure.putExtra("BrochureId", id);
+                context.startActivity(detailBrochure);
+            }
+        });
     }
 
     /*
@@ -97,6 +107,7 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
         ImageView pictureFront;
         ImageView pictureBack;
         TextView user;
+        CardView brochure;
 
         public MyHolder(View itemView) {
             super(itemView);
@@ -106,6 +117,7 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
             this.telephone = (TextView) itemView.findViewById(R.id.telephone);
             this.pictureFront = (ImageView) itemView.findViewById(R.id.pictureFront);
             this.pictureBack = (ImageView) itemView.findViewById(R.id.pictureBack);
+            this.brochure = (CardView) itemView.findViewById(R.id.cardViewModelBrochure);
         }
     }
 }

@@ -3,10 +3,9 @@ package com.group.ibrochure.i_brochure.UI;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -32,7 +31,7 @@ import org.json.JSONObject;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class PostBrochureActivity extends AppCompatActivity {
+public class EditBrochureActivity extends AppCompatActivity {
 
     private Session session;
     private CategoryAPI categoryRepository;
@@ -47,7 +46,8 @@ public class PostBrochureActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_brochure);
+        setContentView(R.layout.activity_edit_brochure);
+
         session = new Session(this);
         categoryRepository = new CategoryAPI(this);
         repository = new ListBrochureAPI(this);
@@ -100,7 +100,6 @@ public class PostBrochureActivity extends AppCompatActivity {
         EditText description = (EditText) findViewById(R.id.brochure_desc_post);
         EditText telephone = (EditText) findViewById(R.id.brochure_telp_post);
 
-//        String CategoryName = spinner.getSelectedItem().toString();
         int CategoryId = spinnerMap.get(spinner.getSelectedItemPosition());
         Category category = new Category();
         category.setId(CategoryId);
@@ -118,7 +117,6 @@ public class PostBrochureActivity extends AppCompatActivity {
         listBrochure.setUserAccount(userAccount);
         listBrochure.setPictureFront(encodePictureFront);
         listBrochure.setPictureBack(encodePictureBack);
-        listBrochure.setPostingDate(Calendar.getInstance().getTime());
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.show();
@@ -130,7 +128,8 @@ public class PostBrochureActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 progressDialog.hide();
-                startActivity(new Intent(getApplicationContext(), ListMyBrochureActivity.class));
+                startActivity(new Intent(getApplicationContext(), DetailBrochureActivity.class));
+                Bundle bundle = new Bundle();
                 finish();
             }
 

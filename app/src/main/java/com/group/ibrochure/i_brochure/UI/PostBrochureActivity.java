@@ -168,9 +168,4 @@ public class PostBrochureActivity extends AppCompatActivity {
             pictureBack.setImageURI(imageUri);
         }
     }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.addphoto, menu);
-        return true;
-    }
 }

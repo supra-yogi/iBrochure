@@ -98,6 +98,7 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+<<<<<<< HEAD
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -105,12 +106,30 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+=======
+        switch (item.getItemId()) {
+            case R.id.action_brochure:
+                if (session.getId() != 0) {
+                    startActivity(new Intent(getBaseContext(), ListMyBrochureActivity.class));
+                } else {
+                    startActivity(new Intent(getBaseContext(), FrontActivity.class));
+                }
+                break;
+            case R.id.action_login:
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
+            case R.id.action_register:
+                startActivity(new Intent(this, RegisterActivity.class));
+                break;
             case R.id.action_logout:
                 session.logOut();
                 finish();
                 System.exit(0);
                 break;
-            return true;
+            default:
+                return true;
+>>>>>>> 49c40b8d9f40214db0da23be3fa89c1caab21b00
         }
 
         return super.onOptionsItemSelected(item);

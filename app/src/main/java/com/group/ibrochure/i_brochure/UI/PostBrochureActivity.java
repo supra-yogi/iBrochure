@@ -1,6 +1,5 @@
 package com.group.ibrochure.i_brochure.UI;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -33,7 +32,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
 public class PostBrochureActivity extends AppCompatActivity {
@@ -49,7 +47,6 @@ public class PostBrochureActivity extends AppCompatActivity {
     private final static int PICK_IMAGE_FRONT = 100;
     private final static int PICK_IMAGE_BACK = 200;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

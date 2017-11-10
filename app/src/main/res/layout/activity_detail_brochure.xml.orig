@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,3 +13,13 @@
         android:textSize="50sp"
         android:text="TextView"/>
 </LinearLayout>
+=======
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.group.ibrochure.i_brochure.UI.DetailBrochure">
+
+</android.support.constraint.ConstraintLayout>
+>>>>>>> 69c66539d4a0bd0afa1654d021fc532e5285b6fc

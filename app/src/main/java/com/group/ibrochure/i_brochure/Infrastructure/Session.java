@@ -32,4 +32,10 @@ public class Session {
     public int getId() {
         return prefs.getInt("id", 0);
     }
+
+    public void logOut() {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.apply();
+    }
 }

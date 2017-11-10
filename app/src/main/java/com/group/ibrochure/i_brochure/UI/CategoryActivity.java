@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.android.volley.VolleyError;
 import com.group.ibrochure.i_brochure.Domain.Category.Category;
 import com.group.ibrochure.i_brochure.Infrastructure.CategoryAPI;
 import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;

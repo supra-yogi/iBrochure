@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:padding="@dimen/activity_vertical_margin"
-                    android:text="Masuk"
+                    android:text="Login"
                     android:textSize="15sp"/>
 
 
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
                     android:padding="@dimen/activity_vertical_margin"
-                    android:text="Daftar Akun"
+                    android:text="Register"
                     android:textColor="@color/white"
                     android:layout_marginTop="20dp"
                     android:textSize="15sp"/>

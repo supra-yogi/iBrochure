@@ -124,6 +124,7 @@ public class PaginateListMyBrochure {
 
                                 entity.setUserAccount(userAccount);
                                 adapter.add(entity);
+                                nextPage = page + 1;
                             }
                         } catch (JSONException e) {
                             Log.d("Error: ", e.getMessage());
@@ -139,7 +140,6 @@ public class PaginateListMyBrochure {
                 //UPDATE PROPERTIES
                 pullToLoadView.setComplete();
                 isLoading = false;
-                nextPage = page + 1;
             }
         }, 3000);
     }

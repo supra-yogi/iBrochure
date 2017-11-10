@@ -1,5 +1,6 @@
 package com.group.ibrochure.i_brochure.UI;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +26,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private UserAccountAPI repository;
     private Session session;
+    private static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         repository = new UserAccountAPI(this);
         session = new Session(this);
+        activity = this;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,5 +78,9 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
             }
         }, session.getId());
+    }
+
+    public static Activity getInstance() {
+        return activity;
     }
 }

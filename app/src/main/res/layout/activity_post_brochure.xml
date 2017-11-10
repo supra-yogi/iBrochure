@@ -10,12 +10,30 @@
     tools:context="com.group.ibrochure.i_brochure.UI.PostBrochureActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/post_toolbar"
+        android:id="@+id/toolbar_post"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:titleTextColor="@color/white"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:gravity="right">
+
+        <ImageView
+            android:id="@+id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/white"
+            android:onClick="onClose"
+            app:srcCompat="@drawable/ic_close_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="Post Brochure"/>
 
     </android.support.v7.widget.Toolbar>
 

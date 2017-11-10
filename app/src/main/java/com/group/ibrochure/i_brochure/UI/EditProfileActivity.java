@@ -1,5 +1,6 @@
 package com.group.ibrochure.i_brochure.UI;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,7 +9,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -41,20 +41,14 @@ public class EditProfileActivity extends AppCompatActivity {
         session = new Session(this);
         userAccount = repository.CreateNew();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.edit_profile);
-        setSupportActionBar(toolbar);
-
         //manipulate image
         imageView = (ImageView) findViewById(R.id.picture);
-
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
         }
 
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.show();
         repository.GetByUsername(new ResponseCallBack() {
             EditText username = (EditText) findViewById(R.id.username);
             EditText email = (EditText) findViewById(R.id.email);
@@ -74,8 +68,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     JSONObject object = jsonArray.getJSONObject(0);
                     session.setId(object.getInt("Id"));
                     Bitmap decodedByte = ConverterImage.decodeBase64(object.getString("Picture"));
-
-                    progressDialog.hide();
 
                     if (!decodedByte.equals("")) {
                         imageView.setImageBitmap(decodedByte);
@@ -99,10 +91,12 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     public void onClose(View view) {
-        startActivity(new Intent(this, ListBrochureActivity.class));
+        finish();
     }
 
     public void onSave(View view) {
+        ProfileActivity.getInstance().finish();
+
         EditText name = (EditText) findViewById(R.id.name);
         EditText contact = (EditText) findViewById(R.id.contact);
         EditText telephone = (EditText) findViewById(R.id.telephone);
@@ -133,6 +127,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 progressDialog.hide();
                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                finish();
             }
 
             @Override

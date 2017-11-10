@@ -22,6 +22,7 @@ public class FrontActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
             }
         });
 
@@ -30,12 +31,13 @@ public class FrontActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+                finish();
             }
         });
 
     }
 
     public void homeBack(View view) {
-        startActivity(new Intent(getApplicationContext(), ListBrochureActivity.class));
+        finish();
     }
 }

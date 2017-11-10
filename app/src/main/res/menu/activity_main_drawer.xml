@@ -27,8 +27,8 @@
                 android:id="@+id/nav_about"
                 android:title="About" />
             <item
-                android:id="@+id/nav_logout"
-                android:title="Logout" />
+                android:id="@+id/nav_exit"
+                android:title="Exit" />
         </menu>
     </item>
 

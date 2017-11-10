@@ -66,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         progressDialog.hide();
                         startActivity(new Intent(getApplication(), EditProfileActivity.class));
+                        finish();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

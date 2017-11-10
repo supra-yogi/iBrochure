@@ -17,16 +17,6 @@
             android:orientation="vertical"
             android:padding="30dp">
 
-            <TextView
-                android:id="@+id/listBrochure"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:onClick="goToHome"
-                android:text="Skip"
-                android:textAllCaps="true"
-                android:textStyle="bold" />
-
             <ImageView
                 android:id="@+id/imgLogo"
                 android:layout_width="150dp"

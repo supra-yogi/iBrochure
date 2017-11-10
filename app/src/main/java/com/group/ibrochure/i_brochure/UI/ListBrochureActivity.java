@@ -11,9 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.group.ibrochure.i_brochure.Infrastructure.Session;
@@ -50,7 +48,6 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
     @Override
@@ -71,22 +68,26 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         if (id == R.id.nav_home) {
             startActivity(new Intent(this, ListBrochureActivity.class));
         } else if (id == R.id.nav_account) {
-            startActivity(new Intent(this, ProfileActivity.class));
-
+            if (session.getId() != 0)
+                startActivity(new Intent(this, ProfileActivity.class));
+            else
+                startActivity(new Intent(this, FrontActivity.class));
         } else if (id == R.id.nav_mybrochure) {
-            startActivity(new Intent(this, ListMyBrochureActivity.class));
-
+            if (session.getId() != 0)
+                startActivity(new Intent(this, ListMyBrochureActivity.class));
+            else
+                startActivity(new Intent(this, FrontActivity.class));
         } else if (id == R.id.nav_credit) {
 
         } else if (id == R.id.nav_about) {
 
-        } else if (id == R.id.nav_logout) {
-
+        } else if (id == R.id.nav_exit) {
+            finish();
+            System.exit(0);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 }

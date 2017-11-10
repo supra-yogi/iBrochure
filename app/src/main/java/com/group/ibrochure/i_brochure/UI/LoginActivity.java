@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                             session.setId(jsonObject.getInt("Id"));
                             session.setUserOrEmail(jsonObject.getString("Username"));
                         }
-                        startActivity(new Intent(getApplicationContext(), ListMyBrochureActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ListBrochureActivity.class));
                         finish();
                     } catch (JSONException e) {
                         Log.d("Error: ", e.getMessage());
@@ -84,19 +84,14 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onError(String error) {
                     Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
-
+                    progressDialog.hide();
                 }
             }, userOrEmail.getText().toString(), password.getText().toString());
         }
     }
 
     public void registerPage(View view){
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToHome(View view) {
-        Intent intent = new Intent(this, ListBrochureActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, RegisterActivity.class));
+        finish();
     }
 }

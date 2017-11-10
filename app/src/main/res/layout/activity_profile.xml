@@ -30,7 +30,6 @@
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Kung Fu Tea"
                         android:textSize="20sp"
                         android:textColor="#fff"/>
 
@@ -38,7 +37,6 @@
                         android:id="@+id/username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="kungfutea"
                         android:layout_below="@+id/name"
                         android:textColor="#fff"/>
                 </RelativeLayout>
@@ -69,8 +67,7 @@
                     android:layout_marginTop="20dp"
                     android:drawableLeft="@drawable/ic_account_circle"
                     android:drawableTint="@color/colorPrimary"
-                    android:drawablePadding="30dp"
-                    android:text="Kung Fu Tea"/>
+                    android:drawablePadding="30dp"/>
 
                 <TextView
                     android:id="@+id/address"
@@ -79,8 +76,7 @@
                     android:layout_marginTop="20dp"
                     android:drawableLeft="@drawable/ic_location_on"
                     android:drawableTint="@color/colorPrimary"
-                    android:drawablePadding="30dp"
-                    android:text="Jl.Praja Dalam D No.52, Kebayoran Lama, Jakarta Selatan 12240"/>
+                    android:drawablePadding="30dp"/>
 
             </LinearLayout>
 
@@ -107,8 +103,7 @@
                     android:layout_marginTop="20dp"
                     android:drawableLeft="@drawable/ic_phone"
                     android:drawableTint="@color/colorPrimary"
-                    android:drawablePadding="30dp"
-                    android:text="0878-85594740"/>
+                    android:drawablePadding="30dp"/>
 
                 <TextView
                     android:id="@+id/email"
@@ -117,8 +112,7 @@
                     android:layout_marginTop="20dp"
                     android:drawableLeft="@drawable/ic_email"
                     android:drawableTint="@color/colorPrimary"
-                    android:drawablePadding="30dp"
-                    android:text="aanardiyana2@gmail.com"/>
+                    android:drawablePadding="30dp"/>
 
             </LinearLayout>
 

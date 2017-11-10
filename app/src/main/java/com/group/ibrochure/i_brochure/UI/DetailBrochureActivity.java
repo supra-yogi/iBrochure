@@ -28,29 +28,30 @@ public class DetailBrochureActivity extends AppCompatActivity {
         repository = new ListBrochureAPI(this);
 
         id = Integer.parseInt(getIntent().getStringExtra("BrochureId"));
-        repository.GetById(new ResponseCallBack() {
-//            TextView textViewId = (TextView) findViewById(R.id.brochureId);
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = response.getJSONObject(i);
-                        Toast.makeText(getApplicationContext(), jsonObject.getString("Title"), Toast.LENGTH_SHORT).show();
-
-//                        textViewId.setText(jsonObject.getString("Title"));
-                    }
-                } catch (JSONException e) {
-                    Log.d("Error", e.getMessage());
-                }
-            }
-
-            @Override
-            public void onResponse(String response) {}
-
-            @Override
-            public void onError(String error) {
-                Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
-            }
-        }, id);
+        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_LONG).show();
+//        repository.GetById(new ResponseCallBack() {
+////            TextView textViewId = (TextView) findViewById(R.id.brochureId);
+//            @Override
+//            public void onResponse(JSONArray response) {
+//                try {
+//                    for (int i = 0; i < response.length(); i++) {
+//                        JSONObject jsonObject = response.getJSONObject(i);
+//                        Toast.makeText(getApplicationContext(), jsonObject.getString("Title"), Toast.LENGTH_SHORT).show();
+//
+////                        textViewId.setText(jsonObject.getString("Title"));
+//                    }
+//                } catch (JSONException e) {
+//                    Log.d("Error", e.getMessage());
+//                }
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {}
+//
+//            @Override
+//            public void onError(String error) {
+//                Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
+//            }
+//        }, id);
     }
 }

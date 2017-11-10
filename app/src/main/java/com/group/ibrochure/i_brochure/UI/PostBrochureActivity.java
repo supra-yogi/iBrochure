@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -55,14 +54,6 @@ public class PostBrochureActivity extends AppCompatActivity {
         categoryRepository = new CategoryAPI(this);
         repository = new ListBrochureAPI(this);
 
-        toolbar = (Toolbar) findViewById(R.id.post_toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
-            actionBar.setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("Post");
-
         pictureFront = (ImageView) findViewById(R.id.pictureFront);
         pictureBack = (ImageView) findViewById(R.id.pictureBack);
 
@@ -99,6 +90,10 @@ public class PostBrochureActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void onClose(View view) {
+        finish();
     }
 
     public void onSave(View view) {
@@ -139,6 +134,7 @@ public class PostBrochureActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 progressDialog.hide();
                 startActivity(new Intent(getApplicationContext(), ListMyBrochureActivity.class));
+                finish();
             }
 
             @Override

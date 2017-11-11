@@ -33,7 +33,7 @@
         <activity android:name=".UI.PostBrochureActivity" />
         <activity android:name=".UI.ListMyBrochureActivity" />
         <activity android:name=".UI.DetailBrochureActivity" />
-        <activity android:name=".UI.EditBrochureActivity"></activity>
+        <activity android:name=".UI.EditBrochureActivity" />
     </application>
 
 </manifest>

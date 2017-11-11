@@ -129,7 +129,6 @@ public class EditBrochureActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 progressDialog.hide();
                 startActivity(new Intent(getApplicationContext(), DetailBrochureActivity.class));
-                Bundle bundle = new Bundle();
                 finish();
             }
 

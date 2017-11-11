@@ -31,11 +31,13 @@ public class EditProfileActivity extends AppCompatActivity {
     private UserAccount userAccount;
     private final static int PICK_IMAGE = 100;
     private ImageView imageView;
+    private static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        activity = this;
 
         repository = new UserAccountAPI(this);
         session = new Session(this);
@@ -126,7 +128,11 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 progressDialog.hide();
-                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("fromListBrochure", false);
+                Intent profile = new Intent(getApplicationContext(), ProfileActivity.class);
+                profile.putExtras(bundle);
+                startActivity(profile);
                 finish();
             }
 

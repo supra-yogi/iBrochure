@@ -3,53 +3,55 @@ package com.group.ibrochure.i_brochure.UI;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.group.ibrochure.i_brochure.Domain.ListBrochure.ListBrochure;
-import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
 import com.group.ibrochure.i_brochure.Infrastructure.ConverterImage;
+import com.group.ibrochure.i_brochure.Infrastructure.ListBrochureAPI;
+import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
 import com.group.ibrochure.i_brochure.R;
 
-import org.w3c.dom.Text;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
 /**
- * Created by Yogi on 07/11/2017.
+ * Created by KinKin on 11/12/2017.
  */
 
-public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHolder> {
+public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.MyHolder> {
     private Context context;
     private ArrayList<ListBrochure> listBrochureArrayList;
+    private ListBrochureAPI repo;
 
     /*
     CONSTRUCTOR
      */
-    public BrochureAdapter(Context context, ArrayList<ListBrochure> listBrochureArrayList) {
+    public MyBrochureAdapter(Context context, ArrayList<ListBrochure> listBrochureArrayList) {
         this.context = context;
         this.listBrochureArrayList = listBrochureArrayList;
+        repo = new ListBrochureAPI(context);
     }
 
     //INITIALIZE VIEW HOLDER
     @Override
-    public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_brochure_model, parent, false);
-        return new MyHolder(v);
+    public MyBrochureAdapter.MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_my_brochure_model, parent, false);
+        return new MyBrochureAdapter.MyHolder(v);
     }
 
     //BIND DATA
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(MyBrochureAdapter.MyHolder holder, int position) {
         final int id = listBrochureArrayList.get(position).getId();
         holder.title.setText(listBrochureArrayList.get(position).getTitle());
         holder.telephone.setText(listBrochureArrayList.get(position).getTelephone());
@@ -84,6 +86,38 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
                 context.startActivity(detailBrochure);
             }
         });
+
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("Id", id);
+                context.startActivity(new Intent(context, EditBrochureActivity.class));
+            }
+        });
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                repo.Delete(new ResponseCallBack() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        context.startActivity(new Intent(context, ListMyBrochureActivity.class));
+                        ListMyBrochureActivity.getInstance().finish();
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        Toast.makeText(context, "Error: " + error, Toast.LENGTH_LONG).show();
+                    }
+                }, id);
+            }
+        });
+
     }
 
     /*
@@ -121,6 +155,8 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
         TextView user;
         CardView brochure;
         ImageView avatar;
+        ImageButton edit;
+        ImageButton delete;
 
         public MyHolder(View itemView) {
             super(itemView);
@@ -132,6 +168,8 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
             this.pictureBack = (ImageView) itemView.findViewById(R.id.pictureBack);
             this.brochure = (CardView) itemView.findViewById(R.id.cardViewModelBrochure);
             this.avatar = (ImageView) itemView.findViewById(R.id.avatar2);
+            this.edit = (ImageButton) itemView.findViewById(R.id.edit);
+            this.delete = (ImageButton) itemView.findViewById(R.id.delete);
         }
     }
 }

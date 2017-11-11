@@ -3,6 +3,7 @@ package com.group.ibrochure.i_brochure.UI;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -82,5 +83,23 @@ public class ProfileActivity extends AppCompatActivity {
 
     public static Activity getInstance() {
         return activity;
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        // code here to show dialog
+        super.onBackPressed();  // optional depending on your needs
+        Bundle bundle = getIntent().getExtras();
+        if (bundle.getBoolean("fromListBrochure")){
+            finish();
+        } else {
+            startActivity(new Intent(this, ListBrochureActivity.class));
+        }
+    }
+
+    public void onLogout(View view) {
+        session.logOut();
+        finish();
     }
 }

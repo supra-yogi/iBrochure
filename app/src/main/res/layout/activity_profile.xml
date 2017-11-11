@@ -85,6 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:id="@+id/info_til"
                 android:background="#fff"
                 android:padding="@dimen/activity_horizontal_margin">
 
@@ -116,6 +117,14 @@
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:onClick="onLogout"
+                android:layout_below="@id/info_til"/>
+
         </RelativeLayout>
 
     </ScrollView>
@@ -125,6 +134,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:onClick="EditProfile"
         app:srcCompat="@drawable/ic_edit" />
 </android.support.design.widget.CoordinatorLayout>

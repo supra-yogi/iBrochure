@@ -1,7 +1,9 @@
 package com.group.ibrochure.i_brochure.UI;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,34 +15,48 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
+import com.group.ibrochure.i_brochure.Infrastructure.ConverterImage;
+import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
 import com.group.ibrochure.i_brochure.Infrastructure.Session;
+import com.group.ibrochure.i_brochure.Infrastructure.UserAccountAPI;
 import com.group.ibrochure.i_brochure.R;
 import com.srx.widget.PullToLoadView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class ListBrochureActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Session session;
 
-    String[] listitem;
+    private String[] listitem;
     boolean[] checkedItems;
-    ArrayList<Integer> mUserItems = new ArrayList<>();
+    private ArrayList<Integer> mUserItems = new ArrayList<>();
+    private UserAccountAPI userAccountRepository;
+    private static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_brochure);
         session = new Session(this);
+        userAccountRepository = new UserAccountAPI(this);
+        activity = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
+        if (actionBar != null)
             actionBar.setDisplayShowTitleEnabled(false);
 
         TextView tv = (TextView) findViewById(R.id.toolbar_title);
@@ -62,6 +78,39 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         listitem = getResources().getStringArray(R.array.shop_item);
         checkedItems = new boolean[listitem.length];
 
+        if (session.getId() != 0) {
+            userAccountRepository.GetById(new ResponseCallBack() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    try {
+                        UserAccount userAccount = new UserAccount();
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject jsonObject = response.getJSONObject(i);
+
+                            ImageView avatar = (ImageView) findViewById(R.id.avatar_sidebar);
+                            TextView username = (TextView) findViewById(R.id.user_sidebar);
+                            TextView email = (TextView) findViewById(R.id.email_sidebar);
+
+                            Bitmap avatarBitmap = ConverterImage.decodeBase64(jsonObject.getString("Picture"));
+                            avatar.setImageBitmap(avatarBitmap);
+                            username.setText(jsonObject.getString("Name"));
+                            email.setText(jsonObject.getString("Email"));
+                        }
+                    } catch (JSONException e) {
+                        Log.d("Error", e.getMessage());
+                    }
+                }
+
+                @Override
+                public void onResponse(String response) {
+                }
+
+                @Override
+                public void onError(String error) {
+                    Toast.makeText(getApplicationContext(), "Response: " + error, Toast.LENGTH_LONG).show();
+                }
+            }, session.getId());
+        }
     }
 
     @Override
@@ -72,8 +121,6 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         if (item.getItemId() == R.id.nav_filter) {
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(ListBrochureActivity.this);
             mBuilder.setTitle("Brochure Category");
@@ -81,7 +128,7 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
                 @Override
                 public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
                     if (isChecked) {
-                        if (! mUserItems.contains(position)) {
+                        if (!mUserItems.contains(position)) {
                             mUserItems.add(position);
                         } else {
                             mUserItems.remove(position);
@@ -129,6 +176,10 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         return true;
     }
 
+    public static Activity getInstance() {
+        return activity;
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -147,9 +198,13 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         if (id == R.id.nav_home) {
             startActivity(new Intent(this, ListBrochureActivity.class));
         } else if (id == R.id.nav_account) {
-            if (session.getId() != 0)
-                startActivity(new Intent(this, ProfileActivity.class));
-            else
+            if (session.getId() != 0) {
+                Intent profile = new Intent(this, ProfileActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("fromListBrochure", true);
+                profile.putExtras(bundle);
+                startActivity(profile);
+            } else
                 startActivity(new Intent(this, FrontActivity.class));
         } else if (id == R.id.nav_mybrochure) {
             if (session.getId() != 0)

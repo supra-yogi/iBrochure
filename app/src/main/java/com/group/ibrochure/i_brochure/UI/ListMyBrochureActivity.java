@@ -1,5 +1,6 @@
 package com.group.ibrochure.i_brochure.UI;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
@@ -16,12 +17,14 @@ import com.srx.widget.PullToLoadView;
 
 public class ListMyBrochureActivity extends AppCompatActivity {
     private Session session;
+    private static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_my_brochure);
         session = new Session(this);
+        activity = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -43,5 +46,9 @@ public class ListMyBrochureActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), PostBrochureActivity.class));
             }
         });
+    }
+
+    public static Activity getInstance() {
+        return activity;
     }
 }

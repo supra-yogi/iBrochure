@@ -52,10 +52,10 @@ public class DetailBrochureActivity extends AppCompatActivity {
                 try {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        Toast.makeText(getApplicationContext(), jsonObject.getString("Title"), Toast.LENGTH_SHORT).show();
                         title.setText(jsonObject.getString("Title"));
                         telephone.setText(jsonObject.getString("Telephone"));
                         description.setText(jsonObject.getString("Description"));
+                        user.setText(jsonObject.getString("Username"));
                         Bitmap pictureFront = ConverterImage.decodeBase64(jsonObject.getString("PictureFront"));
                         imageView.setImageBitmap(pictureFront);
                     }
@@ -73,4 +73,9 @@ public class DetailBrochureActivity extends AppCompatActivity {
             }
         }, id);
     }
+
+    public void onBackClick (View view) {
+        finish();
+    }
+
 }

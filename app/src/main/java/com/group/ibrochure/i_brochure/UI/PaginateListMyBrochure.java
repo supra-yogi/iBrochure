@@ -29,7 +29,7 @@ public class PaginateListMyBrochure {
     private Context context;
     private PullToLoadView pullToLoadView;
     private RecyclerView rv;
-    private BrochureAdapter adapter;
+    private MyBrochureAdapter adapter;
     private boolean isLoading = false;
     private boolean hasLoadedAll = false;
     private int nextPage;
@@ -47,7 +47,7 @@ public class PaginateListMyBrochure {
         rv = pullToLoadView.getRecyclerView();
         rv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 
-        adapter = new BrochureAdapter(context, new ArrayList<ListBrochure>());
+        adapter = new MyBrochureAdapter(context, new ArrayList<ListBrochure>());
         rv.setAdapter(adapter);
 
         initializePaginator();
@@ -120,7 +120,8 @@ public class PaginateListMyBrochure {
                                 entity.setPictureBack(jsonObject.getString("PictureBack"));
 
                                 UserAccount userAccount = new UserAccount();
-                                userAccount.setName(jsonObject.getString("Name"));
+                                userAccount.setName(jsonObject.getString("Username"));
+                                userAccount.setPicture(jsonObject.getString("Avatar"));
 
                                 entity.setUserAccount(userAccount);
                                 adapter.add(entity);

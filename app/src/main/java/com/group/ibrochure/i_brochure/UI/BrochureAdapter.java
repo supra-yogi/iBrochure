@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.group.ibrochure.i_brochure.Domain.ListBrochure.ListBrochure;
+import com.group.ibrochure.i_brochure.Infrastructure.ConverterImage;
 import com.group.ibrochure.i_brochure.R;
 
 import java.util.ArrayList;
@@ -54,14 +55,12 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
         String imageByteBack = listBrochureArrayList.get(position).getPictureBack();
 
         if (!imageByteFront.equals("")) {
-            byte[] decodedString = Base64.decode(imageByteFront, Base64.DEFAULT);
-            Bitmap pictureFront = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            Bitmap pictureFront = ConverterImage.decodeBase64(imageByteFront);
             holder.pictureFront.setImageBitmap(pictureFront);
         }
 
         if (!imageByteBack.equals("")) {
-            byte[] decodedString = Base64.decode(imageByteBack, Base64.DEFAULT);
-            Bitmap pictureBack = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            Bitmap pictureBack = ConverterImage.decodeBase64(imageByteBack);
             holder.pictureBack.setImageBitmap(pictureBack);
         }
 

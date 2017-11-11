@@ -34,6 +34,7 @@
                     android:textSize="20sp"
                     android:text="iBrochure"/>
 
+
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
         <include layout="@layout/pull_view_all_brochure"/>

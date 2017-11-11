@@ -29,4 +29,16 @@
     <string name="title_activity_front">FrontActivity</string>
     <string name="account">account</string>
 
+    <string name="title_activity_image_full_screen">ImageFullScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string-array name="shop_item">
+        <item>Orion</item>
+        <item>Sausage</item>
+        <item>Milk</item>
+        <item>Garlic</item>
+        <item>Beef</item>
+    </string-array>
+
 </resources>

@@ -1,10 +1,13 @@
 package com.group.ibrochure.i_brochure.UI;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Binder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;

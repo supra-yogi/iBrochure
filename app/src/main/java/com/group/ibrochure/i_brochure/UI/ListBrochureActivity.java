@@ -83,7 +83,6 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
                 @Override
                 public void onResponse(JSONArray response) {
                     try {
-                        UserAccount userAccount = new UserAccount();
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject jsonObject = response.getJSONObject(i);
 

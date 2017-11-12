@@ -100,6 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void onLogout(View view) {
         session.logOut();
+        startActivity(new Intent(this, ListBrochureActivity.class));
         finish();
     }
 }

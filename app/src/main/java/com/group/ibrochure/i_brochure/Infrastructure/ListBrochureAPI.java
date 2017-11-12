@@ -59,7 +59,7 @@ public class ListBrochureAPI extends BaseAPI<ListBrochure> implements IListBroch
                     params.put("Title", entity.getTitle());
                     params.put("Telephone", entity.getTelephone());
                     params.put("Address", entity.getAddress());
-                    params.put("PostingDate", entity.getPostingDate().toString());
+                    params.put("PostingDate", entity.getPostingDate());
                     params.put("Description", entity.getDescription());
                     params.put("UseraccountId", String.valueOf(entity.getUserAccount().getId()));
                     params.put("PictureFront", entity.getPictureFront());

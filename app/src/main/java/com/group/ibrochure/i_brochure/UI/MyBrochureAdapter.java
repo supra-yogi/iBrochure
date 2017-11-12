@@ -106,7 +106,11 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
 
                     @Override
                     public void onResponse(String response) {
-                        context.startActivity(new Intent(context, ListMyBrochureActivity.class));
+                        Intent myBrochure = new Intent(context, ListMyBrochureActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putBoolean("isUpdated", true);
+                        myBrochure.putExtras(bundle);
+                        context.startActivity(myBrochure);
                         ListMyBrochureActivity.getInstance().finish();
                     }
 

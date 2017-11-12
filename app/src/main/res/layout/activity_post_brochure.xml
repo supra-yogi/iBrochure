@@ -68,7 +68,6 @@
                 android:layout_height="wrap_content"
                 app:ms_floatingLabelColor="#a9a9a9"
                 app:ms_floatingLabelText="Category Brochure"
-                app:ms_hint="Please Choose"
                 app:ms_multiline="true"/>
 
             <android.support.design.widget.TextInputLayout

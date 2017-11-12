@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.show();
             progressDialog.setMessage("Please wait");
+            progressDialog.setCancelable(false);
             repository.Login(new ResponseCallBack() {
                 @Override
                 public void onResponse(JSONArray response) {
@@ -74,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                             session.setId(jsonObject.getInt("Id"));
                             session.setUserOrEmail(jsonObject.getString("Username"));
                         }
+                        ListBrochureActivity.getInstance().finish();
                         startActivity(new Intent(getApplicationContext(), ListBrochureActivity.class));
                         finish();
                     } catch (JSONException e) {

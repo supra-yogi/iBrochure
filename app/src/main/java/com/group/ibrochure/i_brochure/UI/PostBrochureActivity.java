@@ -6,9 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,7 +29,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class PostBrochureActivity extends AppCompatActivity {
@@ -43,6 +47,10 @@ public class PostBrochureActivity extends AppCompatActivity {
     private ImageView pictureBack;
     private final static int PICK_IMAGE_FRONT = 100;
     private final static int PICK_IMAGE_BACK = 200;
+    private EditText title;
+    private EditText address;
+    private EditText description;
+    private EditText telephone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +62,10 @@ public class PostBrochureActivity extends AppCompatActivity {
 
         pictureFront = (ImageView) findViewById(R.id.pictureFront);
         pictureBack = (ImageView) findViewById(R.id.pictureBack);
+        title = (EditText) findViewById(R.id.brochure_title_post);
+        address = (EditText) findViewById(R.id.brochure_address_post);
+        description = (EditText) findViewById(R.id.brochure_desc_post);
+        telephone = (EditText) findViewById(R.id.brochure_telp_post);
 
         spinnerMap = new HashMap<>();
         spinner = (Spinner) findViewById(R.id.brochure_category_post);
@@ -80,7 +92,8 @@ public class PostBrochureActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(String response) {}
+            public void onResponse(String response) {
+            }
 
             @Override
             public void onError(String error) {
@@ -94,51 +107,68 @@ public class PostBrochureActivity extends AppCompatActivity {
     }
 
     public void onSave(View view) {
-        ListBrochure listBrochure = new ListBrochure();
-        EditText title = (EditText) findViewById(R.id.brochure_title_post);
-        EditText address = (EditText) findViewById(R.id.brochure_address_post);
-        EditText description = (EditText) findViewById(R.id.brochure_desc_post);
-        EditText telephone = (EditText) findViewById(R.id.brochure_telp_post);
+        if (title.getText().toString().equals("")) {
+            title.setError("Title is required");
+        } else if (telephone.getText().toString().equals("")) {
+            telephone.setError("Telephone is required");
+        } else if (address.getText().toString().equals("")) {
+            address.setError("Address is required");
+        } else {
+            ListBrochure listBrochure = new ListBrochure();
 
 //        String CategoryName = spinner.getSelectedItem().toString();
-        int CategoryId = spinnerMap.get(spinner.getSelectedItemPosition());
-        Category category = new Category();
-        category.setId(CategoryId);
-        UserAccount userAccount = new UserAccount();
-        userAccount.setId(session.getId());
+            int CategoryId = spinnerMap.get(spinner.getSelectedItemPosition());
+            Category category = new Category();
+            category.setId(CategoryId);
+            UserAccount userAccount = new UserAccount();
+            userAccount.setId(session.getId());
 
-        String encodePictureFront = ConverterImage.encodeBase64(pictureFront);
-        String encodePictureBack = ConverterImage.encodeBase64(pictureBack);
+            String encodePictureFront = ConverterImage.encodeBase64(pictureFront);
+            String encodePictureBack = ConverterImage.encodeBase64(pictureBack);
 
-        listBrochure.setTitle(title.getText().toString());
-        listBrochure.setAddress(address.getText().toString());
-        listBrochure.setTelephone(telephone.getText().toString());
-        listBrochure.setDescription(description.getText().toString());
-        listBrochure.setCategory(category);
-        listBrochure.setUserAccount(userAccount);
-        listBrochure.setPictureFront(encodePictureFront);
-        listBrochure.setPictureBack(encodePictureBack);
-        listBrochure.setPostingDate(Calendar.getInstance().getTime());
+            listBrochure.setTitle(title.getText().toString());
+            listBrochure.setAddress(address.getText().toString());
+            listBrochure.setTelephone(telephone.getText().toString());
+            listBrochure.setDescription(description.getText().toString());
+            listBrochure.setCategory(category);
+            listBrochure.setUserAccount(userAccount);
+            listBrochure.setPictureFront(encodePictureFront);
+            listBrochure.setPictureBack(encodePictureBack);
 
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.show();
-        progressDialog.setMessage("Please wait");
-        repository.Save(new ResponseCallBack() {
-            @Override
-            public void onResponse(JSONArray response) {}
+            // Parse the input date
+            Date curDate = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");
+            String DateToStr = format.format(curDate);
+            listBrochure.setPostingDate(DateToStr);
 
-            @Override
-            public void onResponse(String response) {
-                progressDialog.hide();
-                startActivity(new Intent(getApplicationContext(), ListMyBrochureActivity.class));
-                finish();
-            }
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.show();
+            progressDialog.setMessage("Please wait");
+            progressDialog.setCancelable(false);
+            //Disable touch
+            repository.Save(new ResponseCallBack() {
+                @Override
+                public void onResponse(JSONArray response) {
+                }
 
-            @Override
-            public void onError(String error) {
-                Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
-            }
-        }, listBrochure);
+                @Override
+                public void onResponse(String response) {
+                    progressDialog.hide();
+                    ListMyBrochureActivity.getInstance().finish();
+                    Intent myBrochure = new Intent(getApplicationContext(), ListMyBrochureActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isUpdated", true);
+                    myBrochure.putExtras(bundle);
+                    startActivity(myBrochure);
+                    finish();
+                }
+
+                @Override
+                public void onError(String error) {
+                    Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
+                }
+            }, listBrochure);
+        }
     }
 
     public void onPickPictureFront(View view) {
@@ -154,10 +184,11 @@ public class PostBrochureActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Uri imageUri = data.getData();
         if (requestCode == PICK_IMAGE_FRONT && resultCode == RESULT_OK) {
+            Uri imageUri = data.getData();
             pictureFront.setImageURI(imageUri);
-        } else {
+        } else if (requestCode == PICK_IMAGE_BACK && resultCode == RESULT_OK) {
+            Uri imageUri = data.getData();
             pictureBack.setImageURI(imageUri);
         }
     }

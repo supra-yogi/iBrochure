@@ -89,17 +89,18 @@ public class ProfileActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         // code here to show dialog
-        super.onBackPressed();  // optional depending on your needs
         Bundle bundle = getIntent().getExtras();
         if (bundle.getBoolean("fromListBrochure")){
             finish();
         } else {
+            ListBrochureActivity.getInstance().finish();
             startActivity(new Intent(this, ListBrochureActivity.class));
         }
     }
 
     public void onLogout(View view) {
         session.logOut();
+        ListBrochureActivity.getInstance().finish();
         startActivity(new Intent(this, ListBrochureActivity.class));
         finish();
     }

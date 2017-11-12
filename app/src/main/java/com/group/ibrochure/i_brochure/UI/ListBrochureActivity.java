@@ -90,8 +90,12 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
                             TextView username = (TextView) findViewById(R.id.user_sidebar);
                             TextView email = (TextView) findViewById(R.id.email_sidebar);
 
-                            Bitmap avatarBitmap = ConverterImage.decodeBase64(jsonObject.getString("Picture"));
-                            avatar.setImageBitmap(avatarBitmap);
+                            String avatarByte = jsonObject.getString("Picture");
+                            if (!avatarByte.equals("")) {
+                                Bitmap avatarBitmap = ConverterImage.decodeBase64(avatarByte);
+                                avatar.setImageBitmap(avatarBitmap);
+                            }
+
                             username.setText(jsonObject.getString("Name"));
                             email.setText(jsonObject.getString("Email"));
                         }
@@ -196,6 +200,7 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
 
         if (id == R.id.nav_home) {
             startActivity(new Intent(this, ListBrochureActivity.class));
+            finish();
         } else if (id == R.id.nav_account) {
             if (session.getId() != 0) {
                 Intent profile = new Intent(this, ProfileActivity.class);

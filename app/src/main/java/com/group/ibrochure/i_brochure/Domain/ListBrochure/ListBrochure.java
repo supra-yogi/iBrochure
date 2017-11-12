@@ -18,7 +18,7 @@ public class ListBrochure extends EntityBase {
     private String description;
     private String pictureFront;
     private String pictureBack;
-    private Date postingDate;
+    private String postingDate;
     private Category category;
     private UserAccount userAccount;
 
@@ -86,11 +86,11 @@ public class ListBrochure extends EntityBase {
         this.pictureBack = pictureBack;
     }
 
-    public Date getPostingDate() {
+    public String getPostingDate() {
         return postingDate;
     }
 
-    public void setPostingDate(Date postingDate) {
+    public void setPostingDate(String postingDate) {
         this.postingDate = postingDate;
     }
 }

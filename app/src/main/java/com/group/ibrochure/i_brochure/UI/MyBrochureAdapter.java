@@ -59,7 +59,7 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
 
         String imageByteFront = listBrochureArrayList.get(position).getPictureFront();
         String imageByteBack = listBrochureArrayList.get(position).getPictureBack();
-        String imageAvatar = listBrochureArrayList.get(position).getUserAccount().getPicture();
+//        String imageAvatar = listBrochureArrayList.get(position).getUserAccount().getPicture();
 
         if (!imageByteFront.equals("")) {
             Bitmap pictureFront = ConverterImage.decodeBase64(imageByteFront);
@@ -71,10 +71,10 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
             holder.pictureBack.setImageBitmap(pictureBack);
         }
 
-        if (!imageAvatar.equals("")) {
-            Bitmap avatar = ConverterImage.decodeBase64(imageAvatar);
-            holder.avatar.setImageBitmap(avatar);
-        }
+//        if (!imageAvatar.equals("")) {
+//            Bitmap avatar = ConverterImage.decodeBase64(imageAvatar);
+//            holder.avatar.setImageBitmap(avatar);
+//        }
 
         holder.brochure.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,9 +90,11 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent editBrochure = new Intent(context, EditBrochureActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("Id", id);
-                context.startActivity(new Intent(context, EditBrochureActivity.class));
+                editBrochure.putExtras(bundle);
+                context.startActivity(editBrochure);
             }
         });
 

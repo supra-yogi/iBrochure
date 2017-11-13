@@ -115,69 +115,69 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
             }, session.getId());
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.filter_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.nav_filter) {
-            AlertDialog.Builder mBuilder = new AlertDialog.Builder(ListBrochureActivity.this);
-            mBuilder.setTitle("Brochure Category");
-            mBuilder.setMultiChoiceItems(listitem, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                    if (isChecked) {
-                        if (!mUserItems.contains(position)) {
-                            mUserItems.add(position);
-                        } else {
-                            mUserItems.remove(position);
-                        }
-                    }
-                }
-            });
-
-            mBuilder.setCancelable(false);
-            mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int which) {
-                    String item = "";
-                    for (int i = 0; i < mUserItems.size(); i++) {
-                        item = item + listitem[mUserItems.get(i)];
-                        if (i != mUserItems.size() - 1) {
-                            item = item + ", ";
-                        }
-                    }
-                }
-            });
-
-            mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                }
-            });
-
-            mBuilder.setNeutralButton("Clear all", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int which) {
-                    for (int i = 0; i < checkedItems.length; i++) {
-                        checkedItems[i] = false;
-                        mUserItems.clear();
-                    }
-                }
-            });
-
-            AlertDialog mDialog = mBuilder.create();
-            mDialog.show();
-
-        }
-
-        return true;
-    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.filter_menu, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == R.id.nav_filter) {
+//            AlertDialog.Builder mBuilder = new AlertDialog.Builder(ListBrochureActivity.this);
+//            mBuilder.setTitle("Brochure Category");
+//            mBuilder.setMultiChoiceItems(listitem, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+//                    if (isChecked) {
+//                        if (!mUserItems.contains(position)) {
+//                            mUserItems.add(position);
+//                        } else {
+//                            mUserItems.remove(position);
+//                        }
+//                    }
+//                }
+//            });
+//
+//            mBuilder.setCancelable(false);
+//            mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int which) {
+//                    String item = "";
+//                    for (int i = 0; i < mUserItems.size(); i++) {
+//                        item = item + listitem[mUserItems.get(i)];
+//                        if (i != mUserItems.size() - 1) {
+//                            item = item + ", ";
+//                        }
+//                    }
+//                }
+//            });
+//
+//            mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//                    dialogInterface.dismiss();
+//                }
+//            });
+//
+//            mBuilder.setNeutralButton("Clear all", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int which) {
+//                    for (int i = 0; i < checkedItems.length; i++) {
+//                        checkedItems[i] = false;
+//                        mUserItems.clear();
+//                    }
+//                }
+//            });
+//
+//            AlertDialog mDialog = mBuilder.create();
+//            mDialog.show();
+//
+//        }
+//
+//        return true;
+//    }
 
     public static Activity getInstance() {
         return activity;

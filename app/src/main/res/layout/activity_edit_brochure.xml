@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:isScrollContainer="true"
     tools:context="com.group.ibrochure.i_brochure.UI.EditBrochureActivity">
 
     <android.support.v7.widget.Toolbar
@@ -65,7 +67,6 @@
                 android:layout_height="wrap_content"
                 app:ms_floatingLabelColor="#a9a9a9"
                 app:ms_floatingLabelText="Category Brochure"
-                app:ms_hint="Please Choose"
                 app:ms_multiline="true"/>
 
             <android.support.design.widget.TextInputLayout
@@ -142,11 +143,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorPrimary"
-                android:text="Save Changes"
+                android:text="POST"
                 android:onClick="onSave"
                 android:layout_marginTop="30dp"
                 android:textColor="#fff"/>
         </LinearLayout>
     </ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

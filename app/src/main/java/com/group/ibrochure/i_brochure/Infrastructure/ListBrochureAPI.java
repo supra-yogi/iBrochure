@@ -98,6 +98,7 @@ public class ListBrochureAPI extends BaseAPI<ListBrochure> implements IListBroch
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
+                    params.put("Id", String.valueOf(entity.getId()));
                     params.put("Title", entity.getTitle());
                     params.put("Telephone", entity.getTelephone());
                     params.put("Address", entity.getAddress());

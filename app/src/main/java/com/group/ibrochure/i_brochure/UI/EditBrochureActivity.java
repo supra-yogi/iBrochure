@@ -2,6 +2,7 @@ package com.group.ibrochure.i_brochure.UI;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.group.ibrochure.i_brochure.Domain.Category.Category;
@@ -28,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.StringReader;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -42,6 +45,11 @@ public class EditBrochureActivity extends AppCompatActivity {
     private ImageView pictureBack;
     private final static int PICK_IMAGE_FRONT = 100;
     private final static int PICK_IMAGE_BACK = 200;
+    private int id;
+    private EditText title;
+    private EditText address;
+    private EditText description;
+    private EditText telephone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +59,55 @@ public class EditBrochureActivity extends AppCompatActivity {
         session = new Session(this);
         categoryRepository = new CategoryAPI(this);
         repository = new ListBrochureAPI(this);
+        Bundle bundle = getIntent().getExtras();
+        id = bundle.getInt("Id");
 
         pictureFront = (ImageView) findViewById(R.id.pictureFront);
         pictureBack = (ImageView) findViewById(R.id.pictureBack);
+        title = (EditText) findViewById(R.id.brochure_title_post);
+        address = (EditText) findViewById(R.id.brochure_address_post);
+        description = (EditText) findViewById(R.id.brochure_desc_post);
+        telephone = (EditText) findViewById(R.id.brochure_telp_post);
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        repository.GetById(new ResponseCallBack() {
+            @Override
+            public void onResponse(JSONArray response) {
+                progressDialog.hide();
+                try {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObject = response.getJSONObject(i);
+                        title.setText(jsonObject.getString("Title"));
+                        address.setText(jsonObject.getString("Address"));
+                        telephone.setText(jsonObject.getString("Telephone"));
+                        description.setText(jsonObject.getString("Description"));
+                        String imageFrontByte = jsonObject.getString("PictureFront");
+                        String imageBackByte = jsonObject.getString("PictureBack");
+                        if (!imageFrontByte.equals("")) {
+                            Bitmap pictureFrontDecode = ConverterImage.decodeBase64(imageFrontByte);
+                            pictureFront.setImageBitmap(pictureFrontDecode);
+                        }
+
+                        if (!imageBackByte.equals("")) {
+                            Bitmap pictureBackDecode = ConverterImage.decodeBase64(imageBackByte);
+                            pictureBack.setImageBitmap(pictureBackDecode);
+                        }
+                    }
+                } catch (JSONException e) {
+                    Log.d("Error", e.getMessage());
+                }
+            }
+
+            @Override
+            public void onResponse(String response) {}
+
+            @Override
+            public void onError(String error) {
+                Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
+            }
+        }, id);
 
         spinnerMap = new HashMap<>();
         spinner = (Spinner) findViewById(R.id.brochure_category_post);
@@ -66,7 +120,8 @@ public class EditBrochureActivity extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
-                        spinnerMap.put(i, jsonObject.getInt("Id"));
+                        int categoryIdAPI = jsonObject.getInt("Id");
+                        spinnerMap.put(i, categoryIdAPI);
                         categories[i] = jsonObject.getString("Name");
                     }
 
@@ -80,7 +135,8 @@ public class EditBrochureActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(String response) {}
+            public void onResponse(String response) {
+            }
 
             @Override
             public void onError(String error) {
@@ -95,40 +151,40 @@ public class EditBrochureActivity extends AppCompatActivity {
 
     public void onSave(View view) {
         ListBrochure listBrochure = new ListBrochure();
-        EditText title = (EditText) findViewById(R.id.brochure_title_post);
-        EditText address = (EditText) findViewById(R.id.brochure_address_post);
-        EditText description = (EditText) findViewById(R.id.brochure_desc_post);
-        EditText telephone = (EditText) findViewById(R.id.brochure_telp_post);
 
         int CategoryId = spinnerMap.get(spinner.getSelectedItemPosition());
         Category category = new Category();
         category.setId(CategoryId);
-        UserAccount userAccount = new UserAccount();
-        userAccount.setId(session.getId());
 
         String encodePictureFront = ConverterImage.encodeBase64(pictureFront);
         String encodePictureBack = ConverterImage.encodeBase64(pictureBack);
 
+        listBrochure.setId(id);
         listBrochure.setTitle(title.getText().toString());
         listBrochure.setAddress(address.getText().toString());
         listBrochure.setTelephone(telephone.getText().toString());
         listBrochure.setDescription(description.getText().toString());
         listBrochure.setCategory(category);
-        listBrochure.setUserAccount(userAccount);
         listBrochure.setPictureFront(encodePictureFront);
         listBrochure.setPictureBack(encodePictureBack);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.show();
         progressDialog.setMessage("Please wait");
+        progressDialog.setCancelable(false);
         repository.Save(new ResponseCallBack() {
             @Override
-            public void onResponse(JSONArray response) {}
+            public void onResponse(JSONArray response) {
+            }
 
             @Override
             public void onResponse(String response) {
                 progressDialog.hide();
-                startActivity(new Intent(getApplicationContext(), DetailBrochureActivity.class));
+                Intent detailBrochure = new Intent(getApplicationContext(), DetailBrochureActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("Id", id);
+                detailBrochure.putExtras(bundle);
+                startActivity(detailBrochure);
                 finish();
             }
 
@@ -152,10 +208,11 @@ public class EditBrochureActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Uri imageUri = data.getData();
         if (requestCode == PICK_IMAGE_FRONT && resultCode == RESULT_OK) {
+            Uri imageUri = data.getData();
             pictureFront.setImageURI(imageUri);
         } else {
+            Uri imageUri = data.getData();
             pictureBack.setImageURI(imageUri);
         }
     }

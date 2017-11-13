@@ -59,7 +59,6 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
 
         String imageByteFront = listBrochureArrayList.get(position).getPictureFront();
         String imageByteBack = listBrochureArrayList.get(position).getPictureBack();
-//        String imageAvatar = listBrochureArrayList.get(position).getUserAccount().getPicture();
 
         if (!imageByteFront.equals("")) {
             Bitmap pictureFront = ConverterImage.decodeBase64(imageByteFront);
@@ -70,11 +69,6 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
             Bitmap pictureBack = ConverterImage.decodeBase64(imageByteBack);
             holder.pictureBack.setImageBitmap(pictureBack);
         }
-
-//        if (!imageAvatar.equals("")) {
-//            Bitmap avatar = ConverterImage.decodeBase64(imageAvatar);
-//            holder.avatar.setImageBitmap(avatar);
-//        }
 
         holder.brochure.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,7 +154,6 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
         ImageView pictureBack;
         TextView user;
         CardView brochure;
-        ImageView avatar;
         ImageButton edit;
         ImageButton delete;
 
@@ -173,7 +166,6 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
             this.pictureFront = (ImageView) itemView.findViewById(R.id.pictureFront);
             this.pictureBack = (ImageView) itemView.findViewById(R.id.pictureBack);
             this.brochure = (CardView) itemView.findViewById(R.id.cardViewModelBrochure);
-            this.avatar = (ImageView) itemView.findViewById(R.id.avatar2);
             this.edit = (ImageButton) itemView.findViewById(R.id.edit);
             this.delete = (ImageButton) itemView.findViewById(R.id.delete);
         }

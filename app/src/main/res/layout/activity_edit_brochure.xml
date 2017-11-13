@@ -126,16 +126,14 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="30dp"
-                    android:onClick="onPickPictureFront"
-                    android:src="@drawable/logo_launcher"/>
+                    android:onClick="onPickPictureFront"/>
 
                 <ImageView
                     android:id="@+id/pictureBack"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="30dp"
-                    android:onClick="onPickPictureBack"
-                    android:src="@drawable/logo_launcher"/>
+                    android:onClick="onPickPictureBack"/>
             </LinearLayout>
 
             <Button

@@ -77,5 +77,4 @@ public class DetailBrochureActivity extends AppCompatActivity {
     public void onBackClick (View view) {
         finish();
     }
-
 }

@@ -39,10 +39,6 @@ import java.util.ArrayList;
 public class ListBrochureActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Session session;
 
-    private String[] listitem;
-    boolean[] checkedItems;
-    private ArrayList<Integer> mUserItems = new ArrayList<>();
-    private UserAccountAPI userAccountRepository;
     private static Activity activity;
 
     @Override
@@ -50,7 +46,7 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_brochure);
         session = new Session(this);
-        userAccountRepository = new UserAccountAPI(this);
+        UserAccountAPI userAccountRepository = new UserAccountAPI(this);
         activity = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -75,8 +71,8 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        listitem = getResources().getStringArray(R.array.shop_item);
-        checkedItems = new boolean[listitem.length];
+//        listitem = getResources().getStringArray(R.array.shop_item);
+//        checkedItems = new boolean[listitem.length];
 
         if (session.getId() != 0) {
             userAccountRepository.GetById(new ResponseCallBack() {
@@ -115,7 +111,7 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
             }, session.getId());
         }
     }
-//
+
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.filter_menu, menu);

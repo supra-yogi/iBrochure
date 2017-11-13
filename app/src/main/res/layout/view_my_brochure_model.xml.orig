@@ -19,9 +19,14 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/activity_vertical_margin">
 
+<<<<<<< HEAD
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar2"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/account"/>
+=======
+>>>>>>> f8b897510c17a79105159ef575c3812384809155
             <TextView
                 android:id="@+id/user"
                 android:layout_width="match_parent"
@@ -43,16 +48,24 @@
                 android:layout_width="fill_parent"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:layout_weight="1" />
+<<<<<<< HEAD
+                android:layout_weight="1"
                 card_view:srcCompat="@drawable/depault" />
+=======
+                android:layout_weight="1" />
+>>>>>>> f8b897510c17a79105159ef575c3812384809155
 
             <ImageView
                 android:id="@+id/pictureBack"
                 android:layout_width="fill_parent"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:layout_weight="1" />
+<<<<<<< HEAD
+                android:layout_weight="1"
                 card_view:srcCompat="@drawable/depault" />
+=======
+                android:layout_weight="1" />
+>>>>>>> f8b897510c17a79105159ef575c3812384809155
         </LinearLayout>
 
         <LinearLayout

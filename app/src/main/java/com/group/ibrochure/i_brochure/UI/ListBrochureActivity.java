@@ -39,10 +39,6 @@ import java.util.ArrayList;
 public class ListBrochureActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Session session;
 
-    private String[] listitem;
-    boolean[] checkedItems;
-    private ArrayList<Integer> mUserItems = new ArrayList<>();
-    private UserAccountAPI userAccountRepository;
     private static Activity activity;
 
     @Override
@@ -50,7 +46,7 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_brochure);
         session = new Session(this);
-        userAccountRepository = new UserAccountAPI(this);
+        UserAccountAPI userAccountRepository = new UserAccountAPI(this);
         activity = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -75,8 +71,8 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        listitem = getResources().getStringArray(R.array.shop_item);
-        checkedItems = new boolean[listitem.length];
+//        listitem = getResources().getStringArray(R.array.shop_item);
+//        checkedItems = new boolean[listitem.length];
 
         if (session.getId() != 0) {
             userAccountRepository.GetById(new ResponseCallBack() {
@@ -90,8 +86,12 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
                             TextView username = (TextView) findViewById(R.id.user_sidebar);
                             TextView email = (TextView) findViewById(R.id.email_sidebar);
 
-                            Bitmap avatarBitmap = ConverterImage.decodeBase64(jsonObject.getString("Picture"));
-                            avatar.setImageBitmap(avatarBitmap);
+                            String avatarByte = jsonObject.getString("Picture");
+                            if (!avatarByte.equals("")) {
+                                Bitmap avatarBitmap = ConverterImage.decodeBase64(avatarByte);
+                                avatar.setImageBitmap(avatarBitmap);
+                            }
+
                             username.setText(jsonObject.getString("Name"));
                             email.setText(jsonObject.getString("Email"));
                         }
@@ -112,68 +112,68 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.filter_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.nav_filter) {
-            AlertDialog.Builder mBuilder = new AlertDialog.Builder(ListBrochureActivity.this);
-            mBuilder.setTitle("Brochure Category");
-            mBuilder.setMultiChoiceItems(listitem, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                    if (isChecked) {
-                        if (!mUserItems.contains(position)) {
-                            mUserItems.add(position);
-                        } else {
-                            mUserItems.remove(position);
-                        }
-                    }
-                }
-            });
-
-            mBuilder.setCancelable(false);
-            mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int which) {
-                    String item = "";
-                    for (int i = 0; i < mUserItems.size(); i++) {
-                        item = item + listitem[mUserItems.get(i)];
-                        if (i != mUserItems.size() - 1) {
-                            item = item + ", ";
-                        }
-                    }
-                }
-            });
-
-            mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                }
-            });
-
-            mBuilder.setNeutralButton("Clear all", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int which) {
-                    for (int i = 0; i < checkedItems.length; i++) {
-                        checkedItems[i] = false;
-                        mUserItems.clear();
-                    }
-                }
-            });
-
-            AlertDialog mDialog = mBuilder.create();
-            mDialog.show();
-
-        }
-
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.filter_menu, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == R.id.nav_filter) {
+//            AlertDialog.Builder mBuilder = new AlertDialog.Builder(ListBrochureActivity.this);
+//            mBuilder.setTitle("Brochure Category");
+//            mBuilder.setMultiChoiceItems(listitem, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+//                    if (isChecked) {
+//                        if (!mUserItems.contains(position)) {
+//                            mUserItems.add(position);
+//                        } else {
+//                            mUserItems.remove(position);
+//                        }
+//                    }
+//                }
+//            });
+//
+//            mBuilder.setCancelable(false);
+//            mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int which) {
+//                    String item = "";
+//                    for (int i = 0; i < mUserItems.size(); i++) {
+//                        item = item + listitem[mUserItems.get(i)];
+//                        if (i != mUserItems.size() - 1) {
+//                            item = item + ", ";
+//                        }
+//                    }
+//                }
+//            });
+//
+//            mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//                    dialogInterface.dismiss();
+//                }
+//            });
+//
+//            mBuilder.setNeutralButton("Clear all", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int which) {
+//                    for (int i = 0; i < checkedItems.length; i++) {
+//                        checkedItems[i] = false;
+//                        mUserItems.clear();
+//                    }
+//                }
+//            });
+//
+//            AlertDialog mDialog = mBuilder.create();
+//            mDialog.show();
+//
+//        }
+//
+//        return true;
+//    }
 
     public static Activity getInstance() {
         return activity;
@@ -196,6 +196,7 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
 
         if (id == R.id.nav_home) {
             startActivity(new Intent(this, ListBrochureActivity.class));
+            finish();
         } else if (id == R.id.nav_account) {
             if (session.getId() != 0) {
                 Intent profile = new Intent(this, ProfileActivity.class);

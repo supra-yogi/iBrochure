@@ -52,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
             final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
             progressDialog.show();
             progressDialog.setMessage("Please wait");
+            progressDialog.setCancelable(false);
             repository.Save(new ResponseCallBack() {
                 @Override
                 public void onResponse(JSONArray response) {
@@ -65,7 +66,11 @@ public class RegisterActivity extends AppCompatActivity {
                         session.setUserOrEmail(username);
 
                         progressDialog.hide();
-                        startActivity(new Intent(getApplication(), EditProfileActivity.class));
+                        Bundle bundle = new Bundle();
+                        bundle.putBoolean("fromRegister", true);
+                        Intent editProfile = new Intent(getApplicationContext(), EditProfileActivity.class);
+                        editProfile.putExtras(bundle);
+                        startActivity(editProfile);
                         finish();
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -68,7 +68,6 @@
                 android:layout_height="wrap_content"
                 app:ms_floatingLabelColor="#a9a9a9"
                 app:ms_floatingLabelText="Category Brochure"
-                app:ms_hint="Please Choose"
                 app:ms_multiline="true"/>
 
             <android.support.design.widget.TextInputLayout
@@ -128,16 +127,14 @@
                    android:layout_width="150dp"
                    android:layout_height="150dp"
                    android:layout_marginTop="30dp"
-                   android:onClick="onPickPictureFront"
-                   android:src="@drawable/logo_launcher"/>
+                   android:onClick="onPickPictureFront"/>
 
                <ImageView
                    android:id="@+id/pictureBack"
                    android:layout_width="150dp"
                    android:layout_height="150dp"
                    android:layout_marginTop="30dp"
-                   android:onClick="onPickPictureBack"
-                   android:src="@drawable/logo_launcher"/>
+                   android:onClick="onPickPictureBack"/>
            </LinearLayout>
 
             <Button

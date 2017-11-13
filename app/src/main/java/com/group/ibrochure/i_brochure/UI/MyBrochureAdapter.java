@@ -59,7 +59,6 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
 
         String imageByteFront = listBrochureArrayList.get(position).getPictureFront();
         String imageByteBack = listBrochureArrayList.get(position).getPictureBack();
-        String imageAvatar = listBrochureArrayList.get(position).getUserAccount().getPicture();
 
         if (!imageByteFront.equals("")) {
             Bitmap pictureFront = ConverterImage.decodeBase64(imageByteFront);
@@ -69,11 +68,6 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
         if (!imageByteBack.equals("")) {
             Bitmap pictureBack = ConverterImage.decodeBase64(imageByteBack);
             holder.pictureBack.setImageBitmap(pictureBack);
-        }
-
-        if (!imageAvatar.equals("")) {
-            Bitmap avatar = ConverterImage.decodeBase64(imageAvatar);
-            holder.avatar.setImageBitmap(avatar);
         }
 
         holder.brochure.setOnClickListener(new View.OnClickListener() {
@@ -90,9 +84,11 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent editBrochure = new Intent(context, EditBrochureActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("Id", id);
-                context.startActivity(new Intent(context, EditBrochureActivity.class));
+                editBrochure.putExtras(bundle);
+                context.startActivity(editBrochure);
             }
         });
 
@@ -106,7 +102,11 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
 
                     @Override
                     public void onResponse(String response) {
-                        context.startActivity(new Intent(context, ListMyBrochureActivity.class));
+                        Intent myBrochure = new Intent(context, ListMyBrochureActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putBoolean("isUpdated", true);
+                        myBrochure.putExtras(bundle);
+                        context.startActivity(myBrochure);
                         ListMyBrochureActivity.getInstance().finish();
                     }
 
@@ -154,7 +154,6 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
         ImageView pictureBack;
         TextView user;
         CardView brochure;
-        ImageView avatar;
         ImageButton edit;
         ImageButton delete;
 
@@ -167,7 +166,6 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
             this.pictureFront = (ImageView) itemView.findViewById(R.id.pictureFront);
             this.pictureBack = (ImageView) itemView.findViewById(R.id.pictureBack);
             this.brochure = (CardView) itemView.findViewById(R.id.cardViewModelBrochure);
-            this.avatar = (ImageView) itemView.findViewById(R.id.avatar2);
             this.edit = (ImageButton) itemView.findViewById(R.id.edit);
             this.delete = (ImageButton) itemView.findViewById(R.id.delete);
         }

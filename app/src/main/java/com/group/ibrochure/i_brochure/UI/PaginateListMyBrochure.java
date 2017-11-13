@@ -33,7 +33,7 @@ public class PaginateListMyBrochure {
     private boolean isLoading = false;
     private boolean hasLoadedAll = false;
     private int nextPage;
-    private final int size = 4;
+    private final int size = 3;
     private ListBrochureAPI repository;
     private Session session;
 
@@ -121,7 +121,7 @@ public class PaginateListMyBrochure {
 
                                 UserAccount userAccount = new UserAccount();
                                 userAccount.setName(jsonObject.getString("Username"));
-                                userAccount.setPicture(jsonObject.getString("Avatar"));
+//                                userAccount.setPicture(jsonObject.getString("Avatar"));
 
                                 entity.setUserAccount(userAccount);
                                 adapter.add(entity);

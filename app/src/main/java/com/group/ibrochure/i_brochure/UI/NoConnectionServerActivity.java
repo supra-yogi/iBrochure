@@ -17,7 +17,7 @@ public class NoConnectionServerActivity extends AppCompatActivity {
     }
 
     public void onReload(View view) {
-        Intent mainactivity = new Intent(this, MainActivity.class);
-        startActivity(mainactivity);
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

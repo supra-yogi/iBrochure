@@ -49,8 +49,7 @@
                 android:id="@+id/picture"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:src="@drawable/logo_launcher"/>
+                android:layout_gravity="center"/>
 
             <Button
                 android:id="@+id/buttonChoosePicture"

@@ -51,4 +51,18 @@ public class ListMyBrochureActivity extends AppCompatActivity {
     public static Activity getInstance() {
         return activity;
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        // code here to show dialog
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            if (bundle.getBoolean("isUpdated")){
+                ListBrochureActivity.getInstance().finish();
+                startActivity(new Intent(this, ListBrochureActivity.class));
+            }
+        }
+        finish();
+    }
 }

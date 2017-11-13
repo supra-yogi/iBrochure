@@ -32,6 +32,12 @@ public class EditProfileActivity extends AppCompatActivity {
     private final static int PICK_IMAGE = 100;
     private ImageView imageView;
     private static Activity activity;
+    private EditText username;
+    private EditText email;
+    private EditText name;
+    private EditText contact;
+    private EditText telephone;
+    private EditText address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,13 @@ public class EditProfileActivity extends AppCompatActivity {
         session = new Session(this);
         userAccount = repository.CreateNew();
 
+        username = (EditText) findViewById(R.id.username);
+        email = (EditText) findViewById(R.id.email);
+        name = (EditText) findViewById(R.id.name);
+        contact = (EditText) findViewById(R.id.contact);
+        telephone = (EditText) findViewById(R.id.telephone);
+        address = (EditText) findViewById(R.id.address);
+
         //manipulate image
         imageView = (ImageView) findViewById(R.id.picture);
 
@@ -52,13 +65,6 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
         repository.GetByUsername(new ResponseCallBack() {
-            EditText username = (EditText) findViewById(R.id.username);
-            EditText email = (EditText) findViewById(R.id.email);
-            EditText name = (EditText) findViewById(R.id.name);
-            EditText contact = (EditText) findViewById(R.id.contact);
-            EditText telephone = (EditText) findViewById(R.id.telephone);
-            EditText address = (EditText) findViewById(R.id.address);
-
             @Override
             public void onResponse(JSONArray response) {
             }
@@ -69,9 +75,10 @@ public class EditProfileActivity extends AppCompatActivity {
                     JSONArray jsonArray = new JSONArray(response);
                     JSONObject object = jsonArray.getJSONObject(0);
                     session.setId(object.getInt("Id"));
-                    Bitmap decodedByte = ConverterImage.decodeBase64(object.getString("Picture"));
 
-                    if (!decodedByte.equals("")) {
+                    String picture = object.getString("Picture");
+                    if (!picture.equals("")) {
+                        Bitmap decodedByte = ConverterImage.decodeBase64(picture);
                         imageView.setImageBitmap(decodedByte);
                     }
                     username.setText(object.getString("Username"));
@@ -98,13 +105,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void onSave(View view) {
         ProfileActivity.getInstance().finish();
-
-        EditText name = (EditText) findViewById(R.id.name);
-        EditText contact = (EditText) findViewById(R.id.contact);
-        EditText telephone = (EditText) findViewById(R.id.telephone);
-        EditText address = (EditText) findViewById(R.id.address);
-        EditText username = (EditText) findViewById(R.id.username);
-        EditText email = (EditText) findViewById(R.id.email);
 
         userAccount.setId(session.getId());
         userAccount.setUsername(username.getText().toString());
@@ -155,6 +155,29 @@ public class EditProfileActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
             Uri imageUri = data.getData();
             imageView.setImageURI(imageUri);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        // code here to show dialog
+        Bundle bundle = getIntent().getExtras();
+
+        if (name.getText().toString().equals("")) {
+            name.setError("Name is required");
+        } else if (contact.getText().toString().equals("")) {
+            contact.setError("Contact is required");
+        } else if (telephone.getText().toString().equals("")) {
+            telephone.setError("Telephone is required");
+        } else {
+            if (bundle != null) {
+                if (bundle.getBoolean("fromRegister")) {
+                    ListBrochureActivity.getInstance().finish();
+                    startActivity(new Intent(this, ListBrochureActivity.class));
+                }
+            }
+
+            finish();
         }
     }
 }

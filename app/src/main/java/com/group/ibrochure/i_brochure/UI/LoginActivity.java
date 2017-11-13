@@ -94,4 +94,9 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, RegisterActivity.class));
         finish();
     }
+
+    public void backFront(View view) {
+        startActivity(new Intent(this, FrontActivity.class));
+        finish();
+    }
 }

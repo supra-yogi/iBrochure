@@ -21,12 +21,13 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/avatar2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"/>
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/account" />
             <TextView
                 android:id="@+id/user"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:gravity="center|left"
                 android:text="Contact Person"
                 android:textSize="15dp"
@@ -41,19 +42,19 @@
 
            <ImageView
                android:id="@+id/pictureFront"
-               android:layout_width="wrap_content"
+               android:layout_width="fill_parent"
                android:layout_height="150dp"
                android:scaleType="centerCrop"
                android:layout_weight="1"
-               card_view:srcCompat="@drawable/brochure" />
+               card_view:srcCompat="@drawable/depault" />
 
            <ImageView
                android:id="@+id/pictureBack"
-               android:layout_width="wrap_content"
+               android:layout_width="fill_parent"
                android:layout_height="150dp"
                android:scaleType="centerCrop"
                android:layout_weight="1"
-               card_view:srcCompat="@drawable/brochure" />
+               card_view:srcCompat="@drawable/depault" />
        </LinearLayout>
 
        <LinearLayout

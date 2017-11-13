@@ -92,4 +92,9 @@ public class RegisterActivity extends AppCompatActivity {
         email.setText("");
         password.setText("");
     }
+
+    public void backFront(View view) {
+        startActivity(new Intent(this, FrontActivity.class));
+        finish();
+    }
 }

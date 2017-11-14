@@ -63,56 +63,63 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
         String imageByteFront = listBrochureArrayList.get(position).getPictureFront();
         String imageByteBack = listBrochureArrayList.get(position).getPictureBack();
 
-       ArrayList<Bitmap> images = new ArrayList<>();
+        ArrayList<Bitmap> images = new ArrayList<>();
         if (!imageByteFront.equals("")) {
             Bitmap pictureFront = ConverterImage.decodeBase64(imageByteFront);
             images.add(pictureFront);
+            pictureFront = null;
+            System.gc();
         }
 
         if (!imageByteBack.equals("")) {
             Bitmap pictureBack = ConverterImage.decodeBase64(imageByteBack);
             images.add(pictureBack);
+            pictureBack = null;
+            System.gc();
         }
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(context, images);
-        holder.viewPager.setAdapter(viewPagerAdapter);
+        //Add Slider Image
+        if (images.size() != 0) {
+            ViewPagerAdapterSlider viewPagerAdapter = new ViewPagerAdapterSlider(context, images);
+            holder.viewPager.setAdapter(viewPagerAdapter);
 
-        final int dotscount = viewPagerAdapter.getCount();
-        final ImageView[] dots = new ImageView[dotscount];
+            final int dotscount = viewPagerAdapter.getCount();
+            if (holder.sliderDotspanel.getChildCount() != dotscount) {
+                final ImageView[] dots = new ImageView[dotscount];
+                for (int i = 0; i < dotscount; i++) {
+                    dots[i] = new ImageView(context);
+                    dots[i].setImageDrawable(ContextCompat.getDrawable(context, R.drawable.nonactive_dot));
 
-        if (holder.sliderDotspanel.getChildCount() == 0) {
-            for (int i = 0; i < dotscount; i++) {
-                dots[i] = new ImageView(context);
-                dots[i].setImageDrawable(ContextCompat.getDrawable(context, R.drawable.nonactive_dot));
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT);
 
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params.setMargins(8, 0, 8, 0);
 
-                params.setMargins(8, 0, 8, 0);
-
-                holder.sliderDotspanel.addView(dots[i], params);
-            }
-
-            dots[0].setImageDrawable(ContextCompat.getDrawable(context, R.drawable.active_dot));
-
-            holder.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    holder.sliderDotspanel.addView(dots[i], params);
                 }
 
-                @Override
-                public void onPageSelected(int position) {
-                    for (int i = 0; i < dotscount; i++) {
-                        dots[i].setImageDrawable(ContextCompat.getDrawable(context, R.drawable.nonactive_dot));
+                dots[0].setImageDrawable(ContextCompat.getDrawable(context, R.drawable.active_dot));
+
+                holder.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
                     }
 
-                    dots[position].setImageDrawable(ContextCompat.getDrawable(context, R.drawable.active_dot));
-                }
+                    @Override
+                    public void onPageSelected(int position) {
+                        for (int i = 0; i < dotscount; i++) {
+                            dots[i].setImageDrawable(ContextCompat.getDrawable(context, R.drawable.nonactive_dot));
+                        }
 
-                @Override
-                public void onPageScrollStateChanged(int state) {
-                }
-            });
+                        dots[position].setImageDrawable(ContextCompat.getDrawable(context, R.drawable.active_dot));
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+                    }
+                });
+            }
         }
 
         holder.brochure.setOnClickListener(new View.OnClickListener() {

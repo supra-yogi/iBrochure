@@ -33,7 +33,6 @@
         <activity android:name=".UI.ListMyBrochureActivity" />
         <activity android:name=".UI.DetailBrochureActivity" />
         <activity android:name=".UI.EditBrochureActivity" />
-        <activity android:name=".UI.SliderActivity" />
     </application>
 
 </manifest>

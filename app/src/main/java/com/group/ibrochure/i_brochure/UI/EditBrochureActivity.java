@@ -85,14 +85,19 @@ public class EditBrochureActivity extends AppCompatActivity {
                         description.setText(jsonObject.getString("Description"));
                         String imageFrontByte = jsonObject.getString("PictureFront");
                         String imageBackByte = jsonObject.getString("PictureBack");
+
                         if (!imageFrontByte.equals("")) {
                             Bitmap pictureFrontDecode = ConverterImage.decodeBase64(imageFrontByte);
                             pictureFront.setImageBitmap(pictureFrontDecode);
+                            pictureFrontDecode = null;
+                            System.gc();
                         }
 
                         if (!imageBackByte.equals("")) {
                             Bitmap pictureBackDecode = ConverterImage.decodeBase64(imageBackByte);
                             pictureBack.setImageBitmap(pictureBackDecode);
+                            pictureBackDecode = null;
+                            System.gc();
                         }
                     }
                 } catch (JSONException e) {
@@ -167,6 +172,9 @@ public class EditBrochureActivity extends AppCompatActivity {
         listBrochure.setCategory(category);
         listBrochure.setPictureFront(encodePictureFront);
         listBrochure.setPictureBack(encodePictureBack);
+
+        encodePictureBack = null;
+        encodePictureFront = null;
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.show();

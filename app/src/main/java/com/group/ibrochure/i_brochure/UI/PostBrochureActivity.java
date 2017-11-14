@@ -135,6 +135,9 @@ public class PostBrochureActivity extends AppCompatActivity {
             listBrochure.setPictureFront(encodePictureFront);
             listBrochure.setPictureBack(encodePictureBack);
 
+            encodePictureBack = null;
+            encodePictureFront = null;
+
             // Parse the input date
             Date curDate = new Date();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");

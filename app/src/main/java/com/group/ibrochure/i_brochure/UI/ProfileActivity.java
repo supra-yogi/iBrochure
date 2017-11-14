@@ -1,6 +1,7 @@
 package com.group.ibrochure.i_brochure.UI;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -45,6 +46,10 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.show();
+        progressDialog.setMessage("Please wait");
+        progressDialog.setCancelable(false);
         repository.GetById(new ResponseCallBack() {
             TextView name = (TextView) findViewById(R.id.name);
             TextView username = (TextView) findViewById(R.id.username);
@@ -66,6 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
                         telephone.setText(jsonObject.getString("Telephone"));
                         email.setText(jsonObject.getString("Email"));
                     }
+                    progressDialog.hide();
                 } catch (JSONException e) {
                     Log.d("Error", e.getMessage());
                 }

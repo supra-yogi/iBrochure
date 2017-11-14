@@ -1,5 +1,6 @@
 package com.group.ibrochure.i_brochure.UI;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
@@ -43,8 +44,11 @@ public class DetailBrochureActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         id = bundle.getInt("Id");
 
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.show();
+        progressDialog.setMessage("Please wait");
+        progressDialog.setCancelable(false);
         repository.GetById(new ResponseCallBack() {
-
             TextView title = (TextView) findViewById(R.id.title);
             TextView telephone = (TextView) findViewById(R.id.telephone);
             TextView description = (TextView) findViewById(R.id.description);
@@ -120,6 +124,8 @@ public class DetailBrochureActivity extends AppCompatActivity {
                             });
                         }
                     }
+
+                    progressDialog.hide();
                 } catch (JSONException e) {
                     Log.d("Error", e.getMessage());
                 }

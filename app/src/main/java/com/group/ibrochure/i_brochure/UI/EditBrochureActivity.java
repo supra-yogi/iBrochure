@@ -219,7 +219,7 @@ public class EditBrochureActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_FRONT && resultCode == RESULT_OK) {
             Uri imageUri = data.getData();
             pictureFront.setImageURI(imageUri);
-        } else {
+        } else if (requestCode == PICK_IMAGE_BACK && resultCode == RESULT_OK){
             Uri imageUri = data.getData();
             pictureBack.setImageURI(imageUri);
         }

@@ -123,6 +123,7 @@ public class EditProfileActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.show();
         progressDialog.setMessage("Please wait");
+        progressDialog.setCancelable(false);
         repository.Save(new ResponseCallBack() {
             @Override
             public void onResponse(JSONArray response) {

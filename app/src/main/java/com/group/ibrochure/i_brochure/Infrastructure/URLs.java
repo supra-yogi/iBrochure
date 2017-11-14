@@ -5,7 +5,7 @@ package com.group.ibrochure.i_brochure.Infrastructure;
  */
 
 public class URLs {
-    public static final String URL_SERVER = "http://192.168.43.8:8080/iBrochure/";
+    public static final String URL_SERVER = "http://192.168.106.175:8080/iBrochure/";
     public static final String URL_API = URL_SERVER + "api/";
 
     public static final String URL_CATEGORY = URL_API + "category/";

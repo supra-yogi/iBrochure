@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -47,38 +48,7 @@ public class ListBrochureAPI extends BaseAPI<ListBrochure> implements IListBroch
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            String msg = null;
-                            if (error instanceof NetworkError) {
-                                msg = "Cannot connect to Internet...Please check your connection!";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else if (error instanceof ServerError) {
-                                msg = "The server could not be found. Please try again after some time!!";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else if (error instanceof AuthFailureError) {
-                                msg = "Cannot connect to Internet...Please check your connection!";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else if (error instanceof ParseError) {
-                                msg = "Parsing error! Please try again after some time!!";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else if (error instanceof NoConnectionError) {
-                                msg = "Cannot connect to Internet...Please check your connection!";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else if (error instanceof TimeoutError) {
-                                msg = "Connection TimeOut! Please check your internet connection.";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else {
-                                String responseBody = new String(error.networkResponse.data);
-                                JSONObject errors = null;
-                                if (responseBody != null && error.networkResponse != null) {
-                                    try {
-                                        errors = new JSONObject(responseBody);
-                                        String message = errors.getString("Message");
-                                        responseCallBack.onError(message);
-                                    } catch (JSONException e) {
-                                        Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
-                                    }
-                                }
-                            }
+                            responseCallBack.onError(errorResponseHandler(error));
                         }
                     }
             ) {
@@ -110,38 +80,7 @@ public class ListBrochureAPI extends BaseAPI<ListBrochure> implements IListBroch
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            String msg = null;
-                            if (error instanceof NetworkError) {
-                                msg = "Cannot connect to Internet...Please check your connection!";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else if (error instanceof ServerError) {
-                                msg = "The server could not be found. Please try again after some time!!";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else if (error instanceof AuthFailureError) {
-                                msg = "Cannot connect to Internet...Please check your connection!";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else if (error instanceof ParseError) {
-                                msg = "Parsing error! Please try again after some time!!";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else if (error instanceof NoConnectionError) {
-                                msg = "Cannot connect to Internet...Please check your connection!";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else if (error instanceof TimeoutError) {
-                                msg = "Connection TimeOut! Please check your internet connection.";
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                            } else {
-                                String responseBody = new String(error.networkResponse.data);
-                                JSONObject errors = null;
-                                if (responseBody != null && error.networkResponse != null) {
-                                    try {
-                                        errors = new JSONObject(responseBody);
-                                        String message = errors.getString("Message");
-                                        responseCallBack.onError(message);
-                                    } catch (JSONException e) {
-                                        Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
-                                    }
-                                }
-                            }
+                            responseCallBack.onError(errorResponseHandler(error));
                         }
                     }
             ) {
@@ -186,38 +125,7 @@ public class ListBrochureAPI extends BaseAPI<ListBrochure> implements IListBroch
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        String msg = null;
-                        if (error instanceof NetworkError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof ServerError) {
-                            msg = "The server could not be found. Please try again after some time!!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof AuthFailureError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof ParseError) {
-                            msg = "Parsing error! Please try again after some time!!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof NoConnectionError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof TimeoutError) {
-                            msg = "Connection TimeOut! Please check your internet connection.";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else {
-                            String responseBody = new String(error.networkResponse.data);
-                            JSONObject errors = null;
-                            if (responseBody != null && error.networkResponse != null) {
-                                try {
-                                    errors = new JSONObject(responseBody);
-                                    String message = errors.getString("Message");
-                                    responseCallBack.onError(message);
-                                } catch (JSONException e) {
-                                    Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
-                                }
-                            }
-                        }
+                        responseCallBack.onError(errorResponseHandler(error));
                     }
                 }
         ) {
@@ -245,38 +153,7 @@ public class ListBrochureAPI extends BaseAPI<ListBrochure> implements IListBroch
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        String msg = null;
-                        if (error instanceof NetworkError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof ServerError) {
-                            msg = "The server could not be found. Please try again after some time!!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof AuthFailureError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof ParseError) {
-                            msg = "Parsing error! Please try again after some time!!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof NoConnectionError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof TimeoutError) {
-                            msg = "Connection TimeOut! Please check your internet connection.";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else {
-                            String responseBody = new String(error.networkResponse.data);
-                            JSONObject errors = null;
-                            if (responseBody != null && error.networkResponse != null) {
-                                try {
-                                    errors = new JSONObject(responseBody);
-                                    String message = errors.getString("Message");
-                                    responseCallBack.onError(message);
-                                } catch (JSONException e) {
-                                    Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
-                                }
-                            }
-                        }
+                        responseCallBack.onError(errorResponseHandler(error));
                     }
                 }
         ) {

@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -43,7 +44,6 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
         url = GetUrl();
     }
 
-
     @Override
     public void GetById(final ResponseCallBack responseCallBack, int id) {
         JsonArrayRequest request = new JsonArrayRequest(url + id,
@@ -59,38 +59,7 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        String msg = null;
-                        if (error instanceof NetworkError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof ServerError) {
-                            msg = "The server could not be found. Please try again after some time!!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof AuthFailureError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof ParseError) {
-                            msg = "Parsing error! Please try again after some time!!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof NoConnectionError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof TimeoutError) {
-                            msg = "Connection TimeOut! Please check your internet connection.";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else {
-                            String responseBody = new String(error.networkResponse.data);
-                            JSONObject errors = null;
-                            if (responseBody != null && error.networkResponse != null) {
-                                try {
-                                    errors = new JSONObject(responseBody);
-                                    String message = errors.getString("Message");
-                                    responseCallBack.onError(message);
-                                } catch (JSONException e) {
-                                    Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
-                                }
-                            }
-                        }
+                        responseCallBack.onError(errorResponseHandler(error));
                     }
                 }
         );
@@ -112,38 +81,7 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        String msg = null;
-                        if (error instanceof NetworkError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof ServerError) {
-                            msg = "The server could not be found. Please try again after some time!!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof AuthFailureError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof ParseError) {
-                            msg = "Parsing error! Please try again after some time!!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof NoConnectionError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof TimeoutError) {
-                            msg = "Connection TimeOut! Please check your internet connection.";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else {
-                            String responseBody = new String(error.networkResponse.data);
-                            JSONObject errors = null;
-                            if (responseBody != null && error.networkResponse != null) {
-                                try {
-                                    errors = new JSONObject(responseBody);
-                                    String message = errors.getString("Message");
-                                    responseCallBack.onError(message);
-                                } catch (JSONException e) {
-                                    Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
-                                }
-                            }
-                        }
+                        responseCallBack.onError(errorResponseHandler(error));
                     }
                 }
         );
@@ -163,42 +101,42 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        String msg = null;
-                        if (error instanceof NetworkError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof ServerError) {
-                            msg = "The server could not be found. Please try again after some time!!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof AuthFailureError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof ParseError) {
-                            msg = "Parsing error! Please try again after some time!!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof NoConnectionError) {
-                            msg = "Cannot connect to Internet...Please check your connection!";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else if (error instanceof TimeoutError) {
-                            msg = "Connection TimeOut! Please check your internet connection.";
-                            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                        } else {
-                            String responseBody = new String(error.networkResponse.data);
-                            JSONObject errors = null;
-                            if (responseBody != null && error.networkResponse != null) {
-                                try {
-                                    errors = new JSONObject(responseBody);
-                                    String message = errors.getString("Message");
-                                    responseCallBack.onError(message);
-                                } catch (JSONException e) {
-                                    Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
-                                }
-                            }
-                        }
+                        responseCallBack.onError(errorResponseHandler(error));
                     }
                 }
         );
         RequestHandler.getInstance(context).addToRequestQueue(deleteRequest);
+    }
+
+    public String errorResponseHandler(VolleyError error) {
+        String message = null;
+        if (error instanceof NetworkError) {
+            message = "Cannot connect to Internet...Please check your connection!";
+        } else if (error instanceof ServerError) {
+            NetworkResponse response = error.networkResponse;
+            JSONObject errors = null;
+            if (response.data != null) {
+                try {
+                    String responseBody = new String(response.data);
+                    errors = new JSONObject(responseBody);
+                    message = errors.getString("Message");
+                } catch (JSONException e) {
+                    Log.d(context.getClass().getSimpleName(), "onErrorResponse: " + e.getMessage());
+                }
+            } else {
+                message = "The server could not be found. Please try again after some time!!";
+            }
+        } else if (error instanceof AuthFailureError) {
+            message = "Cannot connect to Internet...Please check your connection!";
+        } else if (error instanceof ParseError) {
+            message = "Parsing error! Please try again after some time!!";
+        } else if (error instanceof NoConnectionError) {
+            message = "Cannot connect to Internet...Please check your connection!";
+        } else if (error instanceof TimeoutError) {
+            message = "Connection TimeOut! The server could not be found or no internet connection.";
+        }
+
+        return message;
     }
 
     public abstract void Save(final ResponseCallBack responseCallBack, T entity);

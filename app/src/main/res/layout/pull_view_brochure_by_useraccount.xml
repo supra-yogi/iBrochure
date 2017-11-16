@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.group.ibrochure.i_brochure.UI.ListMyBrochureActivity"
-    tools:showIn="@layout/activity_list_brochure">
+    tools:context="com.group.ibrochure.i_brochure.UI.ListMyBrochureActivity">
 
     <com.srx.widget.PullToLoadView
         android:id="@+id/pullToLoadView"

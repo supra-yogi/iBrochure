@@ -80,6 +80,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (!picture.equals("")) {
                         Bitmap decodedByte = ConverterImage.decodeBase64(picture);
                         imageView.setImageBitmap(decodedByte);
+                        decodedByte = null;
+                        System.gc();
                     }
                     username.setText(object.getString("Username"));
                     email.setText(object.getString("Email"));
@@ -117,9 +119,11 @@ public class EditProfileActivity extends AppCompatActivity {
         //Convert image
         String image = ConverterImage.encodeBase64(imageView);
         userAccount.setPicture(image);
+        image = null;
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.show();
         progressDialog.setMessage("Please wait");
+        progressDialog.setCancelable(false);
         repository.Save(new ResponseCallBack() {
             @Override
             public void onResponse(JSONArray response) {

@@ -20,7 +20,6 @@ public class CategoryAPI extends BaseAPI<Category> implements ICategoryRepo {
 
     }
 
-
     @Override
     public Category CreateNew() {
         return new Category();

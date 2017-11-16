@@ -18,17 +18,43 @@
             android:orientation="horizontal"
             android:padding="@dimen/activity_vertical_margin">
 
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/account"/>
             <TextView
                 android:id="@+id/user"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="left"
+                android:layout_height="30dp"
+                android:gravity="center|left"
                 android:paddingLeft="@dimen/activity_vertical_margin"
                 android:text="Contact Person"
                 android:textColor="#000"
                 android:textSize="15dp" />
         </LinearLayout>
 
+<<<<<<< HEAD
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/pictureFront"
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:layout_weight="1" />
+                card_view:srcCompat="@drawable/depault" />
+
+            <ImageView
+                android:id="@+id/pictureBack"
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:layout_weight="1" />
+                card_view:srcCompat="@drawable/depault" />
+        </LinearLayout>
+=======
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
@@ -42,6 +68,7 @@
             android:gravity="center_vertical|center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+>>>>>>> f8c8ab275225ca633d2fab3e7077ef55c74e8521
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,9 +94,33 @@
                 android:drawablePadding="10sp"
                 android:text="0878 8559 4740"
                 android:textSize="15sp" />
-
-
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_vertical_margin">
+
+            <ImageButton
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorPrimary"
+                android:padding="2dp"
+                card_view:srcCompat="@drawable/ic_edit" />
+
+            <ImageButton
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:padding="2dp"
+                android:tint="@color/white"
+                card_view:srcCompat="@drawable/ic_delete_black_24dp" />
+
+        </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

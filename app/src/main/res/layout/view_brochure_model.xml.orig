@@ -18,11 +18,21 @@
             android:orientation="horizontal"
             android:padding="@dimen/activity_vertical_margin">
 
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/account" />
             <TextView
                 android:id="@+id/user"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
+                android:layout_height="30dp"
+                android:gravity="center|left"
+                android:text="Contact Person"
+                android:textSize="15dp"
+=======
                 android:layout_height="40dp"
                 android:gravity="left"
+>>>>>>> f8c8ab275225ca633d2fab3e7077ef55c74e8521
                 android:paddingLeft="@dimen/activity_vertical_margin"
                 android:text="Contact Person"
                 android:textColor="#000"
@@ -35,6 +45,24 @@
             android:layout_height="190dp"
             android:layout_marginBottom="8dp"/>
 
+<<<<<<< HEAD
+           <ImageView
+               android:id="@+id/pictureFront"
+               android:layout_width="fill_parent"
+               android:layout_height="150dp"
+               android:scaleType="centerCrop"
+               android:layout_weight="1" />
+               card_view:srcCompat="@drawable/depault" />
+
+           <ImageView
+               android:id="@+id/pictureBack"
+               android:layout_width="fill_parent"
+               android:layout_height="150dp"
+               android:scaleType="centerCrop"
+               android:layout_weight="1" />
+               card_view:srcCompat="@drawable/depault" />
+       </LinearLayout>
+=======
         <LinearLayout
             android:id="@+id/SliderDots"
             android:layout_below="@+id/viewPager"
@@ -48,6 +76,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/activity_vertical_margin">
+>>>>>>> f8c8ab275225ca633d2fab3e7077ef55c74e8521
 
             <TextView
                 android:id="@+id/title"

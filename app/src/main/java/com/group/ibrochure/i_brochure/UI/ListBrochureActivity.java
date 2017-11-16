@@ -90,6 +90,8 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
                             if (!avatarByte.equals("")) {
                                 Bitmap avatarBitmap = ConverterImage.decodeBase64(avatarByte);
                                 avatar.setImageBitmap(avatarBitmap);
+                                avatarBitmap = null;
+                                System.gc();
                             }
 
                             username.setText(jsonObject.getString("Name"));

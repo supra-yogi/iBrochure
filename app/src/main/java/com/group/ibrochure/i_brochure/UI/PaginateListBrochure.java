@@ -1,6 +1,7 @@
 package com.group.ibrochure.i_brochure.UI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

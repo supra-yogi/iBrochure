@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.group.ibrochure.i_brochure.Infrastructure.Session;
 import com.group.ibrochure.i_brochure.Infrastructure.URLs;
 import com.group.ibrochure.i_brochure.R;
 
@@ -19,18 +20,20 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imgV;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        session = new Session(this);
+
         //Animation
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.transition);
         imgV = (ImageView) findViewById(R.id.brand);
         imgV.startAnimation(anim);
 
-        final Intent login = new Intent(this, WelcomeActivity.class);
         final Intent noConnection = new Intent(this, NoConnectionServerActivity.class);
         //Check Connection
         Thread connection = new Thread(new Runnable() {
@@ -44,8 +47,13 @@ public class MainActivity extends AppCompatActivity {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             } finally {
-                                startActivity(login);
-                                finish();
+                                if (session.getId() != 0) {
+                                    startActivity(new Intent(getApplicationContext(), ListBrochureActivity.class));
+                                    finish();
+                                } else {
+                                    startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+                                    finish();
+                                }
                             }
                         }
                     };

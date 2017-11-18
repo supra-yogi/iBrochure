@@ -3,11 +3,14 @@ package com.group.ibrochure.i_brochure.UI;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.group.ibrochure.i_brochure.Domain.Category.Category;
+import com.group.ibrochure.i_brochure.Infrastructure.ConverterImage;
 import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
 import com.group.ibrochure.i_brochure.Infrastructure.Session;
 import com.group.ibrochure.i_brochure.Infrastructure.UserAccountAPI;
@@ -23,6 +27,8 @@ import com.group.ibrochure.i_brochure.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -37,6 +43,12 @@ public class ProfileActivity extends AppCompatActivity {
         repository = new UserAccountAPI(this);
         session = new Session(this);
         activity = this;
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_edit_post);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+            actionBar.setDisplayShowTitleEnabled(false);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
             TextView address = (TextView) findViewById(R.id.address);
             TextView telephone = (TextView) findViewById(R.id.telephone);
             TextView email = (TextView) findViewById(R.id.email);
+            CircleImageView circleImageView = (CircleImageView) findViewById(R.id.avatar_profile);
 
             @Override
             public void onResponse(JSONArray response) {
@@ -69,6 +82,13 @@ public class ProfileActivity extends AppCompatActivity {
                         address.setText(jsonObject.getString("Address"));
                         telephone.setText(jsonObject.getString("Telephone"));
                         email.setText(jsonObject.getString("Email"));
+
+                        String img = jsonObject.getString("Picture");
+                        if (!img.equals("")) {
+                            Bitmap bitmap = ConverterImage.decodeBase64(img);
+                            circleImageView.setImageBitmap(bitmap);
+                        }
+
                     }
                     progressDialog.hide();
                 } catch (JSONException e) {

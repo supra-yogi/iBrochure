@@ -1,6 +1,8 @@
 package com.group.ibrochure.i_brochure.UI;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -9,11 +11,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +58,7 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
 
     //BIND DATA
     @Override
-    public void onBindViewHolder(MyBrochureAdapter.MyHolder holder, int position) {
+    public void onBindViewHolder(final MyBrochureAdapter.MyHolder holder, int position) {
         final int id = listBrochureArrayList.get(position).getId();
         holder.title.setText(listBrochureArrayList.get(position).getTitle());
         holder.telephone.setText(listBrochureArrayList.get(position).getTelephone());
@@ -133,44 +137,105 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
             }
         });
 
-        holder.edit.setOnClickListener(new View.OnClickListener() {
+//        holder.edit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+
+
+        holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent editBrochure = new Intent(context, EditBrochureActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("Id", id);
-                editBrochure.putExtras(bundle);
-                context.startActivity(editBrochure);
+                PopupMenu popupMenu = new PopupMenu(context, holder.more);
+                popupMenu.getMenuInflater().inflate(R.menu.more_menu, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+                        switch (menuItem.getItemId()) {
+                            case R.id.edit:
+                                Intent editBrochure = new Intent(context, EditBrochureActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("Id", id);
+                                editBrochure.putExtras(bundle);
+                                context.startActivity(editBrochure);
+                                break;
+                            case R.id.delete:
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setMessage("Are you sure to delete this brochure?")
+                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int which) {
+                                                repo.Delete(new ResponseCallBack() {
+                                                    @Override
+                                                    public void onResponse(JSONArray response) {
+                                                    }
+
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        Intent myBrochure = new Intent(context, ListMyBrochureActivity.class);
+                                                        Bundle bundle = new Bundle();
+                                                        bundle.putBoolean("isUpdated", true);
+                                                        myBrochure.putExtras(bundle);
+                                                        context.startActivity(myBrochure);
+                                                        ListMyBrochureActivity.getInstance().finish();
+                                                    }
+
+                                                    @Override
+                                                    public void onError(String error) {
+                                                        Toast.makeText(context, "Error: " + error, Toast.LENGTH_LONG).show();
+                                                    }
+                                                }, id);
+                                            }
+                                        }).setNegativeButton("Cancel", null);
+
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                            break;
+                        }
+
+                        return true;
+                    }
+                });
+
+                popupMenu.show();
+
             }
         });
 
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                repo.Delete(new ResponseCallBack() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                    }
 
-                    @Override
-                    public void onResponse(String response) {
-                        Intent myBrochure = new Intent(context, ListMyBrochureActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putBoolean("isUpdated", true);
-                        myBrochure.putExtras(bundle);
-                        context.startActivity(myBrochure);
-                        ListMyBrochureActivity.getInstance().finish();
-                    }
-
-                    @Override
-                    public void onError(String error) {
-                        Toast.makeText(context, "Error: " + error, Toast.LENGTH_LONG).show();
-                    }
-                }, id);
-            }
-        });
+//        holder.delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                repo.Delete(new ResponseCallBack() {
+//                    @Override
+//                    public void onResponse(JSONArray response) {
+//                    }
+//
+//                    @Override
+//                    public void onResponse(String response) {
+//                        Intent myBrochure = new Intent(context, ListMyBrochureActivity.class);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putBoolean("isUpdated", true);
+//                        myBrochure.putExtras(bundle);
+//                        context.startActivity(myBrochure);
+//                        ListMyBrochureActivity.getInstance().finish();
+//                    }
+//
+//                    @Override
+//                    public void onError(String error) {
+//                        Toast.makeText(context, "Error: " + error, Toast.LENGTH_LONG).show();
+//                    }
+//                }, id);
+//            }
+//        });
 
     }
+
+
 
     /*
     TOTAL ITEMS
@@ -204,10 +269,9 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
         TextView telephone;
         TextView user;
         CardView brochure;
-        ImageButton edit;
-        ImageButton delete;
         ViewPager viewPager;
         LinearLayout sliderDotspanel;
+        TextView more;
 
         public MyHolder(View itemView) {
             super(itemView);
@@ -216,9 +280,8 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
             this.user = (TextView) itemView.findViewById(R.id.user);
             this.telephone = (TextView) itemView.findViewById(R.id.telephone);
             this.brochure = (CardView) itemView.findViewById(R.id.cardViewModelBrochure);
-            this.edit = (ImageButton) itemView.findViewById(R.id.edit);
-            this.delete = (ImageButton) itemView.findViewById(R.id.delete);
             this.viewPager = (ViewPager) itemView.findViewById(R.id.viewPager);
+            this.more = (TextView) itemView.findViewById(R.id.more);
             this.sliderDotspanel = (LinearLayout) itemView.findViewById(R.id.SliderDots);
         }
     }

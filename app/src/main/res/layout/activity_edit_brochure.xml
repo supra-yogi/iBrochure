@@ -9,7 +9,7 @@
     tools:context="com.group.ibrochure.i_brochure.UI.EditBrochureActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_post"
+        android:id="@+id/toolbar_edit_post"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
@@ -25,14 +25,23 @@
             android:onClick="onClose"
             app:srcCompat="@drawable/ic_close_black_24dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:text="Edit Brochure"/>
+            android:gravity="right"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:onClick="onSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/ic_send_black_24dp"/>
+
+        </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 
@@ -136,15 +145,6 @@
                     android:onClick="onPickPictureBack"/>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/post_submit"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                android:text="POST"
-                android:onClick="onSave"
-                android:layout_marginTop="30dp"
-                android:textColor="#fff"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

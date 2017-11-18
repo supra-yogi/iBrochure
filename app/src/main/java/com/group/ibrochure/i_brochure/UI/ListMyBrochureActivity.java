@@ -1,6 +1,8 @@
 package com.group.ibrochure.i_brochure.UI;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
@@ -8,12 +10,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.group.ibrochure.i_brochure.Infrastructure.Session;
 import com.group.ibrochure.i_brochure.R;
 import com.srx.widget.PullToLoadView;
+
+import org.w3c.dom.Text;
 
 public class ListMyBrochureActivity extends AppCompatActivity {
     private Session session;
@@ -29,8 +35,10 @@ public class ListMyBrochureActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
+        if(actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
+        }
+
 
         TextView tv = (TextView) findViewById(R.id.toolbar_title);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/pacifico.ttf");
@@ -46,6 +54,9 @@ public class ListMyBrochureActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), PostBrochureActivity.class));
             }
         });
+
+
+
     }
 
     public static Activity getInstance() {
@@ -63,6 +74,10 @@ public class ListMyBrochureActivity extends AppCompatActivity {
                 startActivity(new Intent(this, ListBrochureActivity.class));
             }
         }
+        finish();
+    }
+
+    public void onBack(View view) {
         finish();
     }
 }

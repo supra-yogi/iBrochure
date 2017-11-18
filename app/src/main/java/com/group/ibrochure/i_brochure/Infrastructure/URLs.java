@@ -5,10 +5,10 @@ package com.group.ibrochure.i_brochure.Infrastructure;
  */
 
 public class URLs {
-    public static final String URL_SERVER = "http://172.17.103.248:8080/iBrochure/";
+    public static final String URL_SERVER = "http://demo.pentasi.net/aan_dev/ibrochure/";
     public static final String URL_API = URL_SERVER + "api/";
 
-    public static final String URL_CATEGORY = URL_API + "category/";
-    public static final String URL_USERACCOUNT = URL_API + "useraccount/";
-    public static final String URL_LISTBROCHURE = URL_API + "listbrochure/";
+    public static final String URL_CATEGORY = URL_API + "Category/";
+    public static final String URL_USERACCOUNT = URL_API + "Useraccount/";
+    public static final String URL_LISTBROCHURE = URL_API + "ListBrochure/";
 }

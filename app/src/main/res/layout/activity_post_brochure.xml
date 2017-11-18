@@ -15,8 +15,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:titleTextColor="@color/white"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:gravity="right">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <ImageView
             android:id="@+id/closeButton"
@@ -26,14 +25,22 @@
             android:onClick="onClose"
             app:srcCompat="@drawable/ic_close_black_24dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:text="Post Brochure"/>
+            android:gravity="right"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:onClick="onSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/ic_send_black_24dp"/>
+
+        </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 
@@ -125,27 +132,19 @@
                <ImageView
                    android:id="@+id/pictureFront"
                    android:layout_width="150dp"
-                   android:layout_height="150dp"
+                   android:layout_height="100dp"
                    android:layout_marginTop="30dp"
-                   android:onClick="onPickPictureFront"/>
+                   android:onClick="onPickPictureFront"
+                   android:background="@drawable/depault"/>
 
                <ImageView
                    android:id="@+id/pictureBack"
                    android:layout_width="150dp"
-                   android:layout_height="150dp"
+                   android:layout_height="100dp"
                    android:layout_marginTop="30dp"
-                   android:onClick="onPickPictureBack"/>
+                   android:onClick="onPickPictureBack"
+                   android:background="@drawable/depault"/>
            </LinearLayout>
-
-            <Button
-                android:id="@+id/post_submit"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                android:text="POST"
-                android:onClick="onSave"
-                android:layout_marginTop="30dp"
-                android:textColor="#fff"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

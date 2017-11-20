@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -59,9 +62,13 @@ public class EditProfileActivity extends AppCompatActivity {
         //manipulate image
         imageView = (ImageView) findViewById(R.id.picture);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_edit_profile);
+        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
         }
 
         repository.GetByUsername(new ResponseCallBack() {
@@ -101,52 +108,66 @@ public class EditProfileActivity extends AppCompatActivity {
         }, session.getUserOrEmail());
     }
 
-    public void onClose(View view) {
-        finish();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.edit_profile_menu, menu);
+        return true;
     }
 
-    public void onSave(View view) {
-        ProfileActivity.getInstance().finish();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        userAccount.setId(session.getId());
-        userAccount.setUsername(username.getText().toString());
-        userAccount.setEmail(email.getText().toString());
-        userAccount.setName(name.getText().toString());
-        userAccount.setContact(contact.getText().toString());
-        userAccount.setTelephone(telephone.getText().toString());
-        userAccount.setAddress(address.getText().toString());
-
-        //Convert image
-        String image = ConverterImage.encodeBase64(imageView);
-        userAccount.setPicture(image);
-        image = null;
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.show();
-        progressDialog.setMessage("Please wait");
-        progressDialog.setCancelable(false);
-        repository.Save(new ResponseCallBack() {
-            @Override
-            public void onResponse(JSONArray response) {
-            }
-
-            @Override
-            public void onResponse(String response) {
-                progressDialog.hide();
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("fromListBrochure", false);
-                Intent profile = new Intent(getApplicationContext(), ProfileActivity.class);
-                profile.putExtras(bundle);
-                startActivity(profile);
+        switch (item.getItemId()) {
+            case android.R.id.home:
                 finish();
-            }
+                break;
+            case R.id.save_profile:
+                ProfileActivity.getInstance().finish();
 
-            @Override
-            public void onError(String error) {
-                Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
-                progressDialog.hide();
-            }
-        }, userAccount);
+                userAccount.setId(session.getId());
+                userAccount.setUsername(username.getText().toString());
+                userAccount.setEmail(email.getText().toString());
+                userAccount.setName(name.getText().toString());
+                userAccount.setContact(contact.getText().toString());
+                userAccount.setTelephone(telephone.getText().toString());
+                userAccount.setAddress(address.getText().toString());
+
+                //Convert image
+                String image = ConverterImage.encodeBase64(imageView);
+                userAccount.setPicture(image);
+                image = null;
+                final ProgressDialog progressDialog = new ProgressDialog(this);
+                progressDialog.show();
+                progressDialog.setMessage("Please wait");
+                progressDialog.setCancelable(false);
+                repository.Save(new ResponseCallBack() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.hide();
+                        Bundle bundle = new Bundle();
+                        bundle.putBoolean("fromListBrochure", false);
+                        Intent profile = new Intent(getApplicationContext(), ProfileActivity.class);
+                        profile.putExtras(bundle);
+                        startActivity(profile);
+                        finish();
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
+                        progressDialog.hide();
+                    }
+                }, userAccount);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
+
 
     public void onPickPicture(View view) {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);

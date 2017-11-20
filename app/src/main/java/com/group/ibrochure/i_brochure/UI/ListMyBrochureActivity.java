@@ -32,17 +32,14 @@ public class ListMyBrochureActivity extends AppCompatActivity {
         session = new Session(this);
         activity = this;
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_mybrochure);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null) {
+        if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
         }
-
-
-        TextView tv = (TextView) findViewById(R.id.toolbar_title);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/pacifico.ttf");
-        tv.setTypeface(face);
 
         PullToLoadView pullToLoadView = (PullToLoadView) findViewById(R.id.pullToLoadView);
         new PaginateListMyBrochure(this, pullToLoadView).initializePaginator();
@@ -57,6 +54,15 @@ public class ListMyBrochureActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home)
+            finish();
+
+        return super.onOptionsItemSelected(item);
     }
 
     public static Activity getInstance() {
@@ -77,7 +83,5 @@ public class ListMyBrochureActivity extends AppCompatActivity {
         finish();
     }
 
-    public void onBack(View view) {
-        finish();
-    }
+
 }

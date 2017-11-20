@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -14,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.group.ibrochure.i_brochure.Domain.Category.Category;
 import com.group.ibrochure.i_brochure.Domain.ListBrochure.ListBrochure;
@@ -60,6 +64,15 @@ public class PostBrochureActivity extends AppCompatActivity {
         categoryRepository = new CategoryAPI(this);
         repository = new ListBrochureAPI(this);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_post);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
+
         pictureFront = (ImageView) findViewById(R.id.pictureFront);
         pictureBack = (ImageView) findViewById(R.id.pictureBack);
         title = (EditText) findViewById(R.id.brochure_title_post);
@@ -102,76 +115,87 @@ public class PostBrochureActivity extends AppCompatActivity {
         });
     }
 
-    public void onClose(View view) {
-        finish();
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.post_menu, menu);
+        return true;
     }
 
-    public void onSave(View view) {
-        if (title.getText().toString().equals("")) {
-            title.setError("Title is required");
-        } else if (telephone.getText().toString().equals("")) {
-            telephone.setError("Telephone is required");
-        } else if (address.getText().toString().equals("")) {
-            address.setError("Address is required");
-        } else {
-            ListBrochure listBrochure = new ListBrochure();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.submit_post:
+                if (title.getText().toString().equals("")) {
+                    title.setError("Title is required");
+                } else if (telephone.getText().toString().equals("")) {
+                    telephone.setError("Telephone is required");
+                } else if (address.getText().toString().equals("")) {
+                    address.setError("Address is required");
+                } else {
+                    ListBrochure listBrochure = new ListBrochure();
 
 //        String CategoryName = spinner.getSelectedItem().toString();
-            int CategoryId = spinnerMap.get(spinner.getSelectedItemPosition());
-            Category category = new Category();
-            category.setId(CategoryId);
-            UserAccount userAccount = new UserAccount();
-            userAccount.setId(session.getId());
+                    int CategoryId = spinnerMap.get(spinner.getSelectedItemPosition());
+                    Category category = new Category();
+                    category.setId(CategoryId);
+                    UserAccount userAccount = new UserAccount();
+                    userAccount.setId(session.getId());
 
-            String encodePictureFront = ConverterImage.encodeBase64(pictureFront);
-            String encodePictureBack = ConverterImage.encodeBase64(pictureBack);
+                    String encodePictureFront = ConverterImage.encodeBase64(pictureFront);
+                    String encodePictureBack = ConverterImage.encodeBase64(pictureBack);
 
-            listBrochure.setTitle(title.getText().toString());
-            listBrochure.setAddress(address.getText().toString());
-            listBrochure.setTelephone(telephone.getText().toString());
-            listBrochure.setDescription(description.getText().toString());
-            listBrochure.setCategory(category);
-            listBrochure.setUserAccount(userAccount);
-            listBrochure.setPictureFront(encodePictureFront);
-            listBrochure.setPictureBack(encodePictureBack);
+                    listBrochure.setTitle(title.getText().toString());
+                    listBrochure.setAddress(address.getText().toString());
+                    listBrochure.setTelephone(telephone.getText().toString());
+                    listBrochure.setDescription(description.getText().toString());
+                    listBrochure.setCategory(category);
+                    listBrochure.setUserAccount(userAccount);
+                    listBrochure.setPictureFront(encodePictureFront);
+                    listBrochure.setPictureBack(encodePictureBack);
 
-            encodePictureBack = null;
-            encodePictureFront = null;
+                    encodePictureBack = null;
+                    encodePictureFront = null;
 
-            // Parse the input date
-            Date curDate = new Date();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");
-            String DateToStr = format.format(curDate);
-            listBrochure.setPostingDate(DateToStr);
+                    // Parse the input date
+                    Date curDate = new Date();
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");
+                    String DateToStr = format.format(curDate);
+                    listBrochure.setPostingDate(DateToStr);
 
-            final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.show();
-            progressDialog.setMessage("Please wait");
-            progressDialog.setCancelable(false);
-            //Disable touch
-            repository.Save(new ResponseCallBack() {
-                @Override
-                public void onResponse(JSONArray response) {
+                    final ProgressDialog progressDialog = new ProgressDialog(this);
+                    progressDialog.show();
+                    progressDialog.setMessage("Please wait");
+                    progressDialog.setCancelable(false);
+                    //Disable touch
+                    repository.Save(new ResponseCallBack() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                        }
+
+                        @Override
+                        public void onResponse(String response) {
+                            progressDialog.hide();
+                            ListMyBrochureActivity.getInstance().finish();
+                            Intent myBrochure = new Intent(getApplicationContext(), ListMyBrochureActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putBoolean("isUpdated", true);
+                            myBrochure.putExtras(bundle);
+                            startActivity(myBrochure);
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(String error) {
+                            Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
+                        }
+                    }, listBrochure);
                 }
-
-                @Override
-                public void onResponse(String response) {
-                    progressDialog.hide();
-                    ListMyBrochureActivity.getInstance().finish();
-                    Intent myBrochure = new Intent(getApplicationContext(), ListMyBrochureActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean("isUpdated", true);
-                    myBrochure.putExtras(bundle);
-                    startActivity(myBrochure);
-                    finish();
-                }
-
-                @Override
-                public void onError(String error) {
-                    Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
-                }
-            }, listBrochure);
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void onPickPictureFront(View view) {

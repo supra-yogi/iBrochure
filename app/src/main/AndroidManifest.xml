@@ -23,17 +23,34 @@
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
         <activity android:name=".UI.CategoryActivity" />
-        <activity android:name=".UI.RegisterActivity" />
+        <activity
+            android:name=".UI.RegisterActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".UI.ListBrochureActivity" />
         <activity android:name=".UI.NoConnectionServerActivity" />
-        <activity android:name=".UI.ProfileActivity" />
-        <activity android:name=".UI.EditProfileActivity" />
-        <activity android:name=".UI.FrontActivity" />
-        <activity android:name=".UI.PostBrochureActivity" />
+        <activity
+            android:name=".UI.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UI.EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UI.FrontActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UI.PostBrochureActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".UI.ListMyBrochureActivity" />
         <activity android:name=".UI.DetailBrochureActivity" />
-        <activity android:name=".UI.EditBrochureActivity" />
-        <activity android:name=".UI.WelcomeActivity"></activity>
+        <activity
+            android:name=".UI.EditBrochureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UI.WelcomeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".UI.AanProfileActivity" />
+        <activity android:name=".UI.YogiProfileActivity" />
+        <activity android:name=".UI.CreditActivity"></activity>
     </application>
 
 </manifest>

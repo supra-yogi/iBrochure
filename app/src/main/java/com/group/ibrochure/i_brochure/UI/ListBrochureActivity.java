@@ -1,7 +1,6 @@
 package com.group.ibrochure.i_brochure.UI;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -12,17 +11,14 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
 import com.group.ibrochure.i_brochure.Infrastructure.ConverterImage;
 import com.group.ibrochure.i_brochure.Infrastructure.ResponseCallBack;
 import com.group.ibrochure.i_brochure.Infrastructure.Session;
@@ -34,7 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ListBrochureActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Session session;
@@ -52,8 +48,9 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
+        if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
+        }
 
         TextView tv = (TextView) findViewById(R.id.toolbar_title);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/pacifico.ttf");
@@ -82,7 +79,7 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject jsonObject = response.getJSONObject(i);
 
-                            ImageView avatar = (ImageView) findViewById(R.id.avatar_sidebar);
+                            CircleImageView avatar = (CircleImageView) findViewById(R.id.avatar_sidebar);
                             TextView username = (TextView) findViewById(R.id.user_sidebar);
                             TextView email = (TextView) findViewById(R.id.email_sidebar);
 
@@ -90,7 +87,6 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
                             if (!avatarByte.equals("")) {
                                 Bitmap avatarBitmap = ConverterImage.decodeBase64(avatarByte);
                                 avatar.setImageBitmap(avatarBitmap);
-                                avatarBitmap = null;
                                 System.gc();
                             }
 
@@ -182,6 +178,25 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.exit_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.exit_menu:
+                finish();
+                System.exit(0);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -214,12 +229,10 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
             else
                 startActivity(new Intent(this, FrontActivity.class));
         } else if (id == R.id.nav_credit) {
+            startActivity(new Intent(this, CreditActivity.class));
 
         } else if (id == R.id.nav_about) {
 
-        } else if (id == R.id.nav_exit) {
-            finish();
-            System.exit(0);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

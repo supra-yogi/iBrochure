@@ -7,9 +7,12 @@ import android.media.Image;
 import android.os.Binder;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +43,15 @@ public class DetailBrochureActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_brochure);
         session = new Session(this);
         repository = new ListBrochureAPI(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_detail);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
 
         Bundle bundle = getIntent().getExtras();
         id = bundle.getInt("Id");
@@ -141,7 +153,13 @@ public class DetailBrochureActivity extends AppCompatActivity {
         }, id);
     }
 
-    public void onBackClick (View view) {
-        finish();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home)
+            finish();
+
+        return super.onOptionsItemSelected(item);
     }
+
 }

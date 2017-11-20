@@ -9,29 +9,22 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_mybrochure"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_arrow_back"
-                android:onClick="onBack"/>
+            android:theme="@style/ToolbarColored">
 
             <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
+                android:id="@+id/credit_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
                 android:textSize="20sp"
-                android:layout_marginLeft="20dp"
                 android:text="My Brochure"/>
 
         </android.support.v7.widget.Toolbar>

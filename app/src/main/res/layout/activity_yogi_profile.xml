@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:padding="@dimen/activity_vertical_margin"
+    tools:context="com.group.ibrochure.i_brochure.UI.AanProfileActivity">
+
+    <TextView
+        android:onClick="onBackToHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_chevron_left_black_24dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginBottom="10dp"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/yogi"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/name_author1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Suprayogi Hermawan"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="25dp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fullstack Developer"
+        android:layout_gravity="center"
+        android:textSize="15dp"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_horizontal_margin">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I'm programmer i have no life"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="hermawanyogi42@gmail.com"
+                android:textSize="13dp"
+                android:drawableLeft="@drawable/ic_email"
+                android:drawableTint="@color/colorPrimary"
+                android:drawablePadding="10dp"
+                android:gravity=""
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+62 878 7794 5010"
+                android:textSize="13dp"
+                android:drawableLeft="@drawable/ic_phone"
+                android:drawableTint="@color/colorPrimary"
+                android:drawablePadding="10dp"
+                android:gravity=""/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#eee"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Suprayogi (Yogi) Hermawan"
+                android:textSize="13dp"
+                android:drawableLeft="@drawable/linkedin"
+                android:drawablePadding="10dp"
+                android:gravity=""
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Yogi42"
+                android:textSize="13dp"
+                android:drawableLeft="@drawable/git"
+                android:drawablePadding="10dp"
+                android:gravity=""/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -50,7 +50,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".UI.AanProfileActivity" />
         <activity android:name=".UI.YogiProfileActivity" />
-        <activity android:name=".UI.CreditActivity"></activity>
+        <activity android:name=".UI.CreditActivity" />
+        <activity android:name=".UI.AboutActivity"></activity>
     </application>
 
 </manifest>

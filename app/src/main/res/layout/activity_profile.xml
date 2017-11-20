@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.group.ibrochure.i_brochure.UI.ProfileActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_edit_profile"
+
+        android:id="@+id/toolbar_profile"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        app:titleTextColor="@color/white"
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:gravity="right">
+        app:titleTextColor="@color/white">
 
+        <TextView
+            android:id="@+id/credit_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:text="Profile"/>
 
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="right"-->
+        <!--android:padding="@dimen/activity_horizontal_margin">-->
+
+        <!--<TextView-->
+        <!--android:onClick="onSave"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:backgroundTint="@color/white"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:background="@drawable/ic_send_black_24dp"/>-->
+
+        <!--</LinearLayout>-->
 
     </android.support.v7.widget.Toolbar>
 
@@ -148,11 +172,4 @@
         </RelativeLayout>
 
     </ScrollView>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_edit" />
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

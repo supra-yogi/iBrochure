@@ -12,6 +12,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,19 +46,15 @@ public class ProfileActivity extends AppCompatActivity {
         session = new Session(this);
         activity = this;
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_edit_post);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_profile);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
+        if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), EditProfileActivity.class));
-            }
-        });
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.show();
@@ -108,6 +106,27 @@ public class ProfileActivity extends AppCompatActivity {
 
     public static Activity getInstance() {
         return activity;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.edit_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.edit_profile:
+                startActivity(new Intent(this, EditProfileActivity.class));
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

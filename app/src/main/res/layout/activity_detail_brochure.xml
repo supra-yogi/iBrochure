@@ -20,6 +20,14 @@
             android:background="@color/colorPrimary"
             android:theme="@style/ToolbarColored">
 
+            <TextView
+                android:id="@+id/detail_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:text="Detail"/>
+
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 

@@ -167,6 +167,9 @@
                 android:layout_height="wrap_content"
                 android:text="Logout"
                 android:onClick="onLogout"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorDanger"
+                android:textColor="@color/white"
                 android:layout_below="@id/info_til"/>
 
         </RelativeLayout>

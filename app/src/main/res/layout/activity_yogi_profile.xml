@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/colorPrimary"
     android:padding="@dimen/activity_vertical_margin"
-    tools:context="com.group.ibrochure.i_brochure.UI.AanProfileActivity">
+    tools:context="com.group.ibrochure.i_brochure.UI.YogiProfileActivity">
 
     <TextView
         android:onClick="onBackToHome"

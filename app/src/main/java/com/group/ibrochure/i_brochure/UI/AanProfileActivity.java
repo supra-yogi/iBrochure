@@ -23,7 +23,6 @@ public class AanProfileActivity extends AppCompatActivity {
     }
 
     public void onBackToHome(View view) {
-        startActivity(new Intent(this, CreditActivity.class));
         finish();
     }
 }

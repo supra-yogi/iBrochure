@@ -40,8 +40,11 @@ public class CreditActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == android.R.id.home)
-            finish();
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -54,7 +57,4 @@ public class CreditActivity extends AppCompatActivity {
         startActivity(new Intent(this, YogiProfileActivity.class));
     }
 
-    public void onBackToHome(View view) {
-        startActivity(new Intent(this, ListBrochureActivity.class));
-    }
 }

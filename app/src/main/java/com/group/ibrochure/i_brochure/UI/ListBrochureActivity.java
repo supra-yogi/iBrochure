@@ -230,11 +230,9 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
                 startActivity(new Intent(this, FrontActivity.class));
         } else if (id == R.id.nav_credit) {
             startActivity(new Intent(this, CreditActivity.class));
-            finish();
 
         } else if (id == R.id.nav_about) {
             startActivity(new Intent(this, AboutActivity.class));
-            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -28,12 +28,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class EditProfileActivity extends AppCompatActivity {
     private Session session;
     private UserAccountAPI repository;
     private UserAccount userAccount;
     private final static int PICK_IMAGE = 100;
-    private ImageView imageView;
+    private CircleImageView imageView;
     private static Activity activity;
     private EditText username;
     private EditText email;
@@ -60,7 +62,7 @@ public class EditProfileActivity extends AppCompatActivity {
         address = (EditText) findViewById(R.id.address);
 
         //manipulate image
-        imageView = (ImageView) findViewById(R.id.picture);
+        imageView = (CircleImageView) findViewById(R.id.picture);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_edit_profile);
         setSupportActionBar(toolbar);

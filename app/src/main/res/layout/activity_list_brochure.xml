@@ -28,13 +28,13 @@
                 android:background="@color/colorPrimary">
 
                 <TextView
-                    android:gravity="center"
                     android:id="@+id/toolbar_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center"
                     android:textColor="#fff"
                     android:textSize="20sp"
-                    android:layout_marginRight="16dp"
                     android:text="iBrochure"/>
 
 

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.group.ibrochure.i_brochure.UI.LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_arrow_back"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/colorPrimary"
+                android:onClick="backFront"/>
+
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:src="@drawable/brochure" />
+
+           <LinearLayout
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginRight="80dp"
+               android:layout_marginLeft="80dp">
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="30dp"
+                   android:text="LOGIN"
+                   android:textColor="@color/colorPrimary"
+                   android:textSize="20dp"
+                   android:textStyle="bold" />
+
+               <android.support.design.widget.TextInputLayout
+                   android:id="@+id/email_til"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/username"
+                       android:layout_width="match_parent"
+                       android:layout_height="?attr/actionBarSize"
+                       android:layout_centerHorizontal="true"
+                       android:layout_centerVertical="true"
+                       android:hint="Username or Email Address"
+                       android:inputType="textPersonName" />
+
+               </android.support.design.widget.TextInputLayout>
+
+               <android.support.design.widget.TextInputLayout
+                   android:id="@+id/pass_til"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   app:passwordToggleEnabled="true">
+
+                   <android.support.design.widget.TextInputEditText
+                       android:id="@+id/password"
+                       android:layout_width="match_parent"
+                       android:layout_height="?attr/actionBarSize"
+                       android:layout_below="@id/username"
+                       android:layout_centerHorizontal="true"
+                       android:layout_centerVertical="true"
+                       android:layout_marginTop="20dp"
+                       android:fontFamily="sans-serif"
+                       android:hint="Password"
+                       android:inputType="textPassword" />
+
+               </android.support.design.widget.TextInputLayout>
+
+
+               <Button
+                   android:id="@+id/btnSignIn"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity=""
+                   android:layout_marginTop="30dp"
+                   android:background="@color/colorPrimary"
+                   android:onClick="onLogin"
+                   android:padding="@dimen/activity_horizontal_margin"
+                   android:text="login"
+                   android:textColor="#fff"
+                   android:textSize="20sp" />
+
+               <TextView
+                   android:id="@+id/createAccount"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:layout_marginTop="20dp"
+                   android:onClick="registerPage"
+                   android:text="Create Account"
+                   android:textAllCaps="true"
+                   android:textStyle="bold" />
+           </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

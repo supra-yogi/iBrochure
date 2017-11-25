@@ -1,6 +1,8 @@
 package com.group.ibrochure.i_brochure.UI;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -40,6 +42,7 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_list_brochure);
         session = new Session(this);
         UserAccountAPI userAccountRepository = new UserAccountAPI(this);
@@ -188,8 +191,20 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
 
         switch (item.getItemId()) {
             case R.id.exit_menu:
-                finish();
-                System.exit(0);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListBrochureActivity.this);
+                builder.setMessage("Are you sure want to exit")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+
+                                finish();
+                                System.exit(0);
+
+                            }
+                        }).setNegativeButton("No", null);
+
+                AlertDialog alert = builder.create();
+                alert.show();
                 break;
         }
 

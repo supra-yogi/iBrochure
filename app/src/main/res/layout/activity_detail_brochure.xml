@@ -43,7 +43,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="300dp"
                 android:layout_marginBottom="8dp"/>
 
             <LinearLayout
@@ -64,7 +64,6 @@
                    android:id="@+id/title"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="Title"
                    android:textSize="20sp"
                    android:textColor="#000"
                    android:textStyle="bold"
@@ -74,9 +73,6 @@
                    android:id="@+id/telephone"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:drawableLeft="@drawable/ic_phone_android_black_24dp"
-                   android:text="Description"
-                   android:drawablePadding="10dp"
                    android:textSize="15sp"
                    android:layout_marginBottom="10dp"/>
 
@@ -84,7 +80,6 @@
                    android:id="@+id/description"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="Description"
                    android:textSize="15sp"
                    android:layout_marginBottom="10dp"/>
 
@@ -93,7 +88,6 @@
                    android:id="@+id/user"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="Contact Person"
                    android:textSize="15sp"
                    android:layout_marginBottom="10dp"/>
 

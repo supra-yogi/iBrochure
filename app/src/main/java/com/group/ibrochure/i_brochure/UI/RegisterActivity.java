@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
             progressDialog.show();
-            progressDialog.setMessage("Please wait");
+            progressDialog.setMessage("Please wait...");
             progressDialog.setCancelable(false);
             repository.Save(new ResponseCallBack() {
                 @Override

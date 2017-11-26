@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.show();
-            progressDialog.setMessage("Please wait");
+            progressDialog.setMessage("Please wait...");
             progressDialog.setCancelable(false);
             repository.Login(new ResponseCallBack() {
                 @Override

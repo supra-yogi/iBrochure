@@ -60,7 +60,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.show();
-        progressDialog.setMessage("Please wait");
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
         repository.GetById(new ResponseCallBack() {
             TextView name = (TextView) findViewById(R.id.name);
             TextView username = (TextView) findViewById(R.id.username);

@@ -73,6 +73,10 @@ public class EditProfileActivity extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+        progressDialog.setCancelable(false);
         repository.GetByUsername(new ResponseCallBack() {
             @Override
             public void onResponse(JSONArray response) {
@@ -98,6 +102,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     contact.setText(object.getString("Contact"));
                     telephone.setText(object.getString("Telephone"));
                     address.setText(object.getString("Address"));
+
+                    progressDialog.hide();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

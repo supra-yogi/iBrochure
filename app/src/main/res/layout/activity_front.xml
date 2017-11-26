@@ -61,18 +61,20 @@
                 android:padding="@dimen/activity_vertical_margin"
                 android:textColor="@color/white"
                 android:text="Login"
+                android:onClick="onLogin"
                 android:textSize="15sp"/>
 
 
             <Button
                 android:id="@+id/registerPage"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:padding="@dimen/activity_vertical_margin"
                 android:text="Register"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"
+                android:onClick="onRegister"
                 android:textSize="15sp"/>
 
         </LinearLayout>

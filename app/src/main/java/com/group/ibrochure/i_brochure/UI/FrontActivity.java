@@ -14,32 +14,23 @@ public class FrontActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_front);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_front);
-
-        Button login = (Button) findViewById(R.id.loginPage);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                finish();
-            }
-        });
-
-        Button register = (Button) findViewById(R.id.registerPage);
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-                finish();
-            }
-        });
-
     }
 
     public void homeBack(View view) {
+        finish();
+    }
+
+    public void onLogin(View view) {
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
+    }
+
+    public void onRegister(View view) {
+        startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
         finish();
     }
 }

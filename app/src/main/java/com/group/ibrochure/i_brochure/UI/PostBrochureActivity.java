@@ -168,7 +168,7 @@ public class PostBrochureActivity extends AppCompatActivity {
 
                     final ProgressDialog progressDialog = new ProgressDialog(this);
                     progressDialog.show();
-                    progressDialog.setMessage("Please wait");
+                    progressDialog.setMessage("Please wait...");
                     progressDialog.setCancelable(false);
                     //Disable touch
                     repository.Save(new ResponseCallBack() {

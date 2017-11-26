@@ -99,50 +99,45 @@ public class PaginateListMyBrochure {
         final UserAccount userAccount = new UserAccount();
         userAccount.setId(session.getId());
 
-        new Handler().postDelayed(new Runnable() {
+        repository.GetListMyBrochureByPage(new ResponseCallBack() {
             @Override
-            public void run() {
-                repository.GetListMyBrochureByPage(new ResponseCallBack() {
-                    @Override
-                    public void onResponse(JSONArray response) {}
+            public void onResponse(JSONArray response) {
+            }
 
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                ListBrochure entity = new ListBrochure();
-                                entity.setId(jsonObject.getInt("Id"));
-                                entity.setTitle(jsonObject.getString("Title"));
-                                entity.setTelephone(jsonObject.getString("Telephone"));
-                                entity.setPictureFront(jsonObject.getString("PictureFront"));
-                                entity.setPictureBack(jsonObject.getString("PictureBack"));
+                        ListBrochure entity = new ListBrochure();
+                        entity.setId(jsonObject.getInt("Id"));
+                        entity.setTitle(jsonObject.getString("Title"));
+                        entity.setTelephone(jsonObject.getString("Telephone"));
+                        entity.setPictureFront(jsonObject.getString("PictureFront"));
+                        entity.setPictureBack(jsonObject.getString("PictureBack"));
 
-                                UserAccount userAccount = new UserAccount();
-                                userAccount.setName(jsonObject.getString("Username"));
+                        UserAccount userAccount = new UserAccount();
+                        userAccount.setName(jsonObject.getString("Username"));
 //                                userAccount.setPicture(jsonObject.getString("Avatar"));
 
-                                entity.setUserAccount(userAccount);
-                                adapter.add(entity);
-                                nextPage = page + 1;
-                            }
-                        } catch (JSONException e) {
-                            Log.d("Error: ", e.getMessage());
-                        }
+                        entity.setUserAccount(userAccount);
+                        adapter.add(entity);
+                        nextPage = page + 1;
+                        //UPDATE PROPERTIES
+                        pullToLoadView.setComplete();
+                        isLoading = false;
                     }
-
-                    @Override
-                    public void onError(String error) {
-                        Toast.makeText(context, "Response: " + error, Toast.LENGTH_LONG).show();
-                    }
-                }, userAccount, page, size);
-
-                //UPDATE PROPERTIES
-                pullToLoadView.setComplete();
-                isLoading = false;
+                } catch (JSONException e) {
+                    Log.d("Error: ", e.getMessage());
+                }
             }
-        }, 3000);
+
+            @Override
+            public void onError(String error) {
+                Toast.makeText(context, "Response: " + error, Toast.LENGTH_LONG).show();
+            }
+        }, userAccount, page, size);
     }
 }

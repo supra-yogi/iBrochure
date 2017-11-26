@@ -41,17 +41,15 @@ public class ConverterImage {
     public static String encodeBase64(ImageView imageView) {
         Bitmap image = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 40, baos);
+        image.compress(Bitmap.CompressFormat.JPEG, 80, baos);
         byte[] b = baos.toByteArray();
         String temp = null;
         try {
             System.gc();
             temp = Base64.encodeToString(b, Base64.NO_WRAP);
-        } catch (Exception e) {
-            e.printStackTrace();
         } catch (OutOfMemoryError e) {
             baos = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+            image.compress(Bitmap.CompressFormat.JPEG, 40, baos);
             b = baos.toByteArray();
             temp = Base64.encodeToString(b, Base64.NO_WRAP);
             Log.e("EWN", "Out of memory error catched");

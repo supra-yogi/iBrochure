@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.group.ibrochure.i_brochure.Domain.ListBrochure.ListBrochure;
 import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
+import com.group.ibrochure.i_brochure.Infrastructure.CategoryAPI;
 import com.group.ibrochure.i_brochure.Infrastructure.ConverterImage;
 import com.group.ibrochure.i_brochure.R;
 
@@ -35,7 +36,6 @@ import java.util.zip.Inflater;
 public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHolder> {
     private Context context;
     private ArrayList<ListBrochure> listBrochureArrayList;
-
 
     /*
     CONSTRUCTOR
@@ -165,6 +165,7 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
         TextView title;
         TextView telephone;
         TextView user;
+        TextView category;
         CardView brochure;
         ViewPager viewPager;
         LinearLayout sliderDotspanel;
@@ -178,6 +179,7 @@ public class BrochureAdapter extends RecyclerView.Adapter<BrochureAdapter.MyHold
             this.brochure = (CardView) itemView.findViewById(R.id.cardViewModelBrochure);
             this.viewPager = (ViewPager) itemView.findViewById(R.id.viewPager);
             this.sliderDotspanel = (LinearLayout) itemView.findViewById(R.id.SliderDots);
+            this.category = (TextView) itemView.findViewById(R.id.category);
         }
     }
 }

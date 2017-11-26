@@ -35,8 +35,7 @@
             android:name=".UI.EditProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".UI.FrontActivity"
-            android:screenOrientation="portrait" />
+            android:name=".UI.FrontActivity"/>
         <activity
             android:name=".UI.PostBrochureActivity"
             android:screenOrientation="portrait" />

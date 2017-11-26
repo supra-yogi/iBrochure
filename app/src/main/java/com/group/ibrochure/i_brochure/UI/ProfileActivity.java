@@ -1,7 +1,9 @@
 package com.group.ibrochure.i_brochure.UI;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -143,9 +145,22 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void onLogout(View view) {
-        session.logOut();
-        ListBrochureActivity.getInstance().finish();
-        startActivity(new Intent(this, ListBrochureActivity.class));
-        finish();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+        builder.setMessage("Are you sure want to exit")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        session.logOut();
+                        ListBrochureActivity.getInstance().finish();
+                        startActivity(new Intent(getApplicationContext(), ListBrochureActivity.class));
+                        finish();
+
+                    }
+                }).setNegativeButton("No", null);
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 }

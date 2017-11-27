@@ -7,8 +7,10 @@ import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.group.ibrochure.i_brochure.Domain.Category.Category;
 import com.group.ibrochure.i_brochure.Domain.ListBrochure.ListBrochure;
 import com.group.ibrochure.i_brochure.Domain.UserAccount.UserAccount;
 import com.group.ibrochure.i_brochure.Infrastructure.ListBrochureAPI;
@@ -116,6 +118,10 @@ public class PaginateListBrochure {
                         entity.setPictureFront(jsonObject.getString("PictureFront"));
                         entity.setPictureBack(jsonObject.getString("PictureBack"));
 
+                        Category category = new Category();
+                        category.setName(jsonObject.getString("Category"));
+                        entity.setCategory(category);
+
                         UserAccount userAccount = new UserAccount();
                         userAccount.setName(jsonObject.getString("Username"));
 //                                userAccount.setPicture(jsonObject.getString("Avatar"));
@@ -134,7 +140,9 @@ public class PaginateListBrochure {
 
             @Override
             public void onError(String error) {
-                Toast.makeText(context, "Response: " + error, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, error, Toast.LENGTH_LONG).show();
+                pullToLoadView.setComplete();
+                isLoading = false;
             }
         }, page, size);
     }

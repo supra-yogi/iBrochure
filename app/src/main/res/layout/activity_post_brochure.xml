@@ -90,7 +90,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:hint="Telphone"
-                    android:inputType="textPhonetic"/>
+                    android:inputType="phone"/>
 
             </android.support.design.widget.TextInputLayout>
 

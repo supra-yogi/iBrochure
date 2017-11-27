@@ -133,7 +133,7 @@ public abstract class BaseAPI<T extends EntityBase> implements IRepository<T> {
         } else if (error instanceof NoConnectionError) {
             message = "Cannot connect to Internet...Please check your connection!";
         } else if (error instanceof TimeoutError) {
-            message = "Connection TimeOut! The server could not be found or no internet connection.";
+            message = "Connection Time Out! The server could not be found or no internet connection.";
         }
 
         return message;

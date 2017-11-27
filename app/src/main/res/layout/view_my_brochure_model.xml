@@ -65,23 +65,34 @@
 
 
             <TextView
+                android:id="@+id/cat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:background="@drawable/cat"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/colorAccent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Residence"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Title"
+                android:layout_marginBottom="5dp"
                 android:textColor="#000"
                 android:textSize="20sp"
+                android:text="Holland Village"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/telephone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_phone_android_black_24dp"
-                android:drawablePadding="10sp"
-                android:text="0878 8559 4740"
-                android:textSize="15sp" />
+                android:textSize="10sp"
+                android:text="0878 8559 4740"/>
         </LinearLayout>
 
     </LinearLayout>

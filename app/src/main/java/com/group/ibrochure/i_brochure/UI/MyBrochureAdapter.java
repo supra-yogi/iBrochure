@@ -65,6 +65,7 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
         holder.title.setText(listBrochureArrayList.get(position).getTitle());
         holder.telephone.setText(listBrochureArrayList.get(position).getTelephone());
         holder.user.setText(listBrochureArrayList.get(position).getUserAccount().getName());
+        holder.category.setText(listBrochureArrayList.get(position).getCategory().getName());
 
         String imageByteFront = listBrochureArrayList.get(position).getPictureFront();
         String imageByteBack = listBrochureArrayList.get(position).getPictureBack();
@@ -270,6 +271,7 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
         TextView title;
         TextView telephone;
         TextView user;
+        TextView category;
         CardView brochure;
         ViewPager viewPager;
         LinearLayout sliderDotspanel;
@@ -285,6 +287,7 @@ public class MyBrochureAdapter extends RecyclerView.Adapter<MyBrochureAdapter.My
             this.viewPager = (ViewPager) itemView.findViewById(R.id.viewPager);
             this.more = (TextView) itemView.findViewById(R.id.more);
             this.sliderDotspanel = (LinearLayout) itemView.findViewById(R.id.SliderDots);
+            this.category = (TextView) itemView.findViewById(R.id.cat);
         }
     }
 }

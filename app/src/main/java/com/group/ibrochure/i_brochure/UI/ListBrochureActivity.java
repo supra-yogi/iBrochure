@@ -59,8 +59,6 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/pacifico.ttf");
         tv.setTypeface(face);
 
-        PullToLoadView pullToLoadView = (PullToLoadView) findViewById(R.id.pullToLoadView);
-        new PaginateListBrochure(this, pullToLoadView).initializePaginator();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -111,6 +109,8 @@ public class ListBrochureActivity extends AppCompatActivity implements Navigatio
                 }
             }, session.getId());
         }
+        PullToLoadView pullToLoadView = (PullToLoadView) findViewById(R.id.pullToLoadView);
+        new PaginateListBrochure(this, pullToLoadView).initializePaginator();
     }
 
 //    @Override

@@ -148,7 +148,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void onLogout(View view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
-        builder.setMessage("Are you sure want to exit")
+        builder.setMessage("Are you sure want to Logout")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {

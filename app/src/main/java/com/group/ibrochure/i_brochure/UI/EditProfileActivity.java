@@ -1,13 +1,20 @@
 package com.group.ibrochure.i_brochure.UI;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -35,6 +42,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private UserAccountAPI repository;
     private UserAccount userAccount;
     private final static int PICK_IMAGE = 100;
+    private final static int REQUEST_CAMERA = 200;
     private CircleImageView imageView;
     private static Activity activity;
     private EditText username;
@@ -177,9 +185,56 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
 
-    public void onPickPicture(View view) {
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery, PICK_IMAGE);
+//    public void onPickPicture(View view) {
+//        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+//        startActivityForResult(gallery, PICK_IMAGE);
+//    }
+
+
+    public void selectImage(View view) {
+
+        final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivity.this);
+        builder.setTitle("Add Image");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (items[i].equals("Camera")) {
+                   if (ActivityCompat.checkSelfPermission(EditProfileActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                       ActivityCompat.requestPermissions(EditProfileActivity.this, new String[] {Manifest.permission.CAMERA}, REQUEST_CAMERA);
+//                       Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                       startActivityForResult(intent, REQUEST_CAMERA);
+                   } else {
+                       afterPermission();
+                   }
+                } else if (items[i].equals("Gallery")) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                    intent.setType("image/*");
+//                    startActivityForResult(intent.createChooser(intent, "Select File"), SELECT_FILE);
+                    startActivityForResult(intent, PICK_IMAGE);
+                } else if (items[i].equals("Cancel")) {
+                    dialogInterface.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    public void afterPermission() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CAMERA) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                afterPermission();
+            } else {
+                Toast.makeText(this, "Unable to get permission", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -188,6 +243,11 @@ public class EditProfileActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
             Uri imageUri = data.getData();
             imageView.setImageURI(imageUri);
+        } else if (requestCode == REQUEST_CAMERA) {
+            Bundle bundle = data.getExtras();
+            assert bundle != null;
+            final Bitmap bmp = (Bitmap) bundle.get("data");
+            imageView.setImageBitmap(bmp);
         }
     }
 
